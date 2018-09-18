@@ -1,0 +1,40 @@
+body {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Mukta Malar', sans-serif;
+    clear: both;
+}
+
+nav,
+nav ul {
+    margin: 5px;
+    padding: 0;
+}
+
+nav {
+    margin: 0 auto;
+    max-width: 1122px;
+}
+
+nav ul,
+nav ul li {
+    float: right;
+}
+
+nav ul li {
+    display: block;
+    margin: 5px;
+}
+
+.logo {
+    float: left;
+    width: 100px;
+}

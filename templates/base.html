@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Mukta+Malar:400,900" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Cook for Cookies</div>
+            <ul>
+                <li>Profile</li>
+                <li>Cookies Leaderboard</li>
+                <li>Ingredients</li>
+                <li>Recipes</li>
+                <li>Sign In</li>
+                <li>Sign Up</li>
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>Cook for Cookies!</h1> 
+    
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
