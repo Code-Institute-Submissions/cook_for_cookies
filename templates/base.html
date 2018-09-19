@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Cook for Cookies - {{ page_title }}</title>
     
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Mukta+Malar:400,900" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
@@ -12,19 +12,24 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Cook for Cookies</div>
+            <a href="{{ url_for('home') }}">
+                <div class="logo">Cook for Cookies</div>
+            </a>
             <ul>
-                <li>Profile</li>
+                {% if username != "guest" %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('profile', username=username) }}">Profile</a></li>
+                {% endif %}
                 <li>Cookies Leaderboard</li>
-                <li>Ingredients</li>
+                <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
                 <li>Recipes</li>
-                <li>Sign In</li>
-                <li>Sign Up</li>
+                {% if username == "guest" %}
+                <li><a href="{{ url_for('log_in') }}">Log In</a></li>
+                <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
-    
-    <h1>Cook for Cookies!</h1> 
     
     {% block content %}
     {% endblock %}

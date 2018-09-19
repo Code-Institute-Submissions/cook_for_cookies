@@ -1,9 +1,27 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %} 
 
-{% for user in users %}
-    <p>Info 1: {{ user.first_name }}</p> 
-    <p>Info 2: {{ user.surname }}</p> 
-{% endfor %}
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="row">
+    <p class="flashed-message">
+        {{ message }}
+    </p>
+</div>
+{% endfor %} {% endif %} {% endwith %}
 
+<div class="container">
+    <h1>Welcome to Cook for Cookies</h1>
+
+    <p>This is a recipes website with a difference.</p>
+    <p>You can add your own recipes and other people can try them and provide a review.</p>
+    <p>Each review will be scored between 0 - 5 cookies which will accumulate for every recipe you add.</p>
+    <p>Will you be cookie king or queen on our leaderboard?!</p>
+
+    {% if username == "guest" %}
+    <button><a href="{{ url_for('sign_up') }}">Sign Up</a></button>
+    <button><a href="{{ url_for('log_in') }}">Log In</a></button> 
+    {% else %}
+    <p>Welcome back {{ username }}!</p>
+    {% endif %}
+    <button>Go to recipes</button>
+</div>
 {% endblock %}

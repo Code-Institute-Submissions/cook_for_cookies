@@ -1,6 +1,13 @@
+// General styling -------------------------------------------------------------
+
 body {
     font-family: 'Oswald', sans-serif;
     letter-spacing: 1px;
+}
+
+header {
+    height: 50px;
+    margin: 0 0 50px;
 }
 
 h1,
@@ -12,6 +19,25 @@ h6 {
     font-family: 'Mukta Malar', sans-serif;
     clear: both;
 }
+
+.container {
+    max-width: 1122px;
+    margin: 0 auto;
+}
+
+.row {
+    clear: both;
+    display: block;
+    width: 100%;
+}
+
+a, 
+a:visited {
+    text-decoration: none;
+    color: #000;
+}
+
+// Header Styling --------------------------------------------------------------
 
 nav,
 nav ul {
@@ -37,4 +63,45 @@ nav ul li {
 .logo {
     float: left;
     width: 100px;
+}
+
+// Home page -------------------------------------------------------------------
+
+ul {
+    list-style: none;
+}
+
+input,
+hr {
+    width: 300px;
+    margin: 5px 0;
+}
+
+// Profile page ----------------------------------------------------------------
+
+.profile-pic {
+    width: 200px;
+    height: 200px;
+}
+
+// Ingredient list -------------------------------------------------------------
+
+.ingredient-img {
+    width: 75px;
+    height: 75px;
+}
+
+.ingredient-list-item {
+    display: inline-block;
+    float: left;
+    margin: 0 10px;
+}
+
+.clear-float {
+    clear: both;
+}
+
+.ingredient-row {
+    height: 86px;
+    margin: 0 auto 10px;
 }

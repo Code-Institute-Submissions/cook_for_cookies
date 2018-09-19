@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %} 
+
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="row">
+    <p class="flashed-message">
+        {{ message }}
+    </p>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<div class="container">
+    <div class="row">
+        <img class="profile-pic" src="{{ user.user_photo }}"></img>
+    </div>
+
+    <div class="row">
+        <form action="{{ url_for('update_user', username=username) }}" method="POST">
+            <div class="row">
+                <ul class="new-user-form">
+                    <li><label for="first_name">First Name</label></li>
+                    <li><input id="first_name" name="first_name" type="text" value="{{ user.first_name }}"></li>
+                    <hr>
+                    <li><label for="surname">Surname</label></li>
+                    <li><input id="surname" name="surname" type="text" value="{{ user.surname }}"></li>
+                    <hr>
+                    <li><label for="email">Email Address</label></li>
+                    <li><input id="email" name="email" type="email" value="{{ user.email }}"></li>
+                    <hr>
+                    <li><label for="password">Password</label></li>
+                    <li><input id="password" required minlength="5" name="password" type="password" value="{{ user.password }}"></li>
+                    <hr>
+                    <li><label for="country">Country</label></li>
+                    <li><input id="country" name="country" type="text" value="{{ user.country }}"></li>
+                    <hr>
+                    <li><label for="user_photo">Your Photo Image Address</label></li>
+                    <li><input id="user_photo" name="user_photo" type="text" value="{{ user.user_photo }}"></li>
+                    <hr>
+                    <button type="submit">Submit</button>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

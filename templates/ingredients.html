@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% block content %} 
+
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="row">
+    <p class="flashed-message">
+        {{ message }}
+    </p>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<div class="container">
+    <h1>Ingredients list</h1>
+
+    <p>Please add any ingredients that are in your recipe but not on our list!</p>
+    
+    <ul>
+    {% for ingredient in ingredients_list %}
+        <li class="clear-float ingredient-row">
+            <img class="ingredient-img ingredient-list-item" src="{{ ingredient.ingredient_image_url }}"></img>
+            <p class="ingredient-list-item">Ingredient Name - {{ ingredient.ingredient_name }}</p> 
+            <label class="ingredient-list-item">Allergen? 
+            {% if ingredient.allergens %}
+                <input type="checkbox" checked><span class="slider"></span>
+            {% else %}
+                <input type="checkbox"><span class="slider"></span>
+            {% endif %}
+            </label>
+        </li> 
+    {% endfor %}
+        <li class="clear-float">Need to add or edit an ingredient?</li>
+        <button>Add Ingredient</button>
+        <button>Edit Ingredient</button>
+    </ul>
+    
+</div>
+{% endblock %}
