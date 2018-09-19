@@ -21,7 +21,7 @@
                 <li><a href="{{ url_for('profile', username=username) }}">Profile</a></li>
                 {% endif %}
                 <li>Cookies Leaderboard</li>
-                <li><a href="{{ url_for('ingredients') }}">Ingredients</a></li>
+                <li><a href="{{ url_for('ingredients', username=username) }}">Ingredients</a></li>
                 <li>Recipes</li>
                 {% if username == "guest" %}
                 <li><a href="{{ url_for('log_in') }}">Log In</a></li>

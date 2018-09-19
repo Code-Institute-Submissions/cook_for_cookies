@@ -25,11 +25,11 @@
                 <input type="checkbox"><span class="slider"></span>
             {% endif %}
             </label>
+            <button><a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}">Edit Ingredient</a></button>
         </li> 
     {% endfor %}
-        <li class="clear-float">Need to add or edit an ingredient?</li>
-        <button>Add Ingredient</button>
-        <button>Edit Ingredient</button>
+        <li class="clear-float">Need to add an ingredient?</li>
+        <button><a href="{{ url_for('add_ingredient') }}">Add Ingredient</a></button>
     </ul>
     
 </div>

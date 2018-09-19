@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="row">
+    <p class="flashed-message">
+        {{ message }}
+    </p>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<div class="container">
+    <div class="row">
+        <h1>Edit an Ingredient</h1>
+    </div>
+    <div class="row">
+        <p>Please update the details of this ingredient if needed...</p>
+    </div>
+    <div class="row">
+        <form action="{{ url_for('update_ingredient', ingredient_id=ingredient._id) }}" method="POST">
+            <div class="row">
+                <ul class="new-user-form">
+                    <li><label for="ingredient_name">Ingredient Name</label></li>
+                    <li><input id="ingredient_name" name="ingredient_name" type="text" value="{{ ingredient.ingredient_name }}" required></li>
+                    <hr>
+                    <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
+                    <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}" required></li>
+                    <li><img class="edit-ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img></li> 
+                    <hr>
+                    <div class="switch">
+                        <label class="">Allergen? 
+                            {% if ingredient.allergens %}
+                            <input type="checkbox" name="allergens" id="allergens" checked><span class="slider"></span>
+                            {% else %}
+                            <input type="checkbox" name="allergens" id="allergens"><span class="slider"></span>
+                            {% endif %}
+                        </label>
+                    </div>
+                    <hr>
+                    <button type="submit">Update Ingredient</button>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

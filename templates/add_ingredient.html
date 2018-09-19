@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %} {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+<div class="row">
+    <p class="flashed-message">
+        {{ message }}
+    </p>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<div class="container">
+    <div class="row">
+        <h1>Add an Ingredient</h1>
+    </div>
+    <div class="row">
+        <p>Please enter the details of the ingredient you would like to add...</p>
+    </div>
+    <div class="row">
+        <form action="{{ url_for('insert_ingredient') }}" method="POST">
+            <div class="row">
+                <ul class="new-user-form">
+                    <li><label for="ingredient_name">Ingredient Name</label></li>
+                    <li><input id="ingredient_name" name="ingredient_name" type="text" required></li>
+                    <hr>
+                    <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
+                    <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" required></li>
+                    <hr>
+                    <div class="switch">
+                        <label>
+                        <input id="allergens" name="allergens" type="checkbox">
+                        <span class="lever"></span>Contains Allergens?
+                    </label>
+                    </div>
+                    <hr>
+                    <button type="submit">Submit</button>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
