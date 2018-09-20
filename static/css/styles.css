@@ -29,6 +29,18 @@ a:visited {
   text-decoration: none;
   color: #000; }
 
+.center-div {
+  margin: 0 auto; }
+
+.center-text {
+  text-align: center; }
+
+.hide-me-btn {
+  display: block;
+  width: 150px;
+  border-radius: 25px;
+  margin-top: 20px; }
+
 nav,
 nav ul {
   margin: 5px;
@@ -49,6 +61,25 @@ nav ul li {
 .logo {
   float: left;
   width: 100px; }
+
+.round-pop-up-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  -webkit-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+  background-color: #8adade; }
+
+.flashed-message {
+  width: 70%;
+  margin-top: 40%; }
 
 ul {
   list-style: none; }

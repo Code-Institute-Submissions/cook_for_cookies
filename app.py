@@ -11,6 +11,10 @@ app.config["MONGO_URI"] = "mongodb://admin:Sameday123@ds161112.mlab.com:61112/on
 
 mongo = PyMongo(app)
 
+# Global Variables -------------------------------------------------------------
+
+cusine_list = ['American', 'British', 'Caribbean', 'Chinese', 'French', 'Greek', 'Indian', 'Italian', 'Japanese', 'Mediterranean', 'Mexican', 'Moroccan', 'Spanish', 'Thai', 'Turkish', 'Vietnamese', 'Other']
+
 # User functions ---------------------------------------------------------------
 
 def user_has_logged_in(email):
@@ -99,6 +103,7 @@ def log_in():
         given matches the users stored password
         """
         if validate_password_on_log_in(request.form["email"].lower(), request.form["password"]) == True:
+            flash("Welcome back {}".format(session['user']))
             return redirect(url_for('home'))
         else:
             return render_template("log_in.html", page_title="Log In", username="guest")
@@ -108,6 +113,7 @@ def log_in():
 def logout():
     session.pop('user', None)
     current_user = determine_current_user(session)
+    flash("You have logged out. Come back now you hear!")
     return redirect(url_for('home'))
     
 @app.route('/<username>/profile.html', methods=["GET", "POST"])

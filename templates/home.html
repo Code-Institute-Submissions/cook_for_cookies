@@ -1,13 +1,5 @@
 {% extends 'base.html' %} {% block content %} 
 
-{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-<div class="row">
-    <p class="flashed-message">
-        {{ message }}
-    </p>
-</div>
-{% endfor %} {% endif %} {% endwith %}
-
 <div class="container">
     <h1>Welcome to Cook for Cookies</h1>
 
@@ -19,8 +11,6 @@
     {% if username == "guest" %}
     <button><a href="{{ url_for('sign_up') }}">Sign Up</a></button>
     <button><a href="{{ url_for('log_in') }}">Log In</a></button> 
-    {% else %}
-    <p>Welcome back {{ username }}!</p>
     {% endif %}
     <button>Go to recipes</button>
 </div>

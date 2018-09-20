@@ -1,13 +1,5 @@
 {% extends 'base.html' %} {% block content %} 
 
-{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-<div class="row">
-    <p class="flashed-message">
-        {{ message }}
-    </p>
-</div>
-{% endfor %} {% endif %} {% endwith %}
-
 <div class="container">
     <h1>Ingredients list</h1>
 

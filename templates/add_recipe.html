@@ -1,14 +1,15 @@
-{% extends 'base.html' %} {% block content %} 
+{% extends 'base.html' %} {% block content %}
 
 <div class="container">
     <div class="row">
-        <h1>Add an Ingredient</h1>
+        <h1>Add a Recipe</h1>
     </div>
     <div class="row">
-        <p>Please enter the details of the ingredient you would like to add...</p>
+        <p>Here is your chance to shine!  Share those amazing home recipes with the World and see what they think!</p> 
+        <p>Please enter the details of your recipe in the boxes below...</p>
     </div>
     <div class="row">
-        <form action="{{ url_for('insert_ingredient') }}" method="POST">
+        <form action="{{  }}" method="POST">
             <div class="row">
                 <ul class="new-user-form">
                     <li><label for="ingredient_name">Ingredient Name</label></li>
