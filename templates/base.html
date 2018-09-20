@@ -23,7 +23,7 @@
                 {% endif %}
                 <li>Cookies Leaderboard</li>
                 <li><a href="{{ url_for('ingredients', username=username) }}">Ingredients</a></li>
-                <li>Recipes</li>
+                <li><a href="{{ url_for('recipes', username=username) }}">Recipes</a></li>
                 {% if username == "guest" %}
                 <li><a href="{{ url_for('log_in') }}">Log In</a></li>
                 <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>

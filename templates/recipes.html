@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <div class="sticky-div">
+        <h1>Recipes list</h1>
+
+        <p>Please choose a recipe you would like to try from our list!</p>
+        <p>Alternatively, why not add your own and see if people like it?</p>
+        <button><a href="{{ url_for('add_recipe') }}">Add recipe</a></button>
+
+        <ul>
+            <li class="list-headings">
+                <label class="recipe-list-item" for="">Image</label>
+                <label class="recipe-list-item" for="">Recipe Name</label>
+                <label class="recipe-list-item" for="">Cookie Rating</label>
+            </li>
+        </ul>
+    </div>
+    <ul>
+        {% for recipe in recipes_list %}
+        <li class="clear-float recipe-row">
+            <div class="recipe-list-item">
+                <img class="recipe-img" src="{{ recipe.recipe_image_url }}"></img>
+            </div>
+            <p class="recipe-list-item">{{ recipe.recipe_name }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+{% endblock %}

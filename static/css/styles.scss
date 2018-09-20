@@ -64,6 +64,10 @@ a:visited {
     margin-top: 20px;
 }
 
+.hidden-div {
+    display: none;
+}
+
 // Header Styling --------------------------------------------------------------
 
 nav,
@@ -108,11 +112,12 @@ nav ul li {
     -moz-box-shadow: 7px 10px 32px -5px rgba(0,0,0,0.75);
     box-shadow: 7px 10px 32px -5px rgba(0,0,0,0.75);
     background-color: #8adade;
+    z-index: 100;
 }
 
 .flashed-message {
     width: 70%;
-    margin-top: 40%;
+    margin-top: 30%;
 }
 
 // Home page -------------------------------------------------------------------
@@ -134,13 +139,14 @@ hr {
     height: 200px;
 }
 
-// Ingredient list -------------------------------------------------------------
+// Ingredient / Recipes lists -------------------------------------------------------------
 
 .list-headings {
     height: 50px;
     margin: 0 0 20px;
 }
 
+.recipe-list-item,
 .ingredient-list-item {
     display: inline-block;
     float: left;
@@ -148,11 +154,13 @@ hr {
     width: 400px;
 }
 
+.recipe-img,
 .ingredient-img {
     width: 75px;
     height: 75px;
 }
 
+.recipe-list-item,
 .ingredient-list-item {
     display: inline-block;
     float: left;
@@ -160,6 +168,7 @@ hr {
     width: 200px;
 }
 
+.recipe-row,
 .ingredient-row {
     height: 86px;
     margin: 0 auto 10px;

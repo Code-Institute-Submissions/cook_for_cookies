@@ -9,21 +9,22 @@
         <p>Please enter the details of your recipe in the boxes below...</p>
     </div>
     <div class="row">
-        <form action="{{  }}" method="POST">
+        <form action="" method="POST">
             <div class="row">
                 <ul class="new-user-form">
-                    <li><label for="ingredient_name">Ingredient Name</label></li>
-                    <li><input id="ingredient_name" name="ingredient_name" type="text" required></li>
+                    <input class="hidden-div" type="text" id="author" name="recipe_name" value="{{ user._id }}">
+                    <input class="hidden-div" type="text" id="author_COO" name="recipe_name" value="{{ user.country }}">
+                    <li><label for="recipe_name">Recipe Name</label></li>
+                    <li><input id="recipe_name" name="recipe_name" type="text" required></li>
                     <hr>
-                    <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
-                    <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" required></li>
+                    <li><label for="cusine">Cusine Type</label></li>
+                    <li><input id="cusine" name="cusine" type="text" required></li>
                     <hr>
-                    <div class="switch">
-                        <label>
-                        <input id="allergens" name="allergens" type="checkbox">
-                        <span class="lever"></span>Contains Allergens?
-                    </label>
-                    </div>
+                    <li><label for="recipe_image_url">Recipe Photo Image Address</label></li>
+                    <li><input id="recipe_image_url" name="recipe_image_url" type="text" required></li>
+                    <hr>
+                    <li><label for="recipe_instructions">Recipe Photo Image Address</label></li>
+                    <li><input id="recipe_instructions" name="recipe_instructions" type="text" required></li>
                     <hr>
                     <button type="submit">Submit</button>
                 </ul>

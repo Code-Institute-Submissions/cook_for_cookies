@@ -74,7 +74,9 @@ def before_request():
 def home():
     current_user = determine_current_user(session)
     return render_template("home.html", users = mongo.db.Users.find(), username=current_user, page_title="Home")
-    
+
+# User related views -----------------------------------------------------------
+
 @app.route('/sign_up')
 def sign_up():
     return render_template("signup.html", users = mongo.db.Users.find(), username="guest", page_title="Sign Up")
@@ -150,6 +152,8 @@ def update_user(username):
         
         return redirect(url_for('profile', username=session['user']))
 
+# Ingredients related views ----------------------------------------------------
+
 @app.route('/ingredients')
 def ingredients():
     current_user = determine_current_user(session)
@@ -196,6 +200,35 @@ def update_ingredient(ingredient_id):
         'ingredient_image_url': request.form['ingredient_image_url']})
     flash("Ingredient updated!")
     return redirect(url_for('ingredients'))
+
+# Recipe related views ---------------------------------------------------------
+
+@app.route('/recipes')
+def recipes():
+    current_user = determine_current_user(session)
+    recipes = mongo.db.recipes.find().sort([("recipe_name", 1)])
+    ingredients = mongo.db.ingredients.find().sort([("ingredient_name", 1)])
+    return render_template("recipes.html", recipes_list = recipes, ingredients_list = ingredients, page_title="Recipes", username=current_user)
+
+@app.route('/add_recipe')
+def add_recipe():
+    current_user = determine_current_user(session)
+    
+    if current_user == "guest":
+        flash("I'm sorry but you need to be logged in to add a recipe.  Log in or sign up and begin!")
+        return redirect(url_for('recipes'))
+    else:
+        user = mongo.db.Users.find_one({"email": session["user"]})
+        return render_template("add_recipe.html", page_title="Add a Recipe", username=current_user, cusines=cusine_list, user=user)
+
+@app.route('/insert_recipe', methods=["POST"])
+def insert_recipe():
+    
+    ingredients = mongo.db.recipes.find()
+    
+    mongo.db.recipes.insert_one(request.form.to_dict())
+    flash("{} has been to the recipes list.\n  I best it tastes great!".format(request.form['recipe_name']))
+    return redirect(url_for('recipes'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
