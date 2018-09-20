@@ -1,28 +1,39 @@
-{% extends 'base.html' %} {% block content %} 
+{% extends 'base.html' %} {% block content %}
 
 <div class="container">
-    <h1>Ingredients list</h1>
+    <div class="sticky-div">
+        <h1>Ingredients list</h1>
 
-    <p>Please add any ingredients that are in your recipe but not on our list!</p>
-    
+        <p>Please add any ingredients that are in your recipe but not on our list!</p>
+
+        <ul>
+            <li class="list-headings">
+                <label class="ingredient-list-item" for="">Image</label>
+                <label class="ingredient-list-item" for="">Ingredient Name</label>
+                <label class="ingredient-list-item center-text" for="">Contains Allergen?</label>
+            </li>
+        </ul>
+    </div>
     <ul>
-    {% for ingredient in ingredients_list %}
+        {% for ingredient in ingredients_list %}
         <li class="clear-float ingredient-row">
-            <img class="ingredient-img ingredient-list-item" src="{{ ingredient.ingredient_image_url }}"></img>
-            <p class="ingredient-list-item">Ingredient Name - {{ ingredient.ingredient_name }}</p> 
-            <label class="ingredient-list-item">Allergen? 
+            <div class="ingredient-list-item">
+                <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+            </div>
+            <p class="ingredient-list-item">{{ ingredient.ingredient_name }}</p>
+            <label class="ingredient-list-item  center-text">
             {% if ingredient.allergens %}
-                <input type="checkbox" checked><span class="slider"></span>
+                <i class="fas fa-exclamation-circle"></i>
             {% else %}
-                <input type="checkbox"><span class="slider"></span>
+                <i class="fas fa-smile"></i>
             {% endif %}
             </label>
             <button><a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}">Edit Ingredient</a></button>
-        </li> 
-    {% endfor %}
+        </li>
+        {% endfor %}
         <li class="clear-float">Need to add an ingredient?</li>
         <button><a href="{{ url_for('add_ingredient') }}">Add Ingredient</a></button>
     </ul>
-    
+
 </div>
 {% endblock %}

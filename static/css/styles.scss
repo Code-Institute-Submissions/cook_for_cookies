@@ -21,7 +21,7 @@ h6 {
 }
 
 .container {
-    max-width: 1122px;
+    max-width: 992px;
     margin: 0 auto;
 }
 
@@ -43,6 +43,16 @@ a:visited {
 
 .center-text {
     text-align: center;
+}
+
+.clear-float {
+    clear: both;
+}
+
+.sticky-div {
+    position: sticky;
+    top: 0;
+    background-color: #fff;
 }
 
 // Buttons ---------------------------------------------------------------------
@@ -74,7 +84,7 @@ nav ul li {
 
 nav ul li {
     display: block;
-    margin: 5px;
+    margin: 5px 30px;
 }
 
 .logo {
@@ -126,6 +136,18 @@ hr {
 
 // Ingredient list -------------------------------------------------------------
 
+.list-headings {
+    height: 50px;
+    margin: 0 0 20px;
+}
+
+.ingredient-list-item {
+    display: inline-block;
+    float: left;
+    margin: 0 10px;
+    width: 400px;
+}
+
 .ingredient-img {
     width: 75px;
     height: 75px;
@@ -135,15 +157,25 @@ hr {
     display: inline-block;
     float: left;
     margin: 0 10px;
-}
-
-.clear-float {
-    clear: both;
+    width: 200px;
 }
 
 .ingredient-row {
     height: 86px;
     margin: 0 auto 10px;
+}
+
+.checkbox-switch {
+    width: 20px;
+    display: block;
+}
+
+.fa-exclamation-circle {
+    color: red; // #danger-red
+}
+
+.fa-smile {
+    color: #53f953; // #safe-green
 }
 
 //  Edit ingredients -----------------------------------------------------------

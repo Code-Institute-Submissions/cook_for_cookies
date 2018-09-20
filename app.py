@@ -153,7 +153,7 @@ def update_user(username):
 @app.route('/ingredients')
 def ingredients():
     current_user = determine_current_user(session)
-    ingredients = mongo.db.ingredients.find()
+    ingredients = mongo.db.ingredients.find().sort([("ingredient_name", 1)])
     return render_template("ingredients.html", ingredients_list = ingredients, page_title="Ingredients", username=current_user)
 
 @app.route('/add_ingredient')
