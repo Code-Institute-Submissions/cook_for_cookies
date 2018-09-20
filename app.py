@@ -176,8 +176,9 @@ def insert_ingredient():
         
 @app.route('/edit_ingredient/<ingredient_id>')
 def edit_ingredient(ingredient_id):
+    current_user = determine_current_user(session)
     the_ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(ingredient_id)})
-    return render_template('edit_ingredient.html', ingredient=the_ingredient)
+    return render_template('edit_ingredient.html', ingredient=the_ingredient, username=current_user)
 
 @app.route('/<ingredient_id>/update_ingredient', methods=["POST"])
 def update_ingredient(ingredient_id):
