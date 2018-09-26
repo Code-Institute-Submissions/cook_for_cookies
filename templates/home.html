@@ -12,6 +12,6 @@
     <button><a href="{{ url_for('sign_up') }}">Sign Up</a></button>
     <button><a href="{{ url_for('log_in') }}">Log In</a></button> 
     {% endif %}
-    <button>Go to recipes</button>
+    <button><a href="{{ url_for('recipes', username=username) }}">Go to recipes</a></button>
 </div>
 {% endblock %}

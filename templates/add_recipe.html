@@ -5,26 +5,30 @@
         <h1>Add a Recipe</h1>
     </div>
     <div class="row">
-        <p>Here is your chance to shine!  Share those amazing home recipes with the World and see what they think!</p> 
+        <p>Here is your chance to shine! Share those amazing home recipes with the World and see what they think!</p>
         <p>Please enter the details of your recipe in the boxes below...</p>
     </div>
     <div class="row">
-        <form action="" method="POST">
+        <form action="{{ url_for('insert_recipe') }}" method="POST">
             <div class="row">
                 <ul class="new-user-form">
-                    <input class="hidden-div" type="text" id="author" name="recipe_name" value="{{ user._id }}">
-                    <input class="hidden-div" type="text" id="author_COO" name="recipe_name" value="{{ user.country }}">
+                    <input class="hidden-div" type="text" id="author" name="author" value="{{ user._id }}">
+                    <input class="hidden-div" type="text" id="author_COO" name="author_COO" value="{{ user.country }}">
                     <li><label for="recipe_name">Recipe Name</label></li>
                     <li><input id="recipe_name" name="recipe_name" type="text" required></li>
-                    <hr>
-                    <li><label for="cusine">Cusine Type</label></li>
-                    <li><input id="cusine" name="cusine" type="text" required></li>
                     <hr>
                     <li><label for="recipe_image_url">Recipe Photo Image Address</label></li>
                     <li><input id="recipe_image_url" name="recipe_image_url" type="text" required></li>
                     <hr>
-                    <li><label for="recipe_instructions">Recipe Photo Image Address</label></li>
-                    <li><input id="recipe_instructions" name="recipe_instructions" type="text" required></li>
+                    <li><label for="cusine">Cusine Category</label></li>
+                    <li>
+                        <select id="cusine" name="cusine" required>
+                            <option value="" disabled selected>Choose Cusine Type</option>
+                            {% for cusine in cusines %}
+                            <option value="{{ cusine }}">{{ cusine }}</option>
+                            {% endfor %}
+                        </select>
+                    </li>
                     <hr>
                     <button type="submit">Submit</button>
                 </ul>
