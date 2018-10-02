@@ -20,7 +20,14 @@ cusine_list = ['American', 'British', 'Caribbean', 'Chinese', 'French', 'Greek',
 
 def user_has_logged_in(email):
     session['user'] = email
-
+    this_user = mongo.db.Users.find_one({"email":session["user"]})
+    this_user_id_bson = this_user["_id"]
+    this_user_id_str = dumps(this_user_id_bson)
+    extract_id_1 = this_user_id_str.replace('{"$oid": "', "")
+    extract_id_2 = extract_id_1.replace('"}', "")
+    session['user_id'] = extract_id_2
+    print(session)
+    
 def determine_current_user(session_data):
     if 'user' in session:
         return session['user']
@@ -122,7 +129,7 @@ def log_in():
         """
         if validate_password_on_log_in(request.form["email"].lower(), request.form["password"]) == True:
             flash("Welcome back {}".format(session['user']))
-            return redirect(url_for('home'))
+            return redirect(url_for('recipes'))
         else:
             return render_template("log_in.html", page_title="Log In", username="guest")
     return render_template("log_in.html", page_title="Log In", username="guest")
@@ -130,6 +137,7 @@ def log_in():
 @app.route('/logout')
 def logout():
     session.pop('user', None)
+    session.pop('user_id', None)
     current_user = determine_current_user(session)
     flash("You have logged out. Come back now you hear!")
     return redirect(url_for('home'))
@@ -224,11 +232,13 @@ def recipes():
     current_user = determine_current_user(session)
     try:
         user = mongo.db.Users.find_one({"email": session["user"]})
+        user_id = session["user_id"]
     except:
         user = "guest"
+        user_id = "guest"
+        
     recipes = mongo.db.recipes.find().sort([("recipe_name", 1)])
-    ingredients = mongo.db.ingredients.find().sort([("ingredient_name", 1)])
-    return render_template("recipes.html", recipes_list = recipes, ingredients_list = ingredients, page_title="Recipes", username=current_user, user=user)
+    return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, user_id = user_id)
 
 @app.route('/add_recipe')
 def add_recipe():
@@ -259,7 +269,8 @@ def edit_recipe(recipe_id):
     current_user = determine_current_user(session)
     user = mongo.db.Users.find_one({"email": session["user"]})
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("edit_recipe.html", page_title="Edit Recipe", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe)
+    ingredients = mongo.db.ingredients.find()
+    return render_template("edit_recipe.html", page_title="Edit Recipe", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe, ingredients=ingredients)
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
@@ -267,32 +278,44 @@ def update_recipe(recipe_id):
     current_user = determine_current_user(session)
     
     mongo.db.recipes.update(
-    {"_id": ObjectId(recipe_id)},
-    {'recipe_name': request.form['recipe_name'],
-    'recipe_image_url': request.form['recipe_image_url'],
-    'cusine': request.form['cusine'],
-    'recipe_instructions': request.form['recipe_instructions'],
-    'author': request.form['author'],
-    'author_COO': request.form['author_COO']
+        {"_id": ObjectId(recipe_id)},
+        {'recipe_name': request.form['recipe_name'],
+        'recipe_image_url': request.form['recipe_image_url'],
+        'cusine': request.form['cusine'],
+        'instructions': request.form['instructions'],
+        'author': request.form['author'],
+        'author_COO': request.form['author_COO']
     })
-
     flash("Recipe updated!")
-    return redirect(url_for('recipes', recipe_id=recipe_id, current_user=current_user))
+    return redirect(url_for('edit_recipe', recipe_id=recipe_id, current_user=current_user))
+
+@app.route('/edit_recipe_ingredients/<recipe_id>', methods=["GET", "POST"])
+def edit_recipe_ingredients(recipe_id):
+    current_user = determine_current_user(session)
+    user = mongo.db.Users.find_one({"email": session["user"]})
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    ingredients = mongo.db.ingredients.find()
+    return render_template("edit_recipe_ingredients.html", page_title="Edit Recipe Ingredients", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe, ingredients=ingredients)
+    
+@app.route('/update_ingredients_to_recipe/<recipe_id>', methods=["POST"])
+def update_ingredients_to_recipe(recipe_id):
+    
+    current_user = determine_current_user(session)
+    
+    this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    
+    mongo.db.recipes.update(
+        {"_id": ObjectId(recipe_id)},
+        { "$push" : { "recipe_ingredients": {request.form["ingredient_name"] : request.form["ingredient_quantity"]}}}
+    )
+    flash("Ingredient added!")
+    return redirect(url_for('edit_recipe_ingredients', recipe_id=recipe_id, current_user=current_user))
 
 @app.route('/delete_recipe/<recipe_id>', methods=["POST"])
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     return redirect(url_for('recipes'))
-
-@app.route('/add_ingredient_to_recipe/<recipe_id>', methods=["POST"])
-def add_ingredient_to_recipe(recipe_id):
     
-    recipe = mongo.db.recipes.find_one(recipe_id)
-    
-    flash("{} has been to the recipes list.\n  I best it tastes great!".format(request.form['recipe_name']))
-    return render_template("add_ingredients_to_recipe.html", page_title="Add Ingredients for Recipe", username=session['user'], recipe_id=recipe_id)
-
-
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),

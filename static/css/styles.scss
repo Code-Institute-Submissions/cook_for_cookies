@@ -1,3 +1,5 @@
+@import "helpers/cssreset";
+
 // General styling -------------------------------------------------------------
 
 body {
@@ -123,6 +125,10 @@ button:active,
 .div-btn:active {
 	position:relative;
 	top:1px;
+}
+
+.submit-new-ingredient-btn {
+    width: 20%;   
 }
 
 // Header Styling --------------------------------------------------------------
@@ -257,6 +263,30 @@ hr {
 }
 
 .instructions-box {
-    width: 600px;
+    width: 90%;
     height: 300px;
+}
+
+// Edit Recipes ----------------------------------------------------------------
+
+th,
+td {
+    width: 30%;
+    text-align: left;
+}
+
+.column {
+    width: 50%;
+    float: left;
+}
+
+.fa-plus-square  {
+    font-size: 40px;
+    color: #00f500;
+    cursor: pointer;
+  }
+  
+.ingredient-box {
+    width: 40%;
+    margin: 0 5px 20px 0;
 }

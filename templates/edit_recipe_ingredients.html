@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+    <div class="row">
+        <h1>Add Ingredients to Recipe</h1>
+    </div>
+    <div class="row">
+        <p>Please edit any details of your recipe below...</p>
+    </div>
+    <div class="row">
+        <form action="{{ url_for('update_ingredients_to_recipe', recipe_id=this_recipe._id) }}" method="POST">
+            <div class="row">
+                <div class="column ">
+                    <h2>Ingredients</h2>
+                    {% if this_recipe.recipe_ingredients %}
+                    <table>
+                        <tr>
+                            <th>Ingredient</th>
+                            <th>Quantity</th>
+                        </tr>
+                        {% for ingredient in this_recipe.recipe_ingredients %} 
+                        {% for key, value in ingredient.iteritems() %}
+                        <tr>
+                        {% if key != ingredient._id %}
+                            <td>{{ key }}</td>
+                        {% endif %}
+                            <td>{{ value }}</td>
+                        </tr>
+                        {% endfor %} {% endfor %}
+                    </table>
+                    {% else %}
+                    <p>You currently have no ingredients added</p>
+                    {% endif %}
+                    <i class="fas fa-plus-square insert-ingredient-row"></i>
+                </div>
+                <div class="new-ingredient-container column">
+                    <select class="ingredient-box" id="ingredient_name" name="ingredient_name" required>
+                        <option value="{{ ingredients.ingredient_name }}" selected>Select an ingredient to add...</option>
+                        {% for ingredient in ingredients %}
+                        <option value="{{ ingredient._id }} ">{{ ingredient.ingredient_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" required>
+                    <button class="submit-new-ingredient-btn" type="submit ">Confirm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <a class="" href="{{ url_for('edit_recipe', recipe_id=this_recipe._id) }}">
+            <div class="div-btn center-text">Back to recipe</div>
+        </a>
+    </div>
+</div>
+{% endblock %}
