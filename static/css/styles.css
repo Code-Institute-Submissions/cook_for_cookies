@@ -60,7 +60,12 @@ h4,
 h5,
 h6 {
   font-family: 'Mukta Malar', sans-serif;
-  clear: both; }
+  clear: both;
+  font-weight: 600;
+  margin: 10px 0; }
+
+h1 {
+  font-size: 42px; }
 
 .container {
   max-width: 992px;
@@ -70,6 +75,9 @@ h6 {
   clear: both;
   display: block;
   width: 100%; }
+
+p {
+  margin: 10px 0; }
 
 a,
 a:visited {
@@ -133,7 +141,8 @@ button,
   font-size: 15px;
   padding: 9px 23px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #263666; }
+  text-shadow: 0px 1px 0px #263666;
+  margin: 10px 0; }
 
 button:hover,
 .div-btn:hover {
@@ -177,7 +186,8 @@ nav ul li {
 
 .logo {
   float: left;
-  width: 100px; }
+  width: 100px;
+  margin: 5px; }
 
 .round-pop-up-container {
   position: absolute;
