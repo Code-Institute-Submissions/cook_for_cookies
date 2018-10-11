@@ -21,7 +21,11 @@
         {% for recipe in recipes_list %}
         <li class="clear-float recipe-row">
             <div class="recipe-list-item">
+            {% if recipe.recipe_image_url %}
                 <img class="recipe-img" src="{{ recipe.recipe_image_url }}"></img>
+            {% else %}
+                <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
+            {% endif %}
             </div>
             <p class="recipe-list-item">{{ recipe.recipe_name }}</p>
             {% if recipe.author == user_id %}

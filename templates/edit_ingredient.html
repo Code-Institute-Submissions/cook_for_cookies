@@ -16,7 +16,8 @@
                     <hr>
                     <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
                     <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}" required></li>
-                    <li><img class="edit-ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img></li> 
+                    <li><img class="edit-ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+                    </li>
                     <hr>
                     <div class="switch">
                         <label class="">Allergen? 
@@ -29,6 +30,9 @@
                     </div>
                     <hr>
                     <button type="submit">Update Ingredient</button>
+                    <a href="{{ url_for( 'ingredients') }} " class="go-back-btn div-btn center-text center-div ">
+                        <div>Go back</div>
+                    </a>
                 </ul>
             </div>
         </form>

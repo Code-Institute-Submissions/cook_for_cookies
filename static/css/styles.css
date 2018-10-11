@@ -114,7 +114,7 @@ a:visited {
   width: 75px;
   height: 20px;
   float: right;
-  margin: 0 5px;
+  margin: 10px;
   cursor: pointer; }
 
 button,
@@ -141,8 +141,7 @@ button,
   font-size: 15px;
   padding: 9px 23px;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #263666;
-  margin: 10px 0; }
+  text-shadow: 0px 1px 0px #263666; }
 
 button:hover,
 .div-btn:hover {
@@ -157,8 +156,7 @@ button:hover,
 
 button:active,
 .div-btn:active {
-  position: relative;
-  top: 1px; }
+  transform: scale(0.95, 0.95); }
 
 .submit-new-ingredient-btn {
   width: 20%; }
@@ -246,8 +244,13 @@ hr {
 
 .recipe-row,
 .ingredient-row {
-  height: 86px;
-  margin: 0 auto 10px; }
+  height: 76px;
+  border: 1px black solid;
+  margin: 0 auto 10px;
+  padding: 10px;
+  -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75); }
 
 .checkbox-switch {
   width: 20px;
@@ -276,10 +279,16 @@ td {
   width: 50%;
   float: left; }
 
+.fa-minus-square,
 .fa-plus-square {
   font-size: 40px;
-  color: #00f500;
   cursor: pointer; }
+
+.fa-minus-square {
+  color: red; }
+
+.fa-plus-square {
+  color: #00f500; }
 
 .ingredient-box {
   width: 40%;

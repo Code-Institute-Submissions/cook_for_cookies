@@ -87,18 +87,23 @@ def recipe_already_exists(new_recipe_name):
             if ObjectId(recipe["author"]) == this_user["_id"] and recipe["recipe_name"] == new_recipe_name:
                 return True
 
-def createThisRecipeIngredientsList(recipe_id):
-    new_recipe_ingredients_list = []
-    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+# This function is now superceaded by the javascript code so that the ingredients can load without having to refresh the page but this function is equally as valid if the page was to be refreshed...
+
+# def createThisRecipeIngredientsList(recipe_id):
+#     new_recipe_ingredients_list = []
+#     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     
-    for ingredient in the_recipe["recipe_ingredients"]:
-        for key, value in ingredient.iteritems():
-            decoded_key = key.encode('utf-8')
-            fully_decoded_key = decoded_key.replace(" ", "")
-            this_ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(fully_decoded_key)})
-            new_recipe_ingredients_list.append({ this_ingredient["ingredient_name"] : value })
+#     try:
+#         for ingredient in the_recipe["recipe_ingredients"]:
+#             for key, value in ingredient.iteritems():
+#                 decoded_key = key.encode('utf-8')
+#                 fully_decoded_key = decoded_key.replace(" ", "")
+#                 this_ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(fully_decoded_key)})
+#                 new_recipe_ingredients_list.append({ this_ingredient["ingredient_name"] : value })
+#     except:
+#         new_recipe_ingredients_list = []
     
-    return new_recipe_ingredients_list
+#     return new_recipe_ingredients_list
                 
 # Views ------------------------------------------------------------------------
 
@@ -285,9 +290,8 @@ def edit_recipe(recipe_id):
     user = mongo.db.Users.find_one({"email": session["user"]})
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     ingredients = mongo.db.ingredients.find()
-    recipe_ingredients = createThisRecipeIngredientsList(recipe_id)
     
-    return render_template("edit_recipe.html", page_title="Edit Recipe", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe, ingredients=ingredients, recipe_ingredients=recipe_ingredients)
+    return render_template("edit_recipe.html", page_title="Edit Recipe", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe, ingredients=ingredients)
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
@@ -356,14 +360,26 @@ def delete_recipe(recipe_id):
     return redirect(url_for('recipes'))
 
 
-@app.route('/delete_ingredient_from_recipe/<recipe_id>/<ingredient_data>', methods=["POST"])
+@app.route('/delete_ingredient_from_recipe/<recipe_id>/<ingredient_id>', methods=["POST"])
 def delete_ingredient_from_recipe(recipe_id, ingredient_id):
-    mongo.db.recipes.update(
-    {'_id': ObjectId(recipe_id)}, 
-    { "$pull": { "recipe_ingredients" : { ingredient_id: "1 bottle"}} },
-    False, True);
-    return json.dumps({'status':'OK'});
-
+    print(recipe_id)
+    print(ingredient_id)
+    
+    this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    
+    for ingredient in this_recipe["recipe_ingredients"]:
+        ingredientKey = ingredient.keys()
+        stringIngKey = ingredientKey[0].replace(" ", "")
+        if stringIngKey == ingredient_id:
+            print(ingredient)
+            mongo.db.recipes.update(
+            {'_id': ObjectId(recipe_id)}, 
+            { "$pull": { "recipe_ingredients" : ingredient }},
+            False, True);
+            return json.dumps({'status':'OK'});
+            break
+        else:
+            print("Couldn't match {} to {}".format(stringIngKey, ingredient_id))
     
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

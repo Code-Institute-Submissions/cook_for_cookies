@@ -23,7 +23,11 @@
                             <hr>
                             <li>
                                 <div>
+                                    {% if this_recipe.recipe_image_url %}
                                     <img class="recipe-img" src="{{ this_recipe.recipe_image_url }}"></img>
+                                    {% else %}
+                                    <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
+                                    {% endif %}
                                 </div>
                             </li>
                             <li><label for="recipe_image_url">Recipe Photo Image Address</label></li>
@@ -52,27 +56,15 @@
                 <section class="recipe-ingredients-section">
                     <div class="column ">
                         <h2>Ingredients</h2>
-                        {% if recipe_ingredients %}
+                        <hr>
                         <table>
                             <tr class="ingredients-table-header">
                                 <th>Ingredient</th>
                                 <th>Quantity</th>
                             </tr>
-                            {% for ingredient in recipe_ingredients %}
-                            {% for key, value in ingredient.iteritems() %}
-                            <tr class="ingredients-table-content">
-                                <th>{{ key }}</th>
-                                <th>{{ value }}</th>
-                            </tr>
-                            {% endfor %}
-                            {% endfor %}
                         </table>
-                        {% else %}
-                        <p>You currently have no ingredients added</p>
-                        {% endif %}
-
                         <h3>Add additional ingredients</h3>
-                        <div class="new-ingredient-container column">
+                        <div class="new-ingredient-container">
                             <select class="ingredient-box" id="ingredient_name" name="ingredient_name" required>
                                 <option value="{{ ingredients.ingredient_name }}" selected>Select an ingredient to add...</option>
                                 {% for ingredient in ingredients %}
