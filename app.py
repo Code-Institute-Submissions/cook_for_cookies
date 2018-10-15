@@ -204,13 +204,13 @@ def ingredients():
     ingredients = mongo.db.ingredients.find().sort([("ingredient_name", 1)])
     return render_template("ingredients.html", ingredients_list = ingredients, page_title="Ingredients", username=current_user)
 
-@app.route('/add_ingredient')
-def add_ingredient():
+@app.route('/add_ingredient/<recipe_id>')
+def add_ingredient(recipe_id):
     current_user = determine_current_user(session)
-    return render_template("add_ingredient.html", page_title="Add an Ingredient", username=current_user)
+    return render_template("add_ingredient.html", page_title="Add an Ingredient", username=current_user, recipe_id=recipe_id)
 
-@app.route('/insert_ingredient', methods=["POST"])
-def insert_ingredient():
+@app.route('/insert_ingredient/<recipe_id>', methods=["POST"])
+def insert_ingredient(recipe_id):
     
     ingredients = mongo.db.ingredients.find()
     
@@ -220,7 +220,10 @@ def insert_ingredient():
     else:
         mongo.db.ingredients.insert_one(request.form.to_dict())
         flash("{} has been added to the ingredients list.\n  Thanks for your input!".format(request.form['ingredient_name']))
-        return redirect(url_for('ingredients'))
+        if recipe_id == "none":
+            return redirect(url_for('ingredients'))
+        else:
+            return redirect(url_for('edit_recipe', recipe_id=recipe_id))
         
 @app.route('/edit_ingredient/<ingredient_id>')
 def edit_ingredient(ingredient_id):
@@ -289,7 +292,7 @@ def edit_recipe(recipe_id):
     current_user = determine_current_user(session)
     user = mongo.db.Users.find_one({"email": session["user"]})
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    ingredients = mongo.db.ingredients.find()
+    ingredients = mongo.db.ingredients.find().sort([("ingredient_name", 1)])
     
     return render_template("edit_recipe.html", page_title="Edit Recipe", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe, ingredients=ingredients)
 

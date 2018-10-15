@@ -270,6 +270,9 @@ hr {
   width: 90%;
   height: 300px; }
 
+.new-ingredient-container {
+  min-height: 150px; }
+
 th,
 td {
   width: 30%;

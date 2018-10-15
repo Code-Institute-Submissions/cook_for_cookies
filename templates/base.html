@@ -31,6 +31,16 @@
             </ul>
         </nav>
     </header>
+    <div class="round-pop-up-container hidden-div hide-me">
+        <div class="row center-text">
+            <p class="flashed-message center-div">
+                {{ message }}
+            </p>
+        </div>
+        <div class="row">
+            <button class="hide-me-btn center-div">Close</button>
+        </div>
+    </div>
     
     {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
     <div class="hide-me round-pop-up-container">
@@ -39,11 +49,11 @@
                 {{ message }}
             </p>
         </div>
-    <div class="row">
-        <button class="hide-me-btn center-div">Close</button>
+        <div class="row">
+            <button class="hide-me-btn center-div">Close</button>
+        </div>
     </div>
-</div>
-{% endfor %} {% endif %} {% endwith %}
+    {% endfor %} {% endif %} {% endwith %}
     
     {% block content %}
     {% endblock %}

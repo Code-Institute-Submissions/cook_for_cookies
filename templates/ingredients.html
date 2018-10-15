@@ -32,7 +32,7 @@
         </li>
         {% endfor %}
         <li class="clear-float">Need to add an ingredient?</li>
-        <button><a href="{{ url_for('add_ingredient') }}">Add Ingredient</a></button>
+        <button><a href="{{ url_for('add_ingredient', recipe_id='none') }}">Add Ingredient</a></button>
     </ul>
 
 </div>

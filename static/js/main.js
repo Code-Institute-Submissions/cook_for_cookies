@@ -5,8 +5,23 @@ var recipeDatabaseURL = 'https://api.mlab.com/api/1/databases/onlinecookbook/col
 
 
 // FUNCTIONS -------------------------------------------------------------------
+function sortIngredients(a, b) {
+    // Use toUpperCase() to ignore character casing
+    const ingredientNameA = a.ingredient_name.toUpperCase();
+    const ingredientNameB = b.ingredient_name.toUpperCase();
 
-function removeIngredientRows(){
+    let comparison = 0;
+    if (ingredientNameA > ingredientNameB) {
+        comparison = -1;
+    }
+    else if (ingredientNameA < ingredientNameB) {
+        comparison = 1;
+    }
+    return comparison;
+}
+
+
+function removeIngredientRows() {
     $('.inserted-ingredient-row').remove();
 }
 
@@ -16,16 +31,16 @@ function loadData() {
         fetch(ingredientDatabaseURL).then(response => response.json()).catch(),
         removeIngredientRows()
     ]).then((response) => {
-        prepareData(response)
+        prepareData(response);
     }).catch((error) => {
         console.log(error);
     });
 }
 
-function idToString(idData){
+function idToString(idData) {
     var thisId1 = Object.values(idData._id);
     var thisIdExtracted = thisId1[0];
-    return(thisIdExtracted)
+    return (thisIdExtracted);
 }
 
 function prepareData(data) {
@@ -35,48 +50,56 @@ function prepareData(data) {
     const thisRecipeID = $('#recipe-id').val();
     const recipeData = data[0];
     const ingredientData = data[1];
-    
-    recipeData.forEach(function(recipe){
-       var stringId = idToString(recipe);
-       
-       if(thisRecipeID === stringId){
-           let thisRecipe = recipe;
-           createThisRecipeIngredientsList(thisRecipe, ingredientData);
-       }
-    });
-}    
 
-function createThisRecipeIngredientsList(recipe, ingredients){
-    if(recipe.recipe_ingredients === undefined){
-        var newIngredientRow = "<tr class='inserted-ingredient-row'><td> There are currently no ingredients for this recipe. MES1</td><td>";
-        $(newIngredientRow).insertAfter('.ingredients-table-header');
-    } else {
+    recipeData.forEach(function(recipe) {
+        var stringId = idToString(recipe);
+
+        if (thisRecipeID === stringId) {
+            let thisRecipe = recipe;
+            createThisRecipeIngredientsList(thisRecipe, ingredientData);
+        }
+    });
+}
+
+function createThisRecipeIngredientsList(recipe, ingredients) {
+    if (recipe.recipe_ingredients !== undefined) {
         thisRecipeIngredients = [];
-        
-        for(i = 0; i < recipe.recipe_ingredients.length; i++){
+
+        for (i = 0; i < recipe.recipe_ingredients.length; i++) {
             var ingredientId = Object.keys(recipe.recipe_ingredients[i]);
             var ingredientIdStr = ingredientId[0];
-            ingredients.forEach(function(ingredient){
+            ingredients.forEach(function(ingredient) {
                 var masterIngredientId = idToString(ingredient);
-                if(masterIngredientId.replace(" ", "") === ingredientIdStr.replace(" ", "")){
+                if (masterIngredientId.replace(" ", "") === ingredientIdStr.replace(" ", "")) {
                     ingredient.quantity = Object.values(recipe.recipe_ingredients[i]);
                     thisRecipeIngredients.push(ingredient);
-                    }
-                });
-            }
-        
-        if (thisRecipeIngredients == []) {
-            newIngredientRow = "<tr class='inserted-ingredient-row'><td> There are currently no ingredients for this recipe. MES1</td><td>";
-            $(newIngredientRow).insertAfter('.ingredients-table-header');
-        } else {
-            thisRecipeIngredients.forEach(function(ingredient){
-            var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td><td><i class='remove fas fa-minus-square' type='button'></i></td></tr>";
-            $(newIngredientRow).insertAfter('.ingredients-table-header');
-            });    
-        }        
+                }
+            });
+        }
+
+        if (thisRecipeIngredients != []) {
+            const sortedIngredients = thisRecipeIngredients.sort(sortIngredients);
+            
+            sortedIngredients.forEach(function(ingredient) {
+                var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td><td><i class='remove fas fa-minus-square' type='button'></i></td></tr>";
+                $(newIngredientRow).insertAfter('.ingredients-table-header');
+            });
+        }
+        $('.ingredient-box').val("");
     }
-    
+
+    // This will enable the user to remove ingredients without having to reload the page and acts as both a listener and a function to action call
     removeIngredient();
+
+    // This adds a line to the page if there are no ingredients to display
+    if ($('.ingredients-table-header').siblings().length === 0) {
+        $('.ingredients-table-header').hide();
+        newIngredientRow = "<tr class='inserted-ingredient-row'><td> There are currently no ingredients for this recipe.</td>";
+        $(newIngredientRow).insertAfter('.ingredients-list-table');
+    }
+    else {
+        $('.ingredients-table-header').show();
+    }
 }
 
 function updateRecipe() {
@@ -92,6 +115,7 @@ function updateRecipe() {
         success: function(response) {
             console.log(response);
             loadData();
+            flashedMessage("Ingredient Added");
         },
         error: function(error) {
             console.log(error);
@@ -112,12 +136,12 @@ function dataToJSON(databaseExtract) {
     return jsonData;
 }
 
-function removeIngredient(){
+function removeIngredient() {
     $('.remove').on("click", function() {
         const rowId = $(this).closest("tr").attr("id");
         const thisRecipeID = $('#recipe-id').val();
         console.log(rowId + " " + thisRecipeID)
-        
+
         $.ajax({
             url: '/delete_ingredient_from_recipe/' + thisRecipeID + '/' + rowId,
             type: 'POST',
@@ -130,6 +154,11 @@ function removeIngredient(){
             }
         });
     });
+}
+
+function flashedMessage(message) {
+    $('.flashed-message').text(message);
+    $('.round-pop-up-container').show();
 }
 
 // DOCUMENT FUNCTIONS ----------------------------------------------------------
@@ -155,4 +184,5 @@ $(document).ready(function() {
     $('.update-recipe-btn').click(function() {
         updateRecipe();
     });
+
 });

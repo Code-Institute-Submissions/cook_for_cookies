@@ -56,8 +56,8 @@
                 <section class="recipe-ingredients-section">
                     <div class="column ">
                         <h2>Ingredients</h2>
-                        <hr>
-                        <table>
+                        <hr class="ingredients-list-hr">
+                        <table class="ingredients-list-table">
                             <tr class="ingredients-table-header">
                                 <th>Ingredient</th>
                                 <th>Quantity</th>
@@ -74,6 +74,8 @@
                             <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" required>
                             <i class="update-recipe-btn fas fa-plus-square" type="button"></i>
                         </div>
+                        <p class="missing-ingredient-area"><span class="uppercase">Missing ingredient?!</span>Add it here...</p>
+                        <button><a href="{{ url_for('add_ingredient', recipe_id=this_recipe._id) }}">Add Ingredient</a></button>
                     </div>
                 </section>
             </div>

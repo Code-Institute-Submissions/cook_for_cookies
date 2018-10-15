@@ -8,7 +8,7 @@
         <p>Please enter the details of the ingredient you would like to add...</p>
     </div>
     <div class="row">
-        <form action="{{ url_for('insert_ingredient') }}" method="POST">
+        <form action="{{ url_for('insert_ingredient', recipe_id=recipe_id) }}" method="POST">
             <div class="row">
                 <ul class="new-user-form">
                     <li><label for="ingredient_name">Ingredient Name</label></li>
@@ -26,6 +26,17 @@
                 </ul>
             </div>
         </form>
+        <div class="row">
+            {% if recipe_id == "none" %}
+            <a href="{{ url_for( 'ingredients', username=username) }} " class="edit-recipe-btn ">
+                <button>Go back</button>
+            </a>
+            {% else %}
+            <a class="edit-recipe-btn" href="{{ url_for('edit_recipe', recipe_id=recipe_id) }}">
+                <button>Cancel</button>
+            </a>
+        {% endif %}
+        </div>
     </div>
 </div>
 
