@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <h1>Edit a Recipe</h1>
+        <h1 class="edit-header">Edit a Recipe</h1>
     </div>
     <div class="row">
         <p>Please edit any details of your recipe below...</p>
@@ -17,9 +17,9 @@
                             <input class="hidden-div" type="text" id="author" name="author" value="{{ user._id }}">
                             <input class="hidden-div" type="text" id="author_COO" name="author_COO" value="{{ user.country }}">
                             <input class="hidden-div recipe-id" type="text" id="recipe-id" name="recipe-id" value="{{ this_recipe._id }}">
+                            
                             <li><label for="recipe_name">Recipe Name</label></li>
-                            <li><input id="recipe_name" name="recipe_name" value="{{ this_recipe.recipe_name }}" type="text" required></li>
-
+                            <li><input id="recipe_name" name="recipe_name" value="{{ this_recipe.recipe_name.title() }}" type="text" required></li>
                             <hr>
                             <li>
                                 <div>

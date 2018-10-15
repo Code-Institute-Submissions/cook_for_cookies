@@ -1,7 +1,6 @@
 @import "helpers/cssreset";
 
 // General styling -------------------------------------------------------------
-
 body {
     font-family: 'Oswald', sans-serif;
     letter-spacing: 1px;
@@ -43,7 +42,7 @@ p {
     margin: 10px 0;
 }
 
-a, 
+a,
 a:visited {
     text-decoration: none;
     color: #ffffff;
@@ -71,8 +70,11 @@ a:visited {
     text-transform: uppercase;
 }
 
-// Buttons ---------------------------------------------------------------------
+.clickable-link {
+    display: block;
+}
 
+// Buttons ---------------------------------------------------------------------
 .hide-me-btn {
     display: block;
     width: 150px;
@@ -94,54 +96,53 @@ a:visited {
 
 button,
 .div-btn {
-	-moz-box-shadow:inset 0px -3px 7px 0px #29bbff;
-	-webkit-box-shadow:inset 0px -3px 7px 0px #29bbff;
-	box-shadow:inset 0px -3px 7px 0px #29bbff;
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2dabf9), color-stop(1, #0688fa));
-	background:-moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-	background:-webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-	background:-o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-	background:-ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
-	background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa',GradientType=0);
-	background-color:#2dabf9;
-	-moz-border-radius:3px;
-	-webkit-border-radius:3px;
-	border-radius:3px;
-	border:1px solid #0b0e07;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	padding:9px 23px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #263666;
+    -moz-box-shadow: inset 0px -3px 7px 0px #29bbff;
+    -webkit-box-shadow: inset 0px -3px 7px 0px #29bbff;
+    box-shadow: inset 0px -3px 7px 0px #29bbff;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2dabf9), color-stop(1, #0688fa));
+    background: -moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+    background: -webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+    background: -o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+    background: -ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+    background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa', GradientType=0);
+    background-color: #2dabf9;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #0b0e07;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 9px 23px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #263666;
 }
 
 button:hover,
 .div-btn:hover {
-	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0688fa), color-stop(1, #2dabf9));
-	background:-moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-	background:-webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-	background:-o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-	background:-ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
-	background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9',GradientType=0);
-	background-color:#0688fa;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0688fa), color-stop(1, #2dabf9));
+    background: -moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+    background: -webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+    background: -o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+    background: -ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+    background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9', GradientType=0);
+    background-color: #0688fa;
 }
 
 button:active,
 .div-btn:active {
-	transform: scale(.95,.95);
+    transform: scale(.95, .95);
 }
 
 .submit-new-ingredient-btn {
-    width: 20%;   
+    width: 20%;
 }
 
 // Header Styling --------------------------------------------------------------
-
 header {
     color: #ffffff;
     background-color: #0688fa;
@@ -175,7 +176,6 @@ nav ul li {
 }
 
 // Message containers ----------------------------------------------------------
-
 .round-pop-up-container {
     position: absolute;
     top: 0;
@@ -186,9 +186,9 @@ nav ul li {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    -webkit-box-shadow: 7px 10px 32px -5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 7px 10px 32px -5px rgba(0,0,0,0.75);
-    box-shadow: 7px 10px 32px -5px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
     background-color: #8adade;
     z-index: 100;
 }
@@ -199,7 +199,6 @@ nav ul li {
 }
 
 // Home page -------------------------------------------------------------------
-
 ul {
     list-style: none;
 }
@@ -211,14 +210,12 @@ hr {
 }
 
 // Profile page ----------------------------------------------------------------
-
 .profile-pic {
     width: 200px;
     height: 200px;
 }
 
 // Ingredient / Recipes lists -------------------------------------------------------------
-
 .list-headings {
     height: 50px;
     margin: 0 0 20px;
@@ -230,6 +227,7 @@ hr {
     float: left;
     margin: 0 10px;
     width: 400px;
+    color: #000;
 }
 
 .recipe-img,
@@ -246,16 +244,30 @@ hr {
     width: 200px;
 }
 
+.recipe-row {
+    width: 47%;
+    float:left;
+}
+
 .recipe-row,
 .ingredient-row {
-height: 76px;
+    height: 76px;
     border: 1px black solid;
     margin: 0 auto 10px;
     padding: 10px;
-    -webkit-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    transition-property: background-color;
+    transition-duration: 1s;
+    transition-timing-function: linear;
 }
+
+.recipe-row:hover,
+.ingredient-row:hover {
+    background-color: #b8e3f9;
+}
+
 .checkbox-switch {
     width: 20px;
     display: block;
@@ -270,7 +282,6 @@ height: 76px;
 }
 
 //  Edit ingredients -----------------------------------------------------------
-
 .edit-ingredient-img {
     width: 200px;
     height: 200px;
@@ -286,7 +297,6 @@ height: 76px;
 }
 
 // Edit Recipes ----------------------------------------------------------------
-
 th,
 td {
     width: 30%;
@@ -299,19 +309,19 @@ td {
 }
 
 .fa-minus-square,
-.fa-plus-square  {
+.fa-plus-square {
     font-size: 40px;
     cursor: pointer;
 }
-  
+
 .fa-minus-square {
     color: red;
 }
 
 .fa-plus-square {
-    color: #00f500;   
+    color: #00f500;
 }
-  
+
 .ingredient-box {
     width: 40%;
     margin: 0 5px 20px 0;

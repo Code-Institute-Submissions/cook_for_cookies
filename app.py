@@ -296,6 +296,14 @@ def edit_recipe(recipe_id):
     
     return render_template("edit_recipe.html", page_title="Edit Recipe", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe, ingredients=ingredients)
 
+@app.route('/view_recipe/<recipe_id>', methods=["GET", "POST"])
+def view_recipe(recipe_id):
+    current_user = determine_current_user(session)
+    user = mongo.db.Users.find_one({"email": session["user"]})
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    
+    return render_template("view_recipe.html", page_title="View Recipe", username=current_user, user=user, cusines=cusine_list, this_recipe=the_recipe)
+
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):
     

@@ -101,6 +101,9 @@ a:visited {
 .uppercase {
   text-transform: uppercase; }
 
+.clickable-link {
+  display: block; }
+
 .hide-me-btn {
   display: block;
   width: 150px;
@@ -128,7 +131,7 @@ button,
   background: -o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
   background: -ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
   background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa', GradientType=0);
   background-color: #2dabf9;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -151,7 +154,7 @@ button:hover,
   background: -o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
   background: -ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
   background: linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9',GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9', GradientType=0);
   background-color: #0688fa; }
 
 button:active,
@@ -228,7 +231,8 @@ hr {
   display: inline-block;
   float: left;
   margin: 0 10px;
-  width: 400px; }
+  width: 400px;
+  color: #000; }
 
 .recipe-img,
 .ingredient-img {
@@ -242,6 +246,10 @@ hr {
   margin: 0 10px;
   width: 200px; }
 
+.recipe-row {
+  width: 47%;
+  float: left; }
+
 .recipe-row,
 .ingredient-row {
   height: 76px;
@@ -250,7 +258,14 @@ hr {
   padding: 10px;
   -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75); }
+  box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+  transition-property: background-color;
+  transition-duration: 1s;
+  transition-timing-function: linear; }
+
+.recipe-row:hover,
+.ingredient-row:hover {
+  background-color: #b8e3f9; }
 
 .checkbox-switch {
   width: 20px;

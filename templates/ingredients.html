@@ -20,7 +20,7 @@
             <div class="ingredient-list-item">
                 <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
             </div>
-            <p class="ingredient-list-item">{{ ingredient.ingredient_name }}</p>
+            <p class="ingredient-list-item">{{ ingredient.ingredient_name.title() }}</p>
             <label class="ingredient-list-item  center-text">
             {% if ingredient.allergens %}
                 <i class="fas fa-exclamation-circle"></i>

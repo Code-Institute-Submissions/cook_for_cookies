@@ -80,13 +80,20 @@ function createThisRecipeIngredientsList(recipe, ingredients) {
         if (thisRecipeIngredients != []) {
             const sortedIngredients = thisRecipeIngredients.sort(sortIngredients);
             
-            sortedIngredients.forEach(function(ingredient) {
-                var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td><td><i class='remove fas fa-minus-square' type='button'></i></td></tr>";
-                $(newIngredientRow).insertAfter('.ingredients-table-header');
+            if($('.edit-header').text() === "Edit a Recipe"){
+                sortedIngredients.forEach(function(ingredient) {
+                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td><td><i class='remove fas fa-minus-square' type='button'></i></td></tr>";
+                    $(newIngredientRow).insertAfter('.ingredients-table-header');
+                });    
+            } else {
+                sortedIngredients.forEach(function(ingredient) {
+                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td></tr>";
+                    $(newIngredientRow).insertAfter('.ingredients-table-header');
             });
         }
-        $('.ingredient-box').val("");
     }
+        $('.ingredient-box').val("");
+}
 
     // This will enable the user to remove ingredients without having to reload the page and acts as both a listener and a function to action call
     removeIngredient();

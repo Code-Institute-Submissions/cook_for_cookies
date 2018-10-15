@@ -11,8 +11,8 @@
         <form action="{{ url_for('update_ingredient', ingredient_id=ingredient._id) }}" method="POST">
             <div class="row">
                 <ul class="new-user-form">
-                    <li><label for="ingredient_name">Ingredient Name</label></li>
-                    <li><input id="ingredient_name" name="ingredient_name" type="text" value="{{ ingredient.ingredient_name }}" required></li>
+                    <li><p>Ingredient Name</p></li>
+                    <li><p id="ingredient_name">{{ ingredient.ingredient_name }}</li>
                     <hr>
                     <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
                     <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}" required></li>
