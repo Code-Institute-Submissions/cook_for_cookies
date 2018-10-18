@@ -1,36 +1,38 @@
-{% extends 'base.html' %} {% block content %} 
+{% extends 'base.html' %} {% block content %}
 
-<div class="container">
-    <div class="row">
+<section class="container standard-section-height sign-up-container">
+    <div class="row sign-up-header">
+        <h2 class="section-title uppercase">Welcome to the club!</h2>
+        <p>The sooner you sign up, the sooner you can add recipes, the sooner you can be King of the World! Or the website at least. <i class="far fa-smile-beam"></i></p>
+    </div>
+    <div class="row sign-up-form">
         <form action="{{ url_for('add_new_user') }}" method="POST">
             <div class="row">
                 <ul class="new-user-form">
-                    <li><label for="first_name">First Name</label></li>
-                    <li><input id="first_name" name="first_name" type="text"></li>
-                    <hr>
-                    <li><label for="surname">Surname</label></li>
-                    <li><input id="surname" name="surname" type="text"></li>
-                    <hr>
                     <li><label for="email">Email Address</label></li>
                     <li><input id="email" name="email" type="email"></li>
-                    <hr>
                     <li><label for="password">Password</label></li>
                     <li><input id="password" required minlength="5" name="password" type="password"></li>
-                    <hr>
                     <li><label for="password2">Confirm Password</label></li>
                     <li><input id="password2" required minlength="5" name="password2" type="password"></li>
-                    <hr>
-                    <li><label for="Country">Country</label></li>
-                    <li><input id="Country" name="Country" type="text"></li>
-                    <hr>
-                    <li><label for="user_photo">Your Photo Image Address</label></li>
-                    <li><input id="user_photo" name="user_photo" type="text"></li>
-                    <hr>
-                    <button type="submit">Submit</button>
+                    <div class="hidden-div">
+                        <li><label for="first_name">First Name</label></li>
+                        <li><input id="first_name" name="first_name" type="text" value="TBC"></li>
+                        <li><label for="surname">Surname</label></li>
+                        <li><input id="surname" name="surname" type="text" value="TBC"></li>
+                        <li><label for="country">Country</label></li>
+                        <li><input id="country" name="country" type="text" value="TBC"></li>
+                        <li><label for="user_photo">Your Photo Image Address</label></li>
+                        <li><input id="user_photo" name="user_photo" type="text" value="https://mongoose-os.com/images/generic_user.png"></li>
+                    </div>
+                    <button type="submit" class="sign-up-btn">Submit</button>
                 </ul>
             </div>
         </form>
     </div>
-</div>
+        <div class="row sign-up-header">
+        <p>Just a few details for now, then head over to your profile page when you're ready.</p>
+    </div>
+</section>
 
 {% endblock %}

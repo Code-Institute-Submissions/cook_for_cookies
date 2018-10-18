@@ -46,10 +46,10 @@
                             <li><label for="instructions">Recipe Instructions</label></li>
                             <li><textarea id="instructions" name="instructions" class="instructions-box" type="text" required>{{ this_recipe.instructions }}</textarea></li>
                             <hr>
-                            <button class="update-recipe-btn " type="button">Update Recipe</button>
-                            <a href="{{ url_for( 'recipes', username=username) }} " class="go-back-btn div-btn center-text center-div ">
-                                <div>Go back</div>
-                            </a>
+                            <li>
+                                <button class="update-recipe-btn " type="button">Update Recipe</button>
+                                <a href="{{ url_for( 'recipes', username=username) }} "><span class="go-back-btn div-btn center-text ">Go back</span></a>
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -72,7 +72,7 @@
                                 {% endfor %}
                             </select>
                             <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" required>
-                            <i class="update-recipe-btn fas fa-plus-square" type="button"></i>
+                            <i class="update-recipe-btn fas fa-plus-square no-float" type="button"></i>
                         </div>
                         <p class="missing-ingredient-area"><span class="uppercase">Missing ingredient?!</span>Add it here...</p>
                         <button><a href="{{ url_for('add_ingredient', recipe_id=this_recipe._id) }}">Add Ingredient</a></button>

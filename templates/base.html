@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cook for Cookies - {{ page_title }}</title>
+    <title>Flame & Sizzle - {{ page_title }}</title>
     
     <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Mukta+Malar:400,900" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome-free/css/all.min.css') }}" type="text/css" />
@@ -12,21 +12,21 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="uppercase">
             <a href="{{ url_for('home') }}">
-                <div class="logo">Cook for Cookies</div>
+                <img class="logo grow" src="{{ url_for('static', filename='images/flame-sizzle-logo.gif') }}">
             </a>
             <ul>
                 {% if username != "guest" %}
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                <li><a href="{{ url_for('profile', username=username) }}">Profile</a></li>
+                <li class="grow"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt nav-icon"></i>Logout</a></li>
+                <li class="grow"><a href="{{ url_for('profile', username=username) }}"><i class="fas fa-user nav-icon"></i>Profile</a></li>
                 {% endif %}
-                <li>Cookies Leaderboard</li>
-                <li><a href="{{ url_for('ingredients', username=username) }}">Ingredients</a></li>
-                <li><a href="{{ url_for('recipes', username=username) }}">Recipes</a></li>
+                <li class="grow"><i class="fas fa-fire nav-icon"></i>Head Chefs</li>
+                <li class="grow"><a href="{{ url_for('ingredients', username=username) }}"><i class="far fa-lemon nav-icon"></i>Ingredients</a></li>
+                <li class="grow"><a href="{{ url_for('recipes', username=username) }}"><i class="fas fa-utensils nav-icon"></i>Recipes</a></li>
                 {% if username == "guest" %}
-                <li><a href="{{ url_for('log_in') }}">Log In</a></li>
-                <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+                <li class="grow"><a href="{{ url_for('log_in') }}"><i class="fas fa-sign-in-alt nav-icon"></i>Log In</a></li>
+                <li class="grow"><a href="{{ url_for('sign_up') }}"><i class="fas fa-user-plus nav-icon"></i>Sign Up</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -57,7 +57,22 @@
     
     {% block content %}
     {% endblock %}
-    
+    <footer>
+        <div class="container">
+            <div class="footer-item">
+                <h4>About us</h4>
+                <p>We are a website for a project.  Please enjoy!</p>
+            </div>
+            <div class="footer-item">
+                <h4>Contact Information</h4>
+                <p>Just ring us!</p>
+            </div>
+            <div class="footer-item">
+                <h4>Partners</h4>
+                <p>Here's a word from our sponsors... "Regulatory"</p> 
+            </div>
+        </div>
+    </footer>
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
 

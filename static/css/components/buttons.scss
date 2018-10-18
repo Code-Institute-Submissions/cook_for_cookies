@@ -1,0 +1,53 @@
+// Buttons ---------------------------------------------------------------------
+
+.hide-me-btn {
+    display: block;
+}
+
+button,
+.div-btn {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    width: 150px;
+    margin: 10px;
+    cursor: pointer;
+    display: inline-block;
+    background-color: $black;
+    padding: 5px;
+    font-size: 15px;
+    color: $white;
+    padding: 9px 23px;
+    text-decoration: none;
+    box-sizing: border-box;
+    float: left;
+    transition: background 1s linear;
+}
+
+button:hover,
+.div-btn:hover {
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $flame-orange), color-stop(1, $flame-yellow));
+    background: -moz-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
+    background: -webkit-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
+    background: -o-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
+    background: -ms-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
+    background: linear-gradient(to bottom, $flame-orange 5%, $flame-yellow 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$flame-orange', endColorstr='$flame-yellow', GradientType=0);
+    background-color: $flame-orange;
+    color: $fire-red;
+}
+
+button:active,
+.div-btn:active {
+    transform: scale(.95, .95);
+}
+
+.submit-new-ingredient-btn {
+    width: 20%;
+}
+
+.update-ingredient-btn,
+.update-recipe-btn,
+.confirm-delete-recipe-btn,
+.delete-recipe-btn {
+    float: left;
+}

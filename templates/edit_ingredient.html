@@ -11,8 +11,8 @@
         <form action="{{ url_for('update_ingredient', ingredient_id=ingredient._id) }}" method="POST">
             <div class="row">
                 <ul class="new-user-form">
-                    <li><p>Ingredient Name</p></li>
-                    <li><p id="ingredient_name">{{ ingredient.ingredient_name }}</li>
+                    <li><label for="ingredient_name">Ingredient Name</label></li>
+                    <li><input id="ingredient_name" name="ingredient_name" value="{{ ingredient.ingredient_name.title() }}" readonly></li>
                     <hr>
                     <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
                     <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}" required></li>
@@ -29,9 +29,9 @@
                         </label>
                     </div>
                     <hr>
-                    <button type="submit">Update Ingredient</button>
-                    <a href="{{ url_for( 'ingredients') }} " class="go-back-btn div-btn center-text center-div ">
-                        <div>Go back</div>
+                    <button class="update-ingredient-btn" type="submit">Update Ingredient</button>
+                    <a href="{{ url_for( 'ingredients') }} " class="center-text">
+                        <span class="go-back-btn div-btn">Go back</span>
                     </a>
                 </ul>
             </div>

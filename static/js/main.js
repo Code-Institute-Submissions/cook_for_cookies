@@ -83,12 +83,12 @@ function createThisRecipeIngredientsList(recipe, ingredients) {
             if($('.edit-header').text() === "Edit a Recipe"){
                 sortedIngredients.forEach(function(ingredient) {
                     var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td><td><i class='remove fas fa-minus-square' type='button'></i></td></tr>";
-                    $(newIngredientRow).insertAfter('.ingredients-table-header');
+                    $(newIngredientRow).insertAfter('.ingredients-table-header').hide().fadeIn("slow");
                 });    
             } else {
                 sortedIngredients.forEach(function(ingredient) {
                     var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td></tr>";
-                    $(newIngredientRow).insertAfter('.ingredients-table-header');
+                    $(newIngredientRow).insertAfter('.ingredients-table-header').hide().fadeIn("slow");
             });
         }
     }
@@ -102,7 +102,7 @@ function createThisRecipeIngredientsList(recipe, ingredients) {
     if ($('.ingredients-table-header').siblings().length === 0) {
         $('.ingredients-table-header').hide();
         newIngredientRow = "<tr class='inserted-ingredient-row'><td> There are currently no ingredients for this recipe.</td>";
-        $(newIngredientRow).insertAfter('.ingredients-list-table');
+        $(newIngredientRow).insertAfter('.ingredients-list-table').hide().fadeIn("slow");;
     }
     else {
         $('.ingredients-table-header').show();
@@ -122,7 +122,7 @@ function updateRecipe() {
         success: function(response) {
             console.log(response);
             loadData();
-            flashedMessage("Ingredient Added");
+            flashedMessage("Updated!");
         },
         error: function(error) {
             console.log(error);
@@ -168,6 +168,17 @@ function flashedMessage(message) {
     $('.round-pop-up-container').show();
 }
 
+function fadeInHomeTitle(delay){
+    setTimeout(function(){
+        $('.welcome-message').removeClass("no-opacity");
+        $('.welcome-message').addClass("fade-in-text");
+    }, delay);
+    setTimeout(function(){
+        $('.welcome-para-container').removeClass("no-opacity");
+        $('.welcome-para-container').addClass("fade-in-text");
+    }, delay + 2000);
+}
+
 // DOCUMENT FUNCTIONS ----------------------------------------------------------
 
 $(document).ready(function() {
@@ -191,5 +202,7 @@ $(document).ready(function() {
     $('.update-recipe-btn').click(function() {
         updateRecipe();
     });
+    
+    fadeInHomeTitle(1000);
 
 });

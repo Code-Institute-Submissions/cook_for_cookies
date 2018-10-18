@@ -1,0 +1,278 @@
+// Home page -------------------------------------------------------------------
+ul {
+    list-style: none;
+}
+
+input,
+hr {
+    width: 300px;
+    margin: 5px 0;
+}
+
+.welcome-message {
+    padding: 20px 20px 25px;
+    text-align: center;
+    width: 80%;
+    position: relative;
+    top: 45px;
+    margin: 0 auto;
+    color: $fire-red;
+    z-index: 2;
+}
+
+.welcome-message-section {
+    margin: 112px auto 0;
+    background-color: rgba(255, 255, 255, .75);
+    width: 800px;
+    border: 4px solid rgba(255, 82, 82, 0.92);
+}
+
+.welcome-header {
+    font-size: 82px;
+    margin: 38px auto;
+}
+
+.button-row {
+    margin: 90px 0 68px;
+    height: 80px;
+    display: flex;
+    justify-content: center; 
+}
+
+.welcome-para {
+    color: $black;
+    display: block;
+    font-size: 13px;
+    line-height: 25px;
+    width: 75%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+.home-image {
+    background-image: url('../images/bbq.jpg');
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+    background-repeat: repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.recipes-intro-section,
+.ingredients-intro-section {
+    width: 100%;
+    min-height: 800px;
+}
+
+.ingredients-link-img,
+.recipes-link-img {
+    height: 285px;
+    float: right;
+    border: 20px #fff solid;
+    @extend %box-shadow-large;
+    margin: 40px 0 0;
+}
+
+.ingredients-link-img {
+    margin: 64px 0 0;
+}
+
+.ingredients-intro-text {
+    width: 100%;
+    padding: 50px;
+}
+
+.intro-content-left,
+.intro-content-right {
+    margin-top: 200px;
+}
+
+.intro-content-left {
+    padding-left: 400px;
+}
+
+.intro-content-right {
+    padding-right: 400px;
+}
+
+.ingredients-intro-left,
+.ingredients-intro-right {
+    padding-bottom: 30px;
+}
+
+.ingredients-intro-right {
+    padding-left: 50px;
+}
+
+.ingredients-intro-left {
+    padding-right: 50px;
+}
+
+.leaderboard-intro {
+    width: 100%;
+    min-height: 800px;
+    height: 800px;
+    background-color: $white;
+}
+
+.leaderboard-intro-container {
+    position: relative;
+    top: 200px;
+    left: 400px;
+    width: 440px;
+}
+
+.leaderboard-intro-bg-img {
+    background-image: url('../images/head-chef.jpg');
+    @extend %contain-background;
+    width: 100%;
+    height: 100%;
+}
+
+// Sign-up ---------------------------------------------------------------------
+
+.sign-up-header {
+    margin: 50px 0 0;
+    max-width: 600px;
+}
+
+.sign-up-header ~ .sign-up-form {
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    margin: 20px auto;
+    border: 1px solid #000;
+    width: 400px;
+    text-align: center;
+}
+
+.sign-up-btn {
+    float: none;
+}
+
+// Profile page ----------------------------------------------------------------
+.profile-pic {
+    width: 200px;
+    height: 200px;
+}
+
+// Ingredient / Recipes lists --------------------------------------------------
+.list-headings {
+    height: 50px;
+    margin: 0 0 20px;
+}
+
+.recipe-list-item,
+.ingredient-list-item {
+    display: inline-block;
+    float: left;
+    margin: 0 10px;
+    width: 400px;
+    color: $black;
+}
+
+.recipe-img,
+.ingredient-img {
+    width: 75px;
+    height: 75px;
+}
+
+.recipe-list-item,
+.ingredient-list-item {
+    display: inline-block;
+    float: left;
+    margin: 0 10px;
+    width: 200px;
+}
+
+.recipe-row,
+.recipe-row-right {
+    float:left;
+}
+
+.recipe-row-right {
+    width: 30%;
+}
+
+.recipe-row {
+    width: 65%;
+}
+
+.recipe-row,
+.ingredient-row {
+    height: 76px;
+    border: 1px black solid;
+    margin: 0 auto 10px;
+    padding: 10px;
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
+    transition-property: background-color;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+
+.ingredient-row {
+    width: 90%;
+}
+
+.recipe-row:hover {
+    background-color: $highlight-pale-blue;
+}
+
+.checkbox-switch {
+    width: 20px;
+    display: block;
+}
+
+.fa-exclamation-circle {
+    color: $remove-red;
+}
+
+.fa-smile {
+    color: $add-green;
+}
+
+//  Edit ingredients -----------------------------------------------------------
+.edit-ingredient-img {
+    width: 200px;
+    height: 200px;
+}
+
+.instructions-box {
+    width: 90%;
+    height: 300px;
+}
+
+.new-ingredient-container {
+    min-height: 150px;
+}
+
+// Edit Recipes ----------------------------------------------------------------
+th,
+td {
+    width: 30%;
+    text-align: left;
+}
+
+.fa-minus-square,
+.fa-plus-square {
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.fa-minus-square {
+    color: $remove-red;
+}
+
+.fa-plus-square {
+    color: $add-green;
+}
+
+.ingredient-box {
+    width: 40%;
+    margin: 0 5px 20px 0;
+}

@@ -1,17 +1,59 @@
-{% extends 'base.html' %} {% block content %} 
-
+{% extends 'base.html' %} {% block content %}
+<div class="home-image"></div>
 <div class="container">
-    <h1>Welcome to Cook for Cookies</h1>
+    <section class="welcome-message-section zero-to-hero">
+        <div class="welcome-message no-opacity">
+            <h3 class="uppercase">Welcome to</h2>
+                <h1 class="welcome-header flame uppercase">Flame & Sizzle</h1>
 
-    <p>This is a recipes website with a difference.</p>
-    <p>You can add your own recipes and other people can try them and provide a review.</p>
-    <p>Each review will be scored between 0 - 5 cookies which will accumulate for every recipe you add.</p>
-    <p>Will you be cookie king or queen on our leaderboard?!</p>
+                <h3 class="uppercase">It's cooking time!</h2>
+        </div>
+        <div class="welcome-para-container no-opacity">
+            <p class="welcome-para">Add your own recipes and let others provide a review. Each review will be scored between 0 - 5 flames which we will accumulate for every recipe you add.<br>Will you be King or Queen of our leaderboard?!</p>
+        </div>
+    </section>
 
-    {% if username == "guest" %}
-    <button><a href="{{ url_for('sign_up') }}">Sign Up</a></button>
-    <button><a href="{{ url_for('log_in') }}">Log In</a></button> 
-    {% endif %}
-    <button><a href="{{ url_for('recipes', username=username) }}">Go to recipes</a></button>
+    <div class="button-row">
+        {% if username == "guest" %}
+        <a href="{{ url_for('sign_up') }}"><button>Sign Up</button></a>
+        <a href="{{ url_for('log_in') }}"><button>Log In</button></a> {% endif %}
+        <a href="{{ url_for('recipes', username=username) }}"><button>Go to recipes</button></a>
+    </div>
 </div>
+<section class="recipes-intro-section see-through-bg-yellow">
+    <div class="column intro-content-left">
+        <h2 class="section-title uppercase">All of the recipes you'll ever need...</h2>
+        <p>Food. Isn't it what life is all about? But what delicious meal will you cook next?</p>
+        <p>If you're like me, and constantly run out of ideas for your next meal, then you've come to the right place.</p>
+        <p>Don't waste another meal time wishing that you'd tried something else. Check out some recipes and satisfy your appetite!</p>
+        <p>Then rate them and add your own for others to share in your delight!</p>
+    </div>
+    <div class="column intro-content-right">
+        <a href="{{ url_for('recipes', username=username) }}"><img src="{{ url_for('static', filename='images/food-default.jpg') }}" class="recipes-link-img grow"></img></a>
+    </div>
+</section>
+
+<section class="ingredients-intro-section">
+    <div class="column intro-content-left ingredients-intro-left">
+        <a href="{{ url_for('recipes', username=username) }}"><img src="{{ url_for('static', filename='images/ingredients-wallpaper.jpg') }}" class="ingredients-link-img grow"></img></a>
+    </div>
+    <div class="column intro-content-right ingredients-intro-right">
+        <div class="see-through-bg-red ingredients-intro-text">
+            <h2 class="section-title uppercase">It's all in the ingredients...</h2>
+            <p>Adding a recipe is simple using our built in ingredients list. Simply select your ingredient from our list, add the quantity required, and insert it into the recipe!</p>
+            <p>What?! An ingredient is missing from the list?! No sweat, add it yourself and everyone can then access it now and forever!</p>
+            <p>View all of the existing ingredients in our ingredients section and get creative!</p>
+        </div>
+    </div>
+</section>
+<section class="leaderboard-intro">
+    <div class="leaderboard-intro-bg-img">
+        <div class="leaderboard-intro-container">
+            <h2 class="section-title uppercase flame">"Head" to our leaderboard...</h2>
+            <p>Okay, so you might never get on Masterchef, but you might get to the top of our leaderboard!</p>
+            <p>Add those recipes, get great reviews, then check out the Head Chefs page to see if you've made it.</p>
+        </div>
+    </div>
+</section>
+
 {% endblock %}

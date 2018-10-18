@@ -1,0 +1,88 @@
+.grow {
+    transition-property: transform;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+
+.grow:hover {
+    transform: scale(1.25);
+}
+
+.fade-in-text {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 4s;
+    transition-timing-function: linear;
+}
+
+.shake {
+    -webkit-animation-name: shake;
+    -ms-animation-name: shake;
+    -ms-animation-duration: 2000ms;
+    -webkit-animation-duration: 2000ms;
+    -webkit-animation-iteration-count: infinite;
+    -ms-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -ms-animation-timing-function: ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(.5deg);
+    }
+    10% {
+        transform: rotate(-.5deg);
+    }
+    20% {
+        transform: rotate(.5deg);
+    }
+    30% {
+        transform: rotate(-.5deg);
+    }
+    40% {
+        transform: rotate(.5deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+}
+
+.flame {
+    animation-name: flame;
+    animation-duration: 2s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+}
+
+@keyframes flame {
+    0% {
+        text-shadow: 25px 16px 56px #f99806;
+    }
+    50% {
+        text-shadow: 8px -5px 32px #ffff00;
+    }
+    100% {
+        text-shadow: 0px -5px 32px #f99806;
+    }
+}
+
+    .zero-to-hero {
+        transition-property: transform;
+        transition-duration: 1s;
+        transition-timing-function: linear;
+        animation-name: hero;
+        animation-duration: 5s;
+        animation-delay: 0s;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes hero {
+        0% {
+            transform: scale(0);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }

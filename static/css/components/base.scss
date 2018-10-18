@@ -1,0 +1,73 @@
+// Header Styling --------------------------------------------------------------
+header {
+    color: $white;
+    background-color: $black;
+    height: 96px;
+    position: sticky;
+    top: 0px;
+    background-size: contain;
+    @extend %bottom-box-shadow;
+    z-index: 10000;
+}
+
+nav,
+nav ul {
+    font-family: 'Oswald', sans-serif;
+    margin: 5px;
+    padding: 3px;
+}
+
+nav {
+    margin: 0 auto;
+    max-width: 1122px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+nav ul,
+nav ul li {
+    float: right;
+}
+
+nav ul li {
+    display: block;
+    margin: 5px 30px;
+    background-color: $black;
+    padding: 5px;
+}
+
+.logo {
+    float: left;
+    margin: 10px;
+    padding: 8px 30px 8px 8px;
+    height: 56px;
+}
+
+.nav-icon {
+    padding: 0 12px 0 0;
+}
+
+// Message containers ----------------------------------------------------------
+.round-pop-up-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    -webkit-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
+    background-color: $message-pale-green;
+    z-index: 100;
+}
+
+.flashed-message {
+    width: 70%;
+    margin-top: 30%;
+}
