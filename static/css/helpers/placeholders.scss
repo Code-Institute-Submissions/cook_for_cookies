@@ -22,8 +22,14 @@
     background-size: cover;
 }
 
-%contain-background {
+%set-background {
     background-repeat: no-repeat;
     background-position: top;
     background-size: auto;
+}
+
+%contain-background {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }

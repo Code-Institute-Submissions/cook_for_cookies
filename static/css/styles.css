@@ -61,6 +61,12 @@ header {
   background-position: top;
   background-size: auto; }
 
+.column .sign-up-form-container, .flame-img-1,
+.flame-img-2 {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain; }
+
 /*----------------- Main colors*/
 /* --- Widths */
 .hide-me-btn {
@@ -256,7 +262,7 @@ hr {
   z-index: 2; }
 
 .welcome-message-section {
-  margin: 112px auto 0;
+  margin: 80px auto 0;
   background-color: rgba(255, 255, 255, 0.75);
   width: 800px;
   border: 4px solid rgba(255, 82, 82, 0.92); }
@@ -279,17 +285,13 @@ hr {
   width: 75%;
   text-align: center;
   margin: 0 auto;
-  padding: 60px 0; }
+  padding: 60px 0 30px; }
+
+.welcome-para:nth-of-type(2) {
+  padding: 0 0 60px; }
 
 .home-image {
-  background-image: url("../images/bbq.jpg");
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  z-index: -1;
-  background-repeat: repeat;
-  background-position: center;
-  background-size: cover; }
+  background-image: url("../images/bbq.jpg"); }
 
 .recipes-intro-section,
 .ingredients-intro-section {
@@ -304,7 +306,7 @@ hr {
   margin: 40px 0 0; }
 
 .ingredients-link-img {
-  margin: 64px 0 0; }
+  margin: 26px 0 0; }
 
 .ingredients-intro-text {
   width: 100%;
@@ -330,7 +332,7 @@ hr {
 .ingredients-intro-left {
   padding-right: 50px; }
 
-.leaderboard-intro {
+.leaderboard-intro-section {
   width: 100%;
   min-height: 800px;
   height: 800px;
@@ -347,21 +349,56 @@ hr {
   width: 100%;
   height: 100%; }
 
+.leaderboard-intro-section,
+.recipes-intro-section,
+.ingredients-intro-section {
+  min-width: 1900px; }
+
 .sign-up-header {
-  margin: 50px 0 0;
+  position: relative;
+  top: 254px;
   max-width: 600px; }
 
-.sign-up-header ~ .sign-up-form {
+.column .sign-up-form-container {
   display: flex;
   justify-content: center;
   padding: 50px;
-  margin: 20px auto;
-  border: 1px solid #000;
-  width: 400px;
-  text-align: center; }
+  margin: 50px auto;
+  width: 350px;
+  height: 510px;
+  text-align: center;
+  background-image: url(../images/chili-drawing-red-bell-pepper.png); }
 
 .sign-up-btn {
   float: none; }
+
+.sign-up-form {
+  position: relative;
+  top: 172px; }
+
+.new-user-form li label {
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 4px; }
+
+.flame-img-1,
+.flame-img-2 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-image: url(../images/flame2.jpg); }
+
+.flame-img-1 {
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: 'FlipH'; }
+
+.flame-img-2 {
+  right: 0;
+  bottom: 83px; }
 
 .profile-pic {
   width: 200px;
@@ -491,7 +528,7 @@ h1 {
   width: 100%; }
 
 p {
-  padding: 26px 20px 26px 0;
+  padding: 26px 0 0;
   letter-spacing: 3px;
   font-size: 13px;
   line-height: 20px; }
@@ -550,7 +587,7 @@ a:visited {
 
 footer {
   background-color: #000;
-  min-height: 300px; }
+  min-height: 266px; }
 
 .footer-item {
   color: #fff;
@@ -563,9 +600,30 @@ footer {
   opacity: 0; }
 
 .standard-section-height {
-  min-height: 720px; }
+  min-height: 770px; }
 
 input {
   margin: 20px 0; }
+
+li input {
+  font-size: 30px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+  margin: 15px 0; }
+
+.page-bg {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover; }
+
+.full-width-div {
+  width: 100%; }
+
+.no-overflow {
+  overflow: hidden; }
 
 /*# sourceMappingURL=styles.css.map */
