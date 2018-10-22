@@ -204,5 +204,8 @@ $(document).ready(function() {
     });
     
     fadeInHomeTitle(1000);
+    
+    $('.pre-slide-in-from-left').addClass('slide-in-from-left');
+    $('.pre-slide-in-from-right').addClass('slide-in-from-right');
 
 });

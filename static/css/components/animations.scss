@@ -5,7 +5,7 @@
 }
 
 .grow:hover {
-    transform: scale(1.25);
+    transform: scale(1.1);
 }
 
 .fade-in-text {
@@ -67,22 +67,50 @@
     }
 }
 
-    .zero-to-hero {
-        transition-property: transform;
-        transition-duration: 1s;
-        transition-timing-function: linear;
-        animation-name: hero;
-        animation-duration: 5s;
-        animation-delay: 0s;
-        animation-iteration-count: 1;
-        animation-fill-mode: forwards;
-    }
+.hidden-to-visible {
+    transition-property: transform;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    animation-name: hidden-to-visible;
+    animation-duration: 5s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
 
-    @keyframes hero {
-        0% {
-            transform: scale(0);
-        }
-        100% {
-            transform: scale(1);
-        }
+@keyframes hidden-to-visible {
+    0% {
+        transform: scale(0);
     }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pre-slide-in-from-left,
+.pre-slide-in-from-right,
+.slide-in-from-left,
+.slide-in-from-right {
+    position: relative;
+    transition-duration: 1s;
+    transition-delay: 0s;
+    transition-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+}
+
+.pre-slide-in-from-left {
+    left: -100%;
+    transition-property: left;
+}
+
+.pre-slide-in-from-right {
+    right: -100%;
+    transition-property: right;
+}
+
+.slide-in-from-left {
+    left: 0;
+}
+
+.slide-in-from-right {
+    right: 0;
+}

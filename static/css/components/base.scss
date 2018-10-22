@@ -63,11 +63,15 @@ nav ul li {
     -webkit-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
     box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
-    background-color: $message-pale-green;
+    background-color: $pop-up-box-yellow;
     z-index: 100;
 }
 
 .flashed-message {
     width: 70%;
-    margin-top: 30%;
+    padding: 86px 20px 20px;
+}
+
+.pop-up-btn {
+    margin: 20px auto;
 }

@@ -135,15 +135,23 @@ hr {
     min-width: 1900px;
 }
 
-// Sign-up ---------------------------------------------------------------------
+// Sign-up / Sign-in -----------------------------------------------------------
 
-.sign-up-header {
+.sign-up-header,
+.sign-in-header {
     position: relative;
-    top: 254px;
     max-width: 600px;
 }
 
-.column .sign-up-form-container {
+.sign-up-header {
+    top: 254px;
+}
+
+.sign-in-header {
+    top: 130px;
+}
+
+.column .sign-up-or-in-form-container {
     display: flex;
     justify-content: center;
     padding: 50px;
@@ -151,15 +159,26 @@ hr {
     width: 350px;
     height: 510px;
     text-align: center;
-    background-image: url(../images/chili-drawing-red-bell-pepper.png);
     @extend %contain-background;
+}
+
+.red-pepper-img {
+    background-image: url(../images/chili-drawing-red-bell-pepper.png);
+}
+
+.column .chef-hat-img {
+    background-image: url(../images/chef-hat.png);
+    padding: 30px;
+    width: 458px;
+    height: 570px;
+    background-size: cover;
 }
 
 .sign-up-btn {
     float: none;
 }
 
-.sign-up-form {
+.sign-up-or-in-form {
     position: relative;
     top: 172px;
 }
@@ -193,10 +212,26 @@ hr {
     bottom: 83px;
 }
 
+.new-user-form li .sign-in-label {
+    color: $black;
+}
+
+.chep-gif {
+    height: 300px;
+    width: 300px;
+    margin: 50px 0 0;
+}
+
 // Profile page ----------------------------------------------------------------
 .profile-pic {
     width: 200px;
     height: 200px;
+}
+
+// Recipes.html ----------------------------------------------------------------
+
+.recipe-header-box {
+    margin: 50px 0 20px;
 }
 
 // Ingredient / Recipes lists --------------------------------------------------

@@ -61,7 +61,7 @@ header {
   background-position: top;
   background-size: auto; }
 
-.column .sign-up-form-container, .flame-img-1,
+.column .sign-up-or-in-form-container, .flame-img-1,
 .flame-img-2 {
   background-repeat: no-repeat;
   background-position: center;
@@ -121,7 +121,7 @@ button:active,
   transition-timing-function: linear; }
 
 .grow:hover {
-  transform: scale(1.25); }
+  transform: scale(1.1); }
 
 .fade-in-text {
   opacity: 1;
@@ -166,21 +166,44 @@ button:active,
     text-shadow: 8px -5px 32px #ffff00; }
   100% {
     text-shadow: 0px -5px 32px #f99806; } }
-.zero-to-hero {
+.hidden-to-visible {
   transition-property: transform;
   transition-duration: 1s;
   transition-timing-function: linear;
-  animation-name: hero;
+  animation-name: hidden-to-visible;
   animation-duration: 5s;
   animation-delay: 0s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards; }
 
-@keyframes hero {
+@keyframes hidden-to-visible {
   0% {
     transform: scale(0); }
   100% {
     transform: scale(1); } }
+.pre-slide-in-from-left,
+.pre-slide-in-from-right,
+.slide-in-from-left,
+.slide-in-from-right {
+  position: relative;
+  transition-duration: 1s;
+  transition-delay: 0s;
+  transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+.pre-slide-in-from-left {
+  left: -100%;
+  transition-property: left; }
+
+.pre-slide-in-from-right {
+  right: -100%;
+  transition-property: right; }
+
+.slide-in-from-left {
+  left: 0; }
+
+.slide-in-from-right {
+  right: 0; }
+
 header {
   color: #fff;
   background-color: #000;
@@ -236,12 +259,15 @@ nav ul li {
   -webkit-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
   box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
-  background-color: #8adade;
+  background-color: #f2ff00;
   z-index: 100; }
 
 .flashed-message {
   width: 70%;
-  margin-top: 30%; }
+  padding: 86px 20px 20px; }
+
+.pop-up-btn {
+  margin: 20px auto; }
 
 ul {
   list-style: none; }
@@ -354,25 +380,40 @@ hr {
 .ingredients-intro-section {
   min-width: 1900px; }
 
-.sign-up-header {
+.sign-up-header,
+.sign-in-header {
   position: relative;
-  top: 254px;
   max-width: 600px; }
 
-.column .sign-up-form-container {
+.sign-up-header {
+  top: 254px; }
+
+.sign-in-header {
+  top: 130px; }
+
+.column .sign-up-or-in-form-container {
   display: flex;
   justify-content: center;
   padding: 50px;
   margin: 50px auto;
   width: 350px;
   height: 510px;
-  text-align: center;
+  text-align: center; }
+
+.red-pepper-img {
   background-image: url(../images/chili-drawing-red-bell-pepper.png); }
+
+.column .chef-hat-img {
+  background-image: url(../images/chef-hat.png);
+  padding: 30px;
+  width: 458px;
+  height: 570px;
+  background-size: cover; }
 
 .sign-up-btn {
   float: none; }
 
-.sign-up-form {
+.sign-up-or-in-form {
   position: relative;
   top: 172px; }
 
@@ -400,9 +441,20 @@ hr {
   right: 0;
   bottom: 83px; }
 
+.new-user-form li .sign-in-label {
+  color: #000; }
+
+.chep-gif {
+  height: 300px;
+  width: 300px;
+  margin: 50px 0 0; }
+
 .profile-pic {
   width: 200px;
   height: 200px; }
+
+.recipe-header-box {
+  margin: 50px 0 20px; }
 
 .list-headings {
   height: 50px;
@@ -549,7 +601,7 @@ a:visited {
 
 .sticky-div {
   position: sticky;
-  top: 70px;
+  top: 120px;
   background-color: #fff; }
 
 .uppercase {
@@ -625,5 +677,8 @@ li input {
 
 .no-overflow {
   overflow: hidden; }
+
+.no-float {
+  float: none; }
 
 /*# sourceMappingURL=styles.css.map */

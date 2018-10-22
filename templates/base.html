@@ -38,19 +38,19 @@
             </p>
         </div>
         <div class="row">
-            <button class="hide-me-btn center-div">Close</button>
+            <button class="hide-me-btn center-div pop-up-btn no-float">Close</button>
         </div>
     </div>
     
     {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-    <div class="hide-me round-pop-up-container">
+    <div class="hide-me round-pop-up-container no-float">
         <div class="row center-text">
             <p class="flashed-message center-div">
                 {{ message }}
             </p>
         </div>
         <div class="row">
-            <button class="hide-me-btn center-div">Close</button>
+            <button class="hide-me-btn center-div pop-up-btn no-float">Close</button>
         </div>
     </div>
     {% endfor %} {% endif %} {% endwith %}
