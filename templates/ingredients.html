@@ -1,39 +1,32 @@
 {% extends 'base.html' %} {% block content %}
-
-<div class="container">
-    <div class="sticky-div">
-        <h1>Ingredients list</h1>
+<div class="page-bg ingredients-bg"></div>
+<section class="container standard-section-height">
+    <div class="sticky-div ingredients-header-box">
+        <h2 class="section-title flame">Ingredients list</h2>
 
         <p>Please add any ingredients that are in your recipe but not on our list!</p>
-
-        <ul>
-            <li class="list-headings">
-                <label class="ingredient-list-item" for="">Image</label>
-                <label class="ingredient-list-item" for="">Ingredient Name</label>
-                <label class="ingredient-list-item center-text" for="">Contains Allergen?</label>
-            </li>
-        </ul>
-    </div>
-    <ul>
-        {% for ingredient in ingredients_list %}
-        <li class="clear-float ingredient-row">
-            <div class="ingredient-list-item">
-                <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
-            </div>
-            <p class="ingredient-list-item">{{ ingredient.ingredient_name.title() }}</p>
-            <label class="ingredient-list-item  center-text">
-            {% if ingredient.allergens %}
-                <i class="fas fa-exclamation-circle"></i>
-            {% else %}
-                <i class="fas fa-smile"></i>
-            {% endif %}
-            </label>
-            <a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}"><button>Edit Ingredient</button></a>
-        </li>
-        {% endfor %}
-        <li class="clear-float">Need to add an ingredient?</li>
+        <h3 class="clear-float">Need to add an ingredient?</h3>
         <a href="{{ url_for('add_ingredient', recipe_id='none') }}"><button>Add Ingredient</button></a>
-    </ul>
 
-</div>
+    </div>
+    <div class="ingredients-container container">
+        {% for ingredient in ingredients_list %}
+        <div class="ingredient-list-item">
+            <div class="row">
+                <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+                <p class="ingredient-name">{{ ingredient.ingredient_name.title() }}</p>
+            </div>
+            <div class="row">
+                <p>Contains Allergens?</p> 
+                {% if ingredient.allergens %}
+                <i class="fas fa-exclamation-circle"></i> 
+                {% else %}
+                <i class="fas fa-smile"></i> 
+                {% endif %}
+                <a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}"><button>Edit Ingredient</button></a> 
+            </div>    
+        </div>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

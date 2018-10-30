@@ -1,142 +1,238 @@
 // Home page -------------------------------------------------------------------
-ul {
-    list-style: none;
+
+.welcome-message-section {
+    min-width: 1240px;
+    background-color: $black;
 }
 
-input,
-hr {
-    width: 300px;
-    margin: 5px 0;
+.welcome-message-section .welcome-message,
+.welcome-message-section img {
+    float: left;
+    box-sizing: border-box;
+    height: 100vh;
+    min-width: 600px;
+}
+
+.welcome-message-section img {
+    width: 54%;
 }
 
 .welcome-message {
-    padding: 20px 20px 25px;
-    text-align: center;
-    width: 80%;
-    position: relative;
-    top: 45px;
-    margin: 0 auto;
-    color: $fire-red;
-    z-index: 2;
-}
-
-.welcome-message-section {
-    margin: 80px auto 0;
-    background-color: rgba(255, 255, 255, .75);
-    width: 800px;
-    border: 4px solid rgba(255, 82, 82, 0.92);
-}
-
-.welcome-header {
-    font-size: 82px;
-    margin: 38px auto;
-}
-
-.button-row {
-    margin: 90px 0 68px;
-    height: 80px;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
+    align-items: center;
+    width: 46%;
 }
 
-.welcome-para {
-    color: $black;
-    display: block;
-    font-size: 13px;
-    line-height: 25px;
-    width: 75%;
-    text-align: center;
-    margin: 0 auto;
-    padding: 60px 0 30px;
+.welcome-message-content {
+    width: 58%;
 }
 
-.welcome-para:nth-of-type(2){
-    padding: 0 0 60px;
+.welcome-message-content h1 {
+    font-size: 62px;
+    margin: 30px 0;
+    color: $white;  /* Fallback: assume this color ON TOP of image */
+    background: url(../images/fire.jpg) no-repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.home-image {
-    background-image: url('../images/bbq.jpg');
+.welcome-message-content h1,
+.welcome-message-content h3 {
+    color: $white;
+    letter-spacing: 5px;
 }
 
-.recipes-intro-section,
+.welcome-message-content h3 {
+    font-size: 24px;
+}
+
+.welcome-message-content p {
+    color: $white;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.welcome-message-content button {
+    margin-left: 0;
+    margin-top: 76px;
+}
+
+.welcome-sentence {
+    padding: 100px 0;
+}
+
+.welcome-sentence p {
+    padding: 0;
+    font-size: 18px;
+    line-height: 2.4;
+}
+
+.welcome-sentence span {
+    color: $fire-red;
+        font-weight: 600;
+}
+
+.welcome-sentence,
 .ingredients-intro-section {
+    background-color: $white;
+}
+
+.recipes-intro-content p,
+.ingredients-intro-section p {
+    max-width: 640px;
+    font-size: 18px;
+    color: $grey-para-text;
+    line-height: 2.4;
+    letter-spacing: 0;
+}
+
+.recipes-intro-content img {
     width: 100%;
-    min-height: 800px;
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
 }
 
-.ingredients-link-img,
-.recipes-link-img {
-    height: 285px;
-    float: right;
-    border: 20px #fff solid;
-    @extend %box-shadow-large;
-    margin: 40px 0 0;
+.recipes-intro-content .pic-overlay {
+    position: absolute;
+    width: 50%;
+    background-color: rgba(30,30,0,.15);
 }
 
-.ingredients-link-img {
-    margin: 26px 0 0;
+.recipes-intro-content .pic-overlay,
+.recipes-intro-content img,
+.recipes-intro-section .right {
+    height: 750px;
 }
 
-.ingredients-intro-text {
+.recipes-intro-content .right a,
+.ingredients-intro-content p ~ a {
+    font-weight: 600;
+    color: $fire-red;
+}
+
+.ingredients-intro-content a {
+    display: block;
+    margin-top: 42px;
+}
+
+.left,
+.right {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recipes-intro-section .left {
+    width: 50%;
+}
+
+.recipes-intro-section .right {
+    background-color: $black;
+    color: $white;
+    width: 50%;
+}
+
+.ingredients-intro-section {
+    padding: 100px 0;
     width: 100%;
-    padding: 50px;
 }
 
-.intro-content-left,
-.intro-content-right {
-    margin-top: 200px;
+.ingredients-intro-section .container {
+    max-width: 1122px;
+    margin: 0 auto;
 }
 
-.intro-content-left {
-    padding-left: 400px;
+.ingredients-intro-section img {
+    height: 400px;
+    width: 250px;
+    margin: 0 20px;
 }
 
-.intro-content-right {
-    padding-right: 400px;
+.ingredients-intro-section .left {
+    justify-content: left;
 }
 
-.ingredients-intro-left,
-.ingredients-intro-right {
-    padding-bottom: 30px;
+.ingredients-intro-section .left,
+.ingredients-intro-section .right {
+    width: 50%;
 }
 
-.ingredients-intro-right {
-    padding-left: 50px;
+.ingredients-intro-content {
+    width: 80%;
 }
 
-.ingredients-intro-left {
-    padding-right: 50px;
+.ingredients-intro-content p {
+    color: #060606;
+}
+
+.fire-text-quote {
+    background-color: $black;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.fire-text-quote div {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.fire-text-quote p {
+    color: $white;  /* Fallback: assume this color ON TOP of image */
+    background: url(../images/fire.jpg) no-repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 46px;
+    line-height: 60px;
+}
+
+.fire-text-quote p:nth-of-type(2){
+    color: $white;
+    background: none;
+    -webkit-text-fill-color: $white;
+    font-size: 30px;
+    letter-spacing: 0;
+}
+
+.leaderboard-intro-bg {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+    top: 0px;
+    @extend %cover-background;
+    transition-property: transform;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier;
 }
 
 .leaderboard-intro-section {
     width: 100%;
-    min-height: 800px;
-    height: 800px;
-    background-color: $white;
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.4);
 }
 
-.leaderboard-intro-container {
-    position: relative;
-    top: 200px;
-    left: 400px;
-    width: 440px;
+.leaderboard-intro-content-container {
+    color: $white;
+    width: 76%;
 }
 
-.leaderboard-intro-bg-img {
-    background-image: url('../images/head-chef.jpg');
-    @extend %set-background;
-    width: 100%;
-    height: 100%;
-}
-
-.leaderboard-intro-section,
-.recipes-intro-section,
-.ingredients-intro-section {
-    min-width: 1900px;
+.fa-file-alt {
+    font-size: 200px;
+    color: $white;
 }
 
 // Sign-up / Sign-in -----------------------------------------------------------
-
 .sign-up-header,
 .sign-in-header {
     position: relative;
@@ -223,71 +319,195 @@ hr {
 }
 
 // Profile page ----------------------------------------------------------------
+
 .profile-pic {
-    width: 200px;
+    width: 294px;
     height: 200px;
+    margin: 0 auto 30px;
+    display: block;
+}
+
+.profile-img~.profile-section {
+    padding: 20px;
+    background-color: rgba(255, 235, 0, .8);
+    margin: 50px auto;
+    border-radius: 14px;
+}
+
+.profile-section .row {
+    margin: 30px auto 0;
+}
+
+.profile-section .row:nth-of-type(2) {
+    margin: 15px auto;
+}
+
+.profile-section .new-user-form label {
+    color: $black;
+    float: left;
+    padding: 34px 0 0;
+    width: 300px;
+}
+
+.profile-section .new-user-form .picture-input {
+    width: 660px;
+}
+
+.profile-section .new-user-form input {
+    width: 400px;
+}
+
+.user-photo-instructions {
+    display: none;
+    border: 9px solid $black;
+    position: absolute;
+    height: 189px;
+    width: 394px;
+    right: 20vw;
+    text-align: center;
+    top: 15vh;
+    background-color: white;
+    color: black;
+    padding: 38px;
+}
+
+.user-photo-instructions-btn {
+    font-size: 40px;
+    margin-left: 24px;
+    color: $question-dark-blue;
+    cursor: pointer;
+}
+
+.photo-instructions-header,
+.photo-instructions-para {
+    padding: 5px;
+    margin: 10px;
+    font-size: 14px;
+    letter-spacing: 0px;
+}
+
+.photo-instructions-header {
+    letter-spacing: 3px;
+    margin-top: 0;
 }
 
 // Recipes.html ----------------------------------------------------------------
-
 .recipe-header-box {
-    margin: 50px 0 20px;
+    margin: 0 0 20px;
+    padding: 36px 44px 0;
+}
+
+.recipes-bg ~ .container {
+    background-color: $transparent-white;
+    padding-bottom: 50px;
+}
+
+.full-length-recipe-row {
+    min-height: 200px;
+    padding: 0 0 0 24px;
 }
 
 // Ingredient / Recipes lists --------------------------------------------------
+
 .list-headings {
-    height: 50px;
-    margin: 0 0 20px;
+    height: 16px;
 }
 
 .recipe-list-item,
 .ingredient-list-item {
     display: inline-block;
     float: left;
-    margin: 0 10px;
-    width: 400px;
     color: $black;
+}
+
+.recipe-list-item {
+    margin: 0 10px;
+    width: 200px;
+}
+
+.ingredient-list-item {
+    margin: 16px;
+    width: 30%;
+    background-color: $white;
+    border: 6px solid $veggie-green;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.ingredient-list-item .row:nth-of-type(1) {
+    padding-bottom: 0;
+}
+
+.ingredient-list-item .row:nth-of-type(2) {
+    padding-top: 0;
 }
 
 .recipe-img,
 .ingredient-img {
-    width: 75px;
-    height: 75px;
+    width: 150px;
+    height: 150px;
 }
 
-.recipe-list-item,
-.ingredient-list-item {
-    display: inline-block;
+.ingredient-img {
     float: left;
-    margin: 0 10px;
-    width: 200px;
+    padding: 20px 2px;
 }
 
 .recipe-row,
 .recipe-row-right {
-    float:left;
+    float: left;
 }
 
 .recipe-row-right {
-    width: 30%;
+    width: 28%;
+    padding: 14px;
 }
 
 .recipe-row {
     width: 65%;
+    background-color: #fff;
 }
 
-.recipe-row,
-.ingredient-row {
-    height: 76px;
-    border: 1px black solid;
-    margin: 0 auto 10px;
+.recipe-row-headings {
+    width: 69%;
+    border: 1px $beige solid;
+    padding: 10px;
+    background: #FF416C;
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
+    background: linear-gradient(to right, #FF4B2B, #FF416C);
+}
+
+.recipe-row-headings label {
+    color: $white;
+}
+
+.recipe-row {
+    border: 1px $black solid;
+    margin: 20px 0 0 20px;
     padding: 10px;
     -webkit-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
     box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.75);
     transition-property: background-color;
-    transition-duration: 1s;
+    transition-duration: .5s;
     transition-timing-function: linear;
+}
+
+.full-length-recipe-row .delete-recipe-row {
+    padding: 6px 0 6px 24px;
+    background-color: $transparent-red;
+    box-sizing: border-box;
+    width: 65%;
+    margin-left: 20px;
+}
+
+.inner-delete-recipe-row {
+    margin: 0 0 0 20px;
+    padding: 10px;
+}
+
+.delete-confirmation-message {
+    padding: 0px 0px 6px;
 }
 
 .ingredient-row {
@@ -295,12 +515,17 @@ hr {
 }
 
 .recipe-row:hover {
-    background-color: $highlight-pale-blue;
+    background-color: $transparent-yellow;
 }
 
 .checkbox-switch {
     width: 20px;
     display: block;
+}
+
+.fa-smile,
+.fa-exclamation-circle {
+    font-size: 30px;
 }
 
 .fa-exclamation-circle {
@@ -311,6 +536,37 @@ hr {
     color: $add-green;
 }
 
+.ingredients-container {
+    background-color: $transparent-white;
+    padding: 36px;
+}
+
+.ingredients-container .row {
+    padding: 24px;
+}
+
+.ingredients-container .row a {
+    margin-left: 70px;
+}
+
+.ingredient-row {
+    background-color: $white;
+    margin: 10px 0;
+}
+
+.ingredients-header-box {
+        padding: 36px 44px 0;
+        margin-bottom: 0;
+}
+
+.ingredients-header-box button {
+    margin: 0 0 30px 0;
+}
+
+.ingredients-header-box h3 {
+    margin: 26px 0;
+}
+
 //  Edit ingredients -----------------------------------------------------------
 .edit-ingredient-img {
     width: 200px;
@@ -319,7 +575,7 @@ hr {
 
 .instructions-box {
     width: 90%;
-    height: 300px;
+    height: 198px;
 }
 
 .new-ingredient-container {
@@ -350,4 +606,103 @@ td {
 .ingredient-box {
     width: 40%;
     margin: 0 5px 20px 0;
+}
+
+// Add_recipe.html -------------------------------------------------------------
+
+.add-a-recipe-section {
+    margin: 40px auto 0;
+}
+
+.add-a-recipe-header {
+    display: inline-block;
+    margin: 0 10px 0 0;
+}
+
+.add-a-recipe-header ~ p {
+    display: inline-block;
+}
+
+.add-recipe-list {
+    margin: 54px 0;
+}
+
+.add-recipe-list li label {
+    color: $black;
+}
+
+.add-recipe-list li {
+    margin: 0;
+}
+
+.add-recipe-list input {
+    width: 78%;
+}
+
+.add-recipe-button-row {
+    padding: 94px 0 20px;
+}
+
+// view_recipe.html ------------------------------------------------------------
+
+.view-recipe-bg ~ .view-recipe-container {
+    background-color: rgba(255,255,255,.9);
+    box-sizing: border-box;
+    margin: 10px auto;
+}
+
+.view-recipe-container a {
+    margin-bottom: 20px;
+}
+
+.view-recipe-container .recipe-details-section,
+.view-recipe-container .recipe-ingredients-section {
+    height: 700px;
+    border-radius: 20px;
+    margin: 0 2%;
+    padding: 20px;
+    width: 45%;
+}
+
+.view-recipe-container .recipe-details-section {
+    background-color: $transparent-red;
+}
+
+.view-recipe-container .recipe-ingredients-section {
+    background-color: $transparent-yellow;    
+}
+
+.recipe-details-section p {
+    padding: 0;
+    margin: 10px 0;
+}
+
+.view-recipe-container .section-title {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.view-recipe-img {
+    border: $white 8px solid;
+    border-radius: 18px;
+    width: 290px;
+    height: 200px;
+}
+
+.recipe-details-container {
+    width: 100%;
+    background-color: $white;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.recipe-ingredients-section ~ .row {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.ingredients-list-table th,
+.ingredients-list-table td {
+    padding: 10px 10px 10px 0;
 }

@@ -1,37 +1,43 @@
-{% extends 'base.html' %} {% block content %} 
-
-<div class="container">
-    <div class="row">
-        <img class="profile-pic" src="{{ user.user_photo }}"></img>
-    </div>
-
+{% extends 'base.html' %} {% block content %}
+<div class="profile-img page-bg"></div>
+<section class="container standard-section-height profile-section">
     <div class="row">
         <form action="{{ url_for('update_user', username=username) }}" method="POST">
-            <div class="row">
-                <ul class="new-user-form">
-                    <li><label for="first_name">First Name</label></li>
-                    <li><input id="first_name" name="first_name" type="text" value="{{ user.first_name.title() }}"></li>
-                    <hr>
-                    <li><label for="surname">Surname</label></li>
-                    <li><input id="surname" name="surname" type="text" value="{{ user.surname.title() }}"></li>
-                    <hr>
-                    <li><label for="email">Email Address</label></li>
-                    <li><input id="email" name="email" type="email" value="{{ user.email.lower() }}"></li>
-                    <hr>
-                    <li><label for="password">Password</label></li>
-                    <li><input id="password" required minlength="5" name="password" type="password" value="{{ user.password }}"></li>
-                    <hr>
-                    <li><label for="country">Country</label></li>
-                    <li><input id="country" name="country" type="text" value="{{ user.country.title() }}"></li>
-                    <hr>
+            <ul class="new-user-form">
+                <div class="row">
+                    <div class="user-photo-instructions">
+                        <h3 class="photo-instructions-header">Use a personalised photo!</h3>
+                        <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p> 
+                        <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p> 
+                        <p class="photo-instructions-para">And woila!  As if by magic, it will appear when you update!</p> 
+                    </div>
+                    <img class="profile-pic" src="{{ user.user_photo }}"></img>
                     <li><label for="user_photo">Your Photo Image Address</label></li>
-                    <li><input id="user_photo" name="user_photo" type="text" value="{{ user.user_photo }}"></li>
-                    <hr>
-                    <button type="submit">Update</button>
-                </ul>
-            </div>
+                    <li><input class="picture-input" id="user_photo" name="user_photo" type="text" value="{{ user.user_photo }}"><i class="fas fa-question-circle user-photo-instructions-btn"></i></li>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <li><label for="first_name">First Name</label></li>
+                        <li><input id="first_name" name="first_name" type="text" value="{{ user.first_name.title() }}"></li>
+                        <li><label for="surname">Surname</label></li>
+                        <li><input id="surname" name="surname" type="text" value="{{ user.surname.title() }}"></li>
+                        <li><label for="email">Email Address</label></li>
+                        <li><input id="email" name="email" type="email" value="{{ user.email.lower() }}"></li>
+                    </div>
+                    <div class="column">
+                        <li><label for="password">Password</label></li>
+                        <li><input id="password" required minlength="5" name="password" type="password" value="{{ user.password }}"></li>
+                        <li><label for="country">Country</label></li>
+                        <li><input id="country" name="country" type="text" value="{{ user.country.title() }}"></li>
+                        <li>
+                            <button class="update-profile-btn" type="submit">Update</button>
+                            <a href="{{ url_for('recipes', username=username) }}"><div class="cancel-profile-btn div-btn">Go Back</div></a>
+                        </li>
+                    </div>
+                </div>
+            </ul>    
         </form>
     </div>
-</div>
+</section>
 
 {% endblock %}

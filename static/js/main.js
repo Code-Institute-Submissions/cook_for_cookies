@@ -50,10 +50,9 @@ function prepareData(data) {
     const thisRecipeID = $('#recipe-id').val();
     const recipeData = data[0];
     const ingredientData = data[1];
-
+    
     recipeData.forEach(function(recipe) {
         var stringId = idToString(recipe);
-
         if (thisRecipeID === stringId) {
             let thisRecipe = recipe;
             createThisRecipeIngredientsList(thisRecipe, ingredientData);
@@ -179,10 +178,27 @@ function fadeInHomeTitle(delay){
     }, delay + 2000);
 }
 
+function showBoxOnHover(hoverItem, displayBox){
+    $(hoverItem).mouseover(function() {
+        $(displayBox).fadeIn("fast");
+  })
+  .mouseout(function() {
+    $(displayBox).fadeOut("fast");
+  });
+}
+
+function zoomImage(hoverElement, pictureElement){
+    $(hoverElement).mouseover(function() {
+        $(pictureElement).addClass("grow-pic");
+}).mouseout(function() {
+    $(pictureElement).removeClass("grow-pic");
+  });
+}
+
 // DOCUMENT FUNCTIONS ----------------------------------------------------------
 
 $(document).ready(function() {
-
+    
     loadData();
 
     //  This is to close any pop up button...
@@ -191,12 +207,18 @@ $(document).ready(function() {
         $('.hide-me').fadeOut("fast")
     });
 
-    // This will make the button to confirm and actually delete a recipe appear
+    // This will make the button to confirm and actually delete a recipe appear or disappear on cancel
 
     $('.delete-recipe-btn').on("click", function() {
-        $(this).next().show()
+        $(this).parent().siblings().slideDown();
+        
     });
-
+    
+    $('.cancel-delete-recipe-btn').on("click", function() {
+        $(this).parent().closest('.delete-recipe-row').slideUp();
+        
+    });
+    
     // This runs the update database function on click...
 
     $('.update-recipe-btn').click(function() {
@@ -207,5 +229,9 @@ $(document).ready(function() {
     
     $('.pre-slide-in-from-left').addClass('slide-in-from-left');
     $('.pre-slide-in-from-right').addClass('slide-in-from-right');
-
+    
+    showBoxOnHover(".user-photo-instructions-btn", '.user-photo-instructions');
+    
+    zoomImage('.fa-file-alt', '.leaderboard-intro-bg')
+    
 });

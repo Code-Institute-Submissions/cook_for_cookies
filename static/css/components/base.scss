@@ -1,9 +1,10 @@
 // Header Styling --------------------------------------------------------------
 header {
+    width: 100%;
     color: $white;
     background-color: $black;
-    height: 96px;
-    position: sticky;
+    height: 65px;
+    position: fixed;
     top: 0px;
     background-size: contain;
     @extend %bottom-box-shadow;

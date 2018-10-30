@@ -6,11 +6,13 @@
 @import "components/animations";
 @import "components/base";
 @import "components/pages";
+@import "components/page-backgrounds";
 
 // General styling -------------------------------------------------------------
 body {
-    font-family: 'Mukta Malar', sans-serif;
-    letter-spacing: 1px;
+    font-family: 'K2D', sans-serif;
+    font-weight: 500;
+    letter-spacing: .5px;
 }
 
 section {
@@ -37,6 +39,15 @@ h1 {
     margin: 0 auto;
 }
 
+section:after,
+.full-length-recipe-row:after,
+.ingredient-row:after,
+.container:after{
+    clear: both;
+    content: "";
+    display: block;
+}
+
 .row {
     clear: both;
     display: block;
@@ -45,8 +56,8 @@ h1 {
 
 p {
     padding: 26px 0 0;
-    letter-spacing: 3px;
-    font-size: 13px;
+    letter-spacing: 2px;
+    font-size: 14px;
     line-height: 20px;
 }
 
@@ -70,8 +81,7 @@ a:visited {
 
 .sticky-div {
     position: sticky;
-    top: 120px;
-    background-color: $white;
+    top: 0;
 }
 
 .uppercase {
@@ -103,22 +113,15 @@ a:visited {
 }
 
 .section-title {
-    font-size: 28px;
+    font-size: 48px;
     letter-spacing: 2px;
     font-weight: 600;
-}
-
-.see-through-bg-yellow {
-    background-color: rgba(255,247,0,.92);
-}
-
-.see-through-bg-red {
-    background-color: rgba(255,82,82,.92);
 }
 
 footer {
     background-color: $black;
     min-height: 266px;
+    clear: both;
 }
 
 .footer-item {
@@ -141,17 +144,23 @@ input {
     margin: 20px 0;
 }
 
-li input {
+li input,
+select {
     font-size: 30px;
     font-family: 'Oswald', sans-serif;
     letter-spacing: 1px;
     margin: 15px 0;
 }
 
+ul {
+    list-style: none;
+}
+
 .page-bg {
     width: 100%;
-    height: 100vh;
+    height: 112vh;
     position: fixed;
+    top: -100px;
     z-index: -1;
     background-repeat: repeat;
     background-position: center;

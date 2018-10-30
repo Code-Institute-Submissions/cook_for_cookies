@@ -7,33 +7,27 @@
 button,
 .div-btn {
     font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
     width: 150px;
     margin: 10px;
     cursor: pointer;
     display: inline-block;
     background-color: $black;
-    padding: 5px;
     font-size: 15px;
     color: $white;
     padding: 9px 23px;
     text-decoration: none;
     box-sizing: border-box;
-    float: left;
-    transition: background 1s linear;
+    text-align:center;
+    line-height: 22px;
+    letter-spacing: 1px;
+    border: solid 1px $white;
+    text-transform: uppercase;
 }
 
 button:hover,
 .div-btn:hover {
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, $flame-orange), color-stop(1, $flame-yellow));
-    background: -moz-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
-    background: -webkit-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
-    background: -o-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
-    background: -ms-linear-gradient(top, $flame-orange 5%, $flame-yellow 100%);
-    background: linear-gradient(to bottom, $flame-orange 5%, $flame-yellow 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$flame-orange', endColorstr='$flame-yellow', GradientType=0);
-    background-color: $flame-orange;
-    color: $fire-red;
+    background-color: $fire-red;
+    border: solid 1px $fire-red;
 }
 
 button:active,
@@ -50,4 +44,13 @@ button:active,
 .confirm-delete-recipe-btn,
 .delete-recipe-btn {
     float: left;
+}
+
+
+.update-profile-btn {
+    margin: 68px 0 0;
+}
+
+.add-recipe-btn {
+    margin: 20px 0;
 }

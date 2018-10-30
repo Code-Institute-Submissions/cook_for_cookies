@@ -8,10 +8,20 @@
     transform: scale(1.1);
 }
 
+.grow-pic {
+    transition-property: transform;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier;
+    transform: scale(1.1);
+}
+
+
+
+
 .fade-in-text {
     opacity: 1;
     transition-property: opacity;
-    transition-duration: 4s;
+    transition-duration: 2s;
     transition-timing-function: linear;
 }
 

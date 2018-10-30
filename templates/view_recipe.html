@@ -1,66 +1,49 @@
 {% extends 'base.html' %} {% block content %}
-
-<div class="container">
+<div class="page-bg view-recipe-bg"></div>
+<div class="container view-recipe-container">
     <div class="row">
-        <h1>View Recipe</h1>
+        <h2 class="section-title flame">Recipe Details</h2>
     </div>
     <div class="row">
-
+        <div class="hidden-div">
+            <input class="hidden-div recipe-id" type="text" id="recipe-id" name="recipe-id" value="{{ this_recipe._id }}">
+        </div>
+        <section class="recipe-details-section column">
+            <div class="image-container center-text">
+                {% if this_recipe.recipe_image_url %}
+                <img class="recipe-img view-recipe-img" src="{{ this_recipe.recipe_image_url }}"></img>
+                {% else %}
+                <img class="recipe-img view-recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
+                {% endif %}
+            </div>
+            <div class="recipe-details-container">
+                <h3>Recipe Name</h3>
+                <p>{{ this_recipe.recipe_name }}</p>
+                <hr> 
+                <h3>Cusine Category</h3>
+                <p>{{ this_recipe.cusine }}</p>
+                <hr> 
+                <h3>Recipe Instructions</h3>
+                <p class="instructions-box">{{ this_recipe.instructions }}</p>
+            </div>
+        </section>
+        <section class="recipe-ingredients-section column">
+            <h3>Ingredients</h3>
+            <hr class="ingredients-list-hr">
+            <table class="ingredients-list-table">
+                <tr class="ingredients-table-header">
+                    <th>Ingredient</th>
+                    <th>Quantity</th>
+                </tr>
+            </table>
+        </section>
         <div class="row">
-            <section class="recipe-details-section">
-                <div class="column">
-                    <ul class="new-user-form">
-                        <input class="hidden-div recipe-id" type="text" id="recipe-id" name="recipe-id" value="{{ this_recipe._id }}">
-                        <li><p>Recipe Name</p></li>
-                        <li><p>{{ this_recipe.recipe_name }}</p></li>
-
-                        <hr>
-                        <li>
-                            <div>
-                                {% if this_recipe.recipe_image_url %}
-                                <img class="recipe-img" src="{{ this_recipe.recipe_image_url }}"></img>
-                                {% else %}
-                                <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
-                                {% endif %}
-                            </div>
-                        </li>
-                        <li><img id="recipe_image" href="{{ this_recipe.recipe_image_url }}"></li>
-
-                        <hr>
-                        <li>
-                            <p>Cusine Category</p>
-                        </li>
-                        <li>
-                            <p>{{ this_recipe.cusine }}</p>
-                        </li>
-                        <hr>
-                        <li>
-                            <p>Recipe Instructions</p>
-                        </li>
-                        <li>
-                            <p class="instructions-box">{{ this_recipe.instructions }}</p>
-                        </li>
-                        <hr>
-                        <a href="{{ url_for( 'recipes', username=username) }} " class="go-back-btn div-btn center-text center-div ">
-                            <div>Go back</div>
-                        </a>
-                    </ul>
-                </div>
-            </section>
-            <section class="recipe-ingredients-section">
-                <div class="column ">
-                    <h2>Ingredients</h2>
-                    <hr class="ingredients-list-hr">
-                    <table class="ingredients-list-table">
-                        <tr class="ingredients-table-header">
-                            <th>Ingredient</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </table>
-                </div>
-            </section>
+            <a href="{{ url_for( 'recipes', username=username) }} " class="go-back-btn div-btn center-text center-div ">
+                <span>Go back</span>
+            </a>
         </div>
     </div>
 </div>
+
 
 {% endblock %}
