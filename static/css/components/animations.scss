@@ -108,12 +108,12 @@
 }
 
 .pre-slide-in-from-left {
-    left: -100%;
+    left: -200vw;
     transition-property: left;
 }
 
 .pre-slide-in-from-right {
-    right: -100%;
+    right: -200vw;
     transition-property: right;
 }
 

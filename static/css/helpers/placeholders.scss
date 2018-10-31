@@ -37,3 +37,9 @@
 %repeat-background {
     background-repeat: repeat;
 }
+
+%centralise-inner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

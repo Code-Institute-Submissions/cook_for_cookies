@@ -227,11 +227,15 @@ $(document).ready(function() {
     
     fadeInHomeTitle(1000);
     
-    $('.pre-slide-in-from-left').addClass('slide-in-from-left');
-    $('.pre-slide-in-from-right').addClass('slide-in-from-right');
+    setTimeout(function(){
+        $('.pre-slide-in-from-left').addClass('slide-in-from-left');
+        $('.pre-slide-in-from-right').addClass('slide-in-from-right');
+    }, 1000);
     
     showBoxOnHover(".user-photo-instructions-btn", '.user-photo-instructions');
     
     zoomImage('.fa-file-alt', '.leaderboard-intro-bg')
+    zoomImage('.sign-up-btn', '.sign-up-bg')
+    zoomImage('.log-in-btn', '.log-in-bg')
     
 });
