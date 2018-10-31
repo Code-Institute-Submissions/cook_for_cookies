@@ -42,7 +42,10 @@ h1 {
 section:after,
 .full-length-recipe-row:after,
 .ingredient-row:after,
-.container:after{
+.container:after,
+.recipe-row-bottom:after,
+.recipe-container:after,
+a:after {
     clear: both;
     content: "";
     display: block;

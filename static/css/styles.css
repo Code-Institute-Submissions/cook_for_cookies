@@ -60,7 +60,7 @@ header {
 
 .welcome-message, .left,
 .right, .fire-text-quote, .leaderboard-intro-section, .sign-up-section,
-.log-in-section, .recipes-header-container {
+.log-in-section, .recipes-header-container, a ~ .recipe-row-bottom, .inner-delete-recipe-row .row {
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -553,6 +553,11 @@ nav ul li {
 .recipe-section {
   margin-top: 65px; }
 
+.recipe-section .container {
+  background-color: #fff;
+  width: 100%;
+  max-width: none; }
+
 .recipes-header-container {
   height: 400px; }
 
@@ -562,11 +567,73 @@ nav ul li {
 
 .recipe-container {
   background-color: #fff;
-  width: 100%; }
-
-.recipe-content-container {
   max-width: 1122px;
   margin: 0 auto; }
+
+.recipe-content-container {
+  background-color: #000;
+  color: #fff;
+  padding: 8px 0;
+  margin: 0 auto 54px;
+  position: sticky;
+  top: 65px;
+  z-index: 3; }
+
+.recipe-container img {
+  width: 160px;
+  height: 150px;
+  float: left; }
+
+.recipe {
+  margin: 10px 10px 10px 0;
+  width: 30%;
+  float: left;
+  padding: 12px;
+  background-color: #fffbee;
+  -webkit-box-shadow: 3px 6px 17px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 6px 17px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 6px 17px -5px rgba(0, 0, 0, 0.75); }
+
+.recipe p {
+  color: #000;
+  max-width: 148px; }
+
+.recipe p:nth-of-type(1) {
+  font-weight: 600; }
+
+.recipe-details-container {
+  padding: 5px 0 0 25px;
+  display: inline-block; }
+
+.recipe a .recipe-row-top {
+  background-color: #fffbee;
+  transition: all 1s linear; }
+
+.recipe a .recipe-row-top:hover {
+  background-color: #e8e4d6; }
+
+.recipe-row-top,
+.recipe-row-bottom {
+  display: block; }
+
+a ~ .recipe-row-bottom {
+  clear: both;
+  height: 60px; }
+
+.recipe-row-bottom button {
+  margin: 10px 5px; }
+
+.inner-delete-recipe-row form .delete-confirmation-message {
+  max-width: 98%;
+  margin: 56px auto 20px;
+  padding: 0; }
+
+.recipe-container .delete-recipe-row {
+  position: absolute;
+  z-index: 1;
+  background-color: #f99806;
+  width: 336px;
+  height: 220px; }
 
 .leaderboard-intro-bg,
 .sign-up-bg,
@@ -634,7 +701,10 @@ h1 {
 section:after,
 .full-length-recipe-row:after,
 .ingredient-row:after,
-.container:after {
+.container:after,
+.recipe-row-bottom:after,
+.recipe-container:after,
+a:after {
   clear: both;
   content: "";
   display: block; }
