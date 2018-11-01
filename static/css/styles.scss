@@ -46,7 +46,8 @@ section:after,
 .recipe-row-bottom:after,
 .recipe-container:after,
 a:after,
-.ingredients-container:after {
+.ingredients-container:after,
+.profile-section:after {
     clear: both;
     content: "";
     display: block;
@@ -150,7 +151,7 @@ input {
 
 li input,
 select {
-    font-size: 30px;
+    font-size: 26px;
     font-family: 'Oswald', sans-serif;
     letter-spacing: 1px;
     margin: 15px 0;
@@ -182,5 +183,9 @@ ul {
 
 .header-container {
     height: 400px;
+    @extend %centralise-inner-container;
+}
+
+.img-container {
     @extend %centralise-inner-container;
 }

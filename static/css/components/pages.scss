@@ -267,44 +267,7 @@
     top: 2px;
 }
 
-// Profile page ----------------------------------------------------------------
-
-.profile-pic {
-    width: 294px;
-    height: 200px;
-    margin: 0 auto 30px;
-    display: block;
-}
-
-.profile-img~.profile-section {
-    padding: 20px;
-    background-color: rgba(255, 235, 0, .8);
-    margin: 50px auto;
-    border-radius: 14px;
-}
-
-.profile-section .row {
-    margin: 30px auto 0;
-}
-
-.profile-section .row:nth-of-type(2) {
-    margin: 15px auto;
-}
-
-.profile-section .new-user-form label {
-    color: $black;
-    float: left;
-    padding: 34px 0 0;
-    width: 300px;
-}
-
-.profile-section .new-user-form .picture-input {
-    width: 660px;
-}
-
-.profile-section .new-user-form input {
-    width: 400px;
-}
+// User photo pop up -----------------------------------------------------------
 
 .user-photo-instructions {
     display: none;
@@ -517,6 +480,9 @@ a ~ .recipe-row-bottom {
 
 .add-edit-ingredient-section .container {
     min-width: 900px;
+    padding: 30px;
+    background-color: $white;
+    border-radius: 20px;
 }
 
 .add-edit-ingredient-section p {
@@ -552,3 +518,45 @@ a ~ .recipe-row-bottom {
 
 // view_recipe.html ------------------------------------------------------------
 
+// Profile Section -------------------------------------------------------------
+
+.profile-section {
+    margin-top: 65px;
+    min-height: 750px;
+    @extend %centralise-inner-container;
+}
+
+.profile-section img {
+    width: 300px;
+}
+
+.profile-section .container {
+    background-color: $white;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.user-data {
+    padding: 20px;
+    background-color: slate;
+}
+
+.user-data label {
+    display: block;
+}
+
+.data-container {
+   float: left; 
+   margin: 0 20px 0 0;
+}
+
+.user-photo-input {
+    width: 90%;
+}
+
+.user-data input {
+    font-size: 22px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+    margin: 15px 0;
+}

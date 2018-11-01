@@ -1,41 +1,45 @@
 {% extends 'base.html' %} {% block content %}
-<div class="profile-img page-bg"></div>
-<section class="container standard-section-height profile-section">
-    <div class="row">
+<div class="page-bg profile-img"></div>
+<div class="user-photo-instructions">
+    <h3 class="photo-instructions-header">Use a personalised photo!</h3>
+    <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p>
+    <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p>
+    <p class="photo-instructions-para">And woila! As if by magic, it will appear when you update!</p>
+</div>
+<section class="profile-section">
+    <div class="container">
         <form action="{{ url_for('update_user', username=username) }}" method="POST">
-            <ul class="new-user-form">
-                <div class="row">
-                    <div class="user-photo-instructions">
-                        <h3 class="photo-instructions-header">Use a personalised photo!</h3>
-                        <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p> 
-                        <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p> 
-                        <p class="photo-instructions-para">And woila!  As if by magic, it will appear when you update!</p> 
-                    </div>
-                    <img class="profile-pic" src="{{ user.user_photo }}"></img>
-                    <li><label for="user_photo">Your Photo Image Address</label></li>
-                    <li><input class="picture-input" id="user_photo" name="user_photo" type="text" value="{{ user.user_photo }}"><i class="fas fa-question-circle user-photo-instructions-btn"></i></li>
+            <div class="img-container">
+                {% if user.user_photo %}
+                <img class="profile-pic" src="{{ user.user_photo }}"></img>
+                {% else %}
+                <img class="profile-pic" src="{{ url_for('static', filename='images/default-user.png') }}"></img>
+                {% endif %}
+            </div>
+            <div class="user-data">
+                <label for="user_photo">Photo image address</label>
+                <input class="user-photo-input" id="user_photo" name="user_photo" type="text" value="{{ user.user_photo }}" placeholder="Your Photo Image Address (or leave blank)"><i class="fas fa-question-circle user-photo-instructions-btn"></i>
+                <div class="data-container">
+                    <label for="first-name">First Name</label>
+                    <input id="first_name" name="first_name" type="text" value="{{ user.first_name.title() }}" placeholder="First Name">
+                    <label for="surname">Surname</label>
+                    <input id="surname" name="surname" type="text" value="{{ user.surname.title() }}" placeholder="Surname">
                 </div>
-                <div class="row">
-                    <div class="column">
-                        <li><label for="first_name">First Name</label></li>
-                        <li><input id="first_name" name="first_name" type="text" value="{{ user.first_name.title() }}"></li>
-                        <li><label for="surname">Surname</label></li>
-                        <li><input id="surname" name="surname" type="text" value="{{ user.surname.title() }}"></li>
-                        <li><label for="email">Email Address</label></li>
-                        <li><input id="email" name="email" type="email" value="{{ user.email.lower() }}"></li>
-                    </div>
-                    <div class="column">
-                        <li><label for="password">Password</label></li>
-                        <li><input id="password" required minlength="5" name="password" type="password" value="{{ user.password }}"></li>
-                        <li><label for="country">Country</label></li>
-                        <li><input id="country" name="country" type="text" value="{{ user.country.title() }}"></li>
-                        <li>
-                            <button class="update-profile-btn" type="submit">Update</button>
-                            <a href="{{ url_for('recipes', username=username) }}"><div class="cancel-profile-btn div-btn">Go Back</div></a>
-                        </li>
-                    </div>
+                <div class="data-container">
+                    <label for="email">Email</label>
+                    <input id="email" name="email" type="email" value="{{ user.email.lower() }}" placeholder="Email Address">
+                    <label for="password">Password</label>
+                    <input id="password" required minlength="5" name="password" type="password" value="{{ user.password }}" placeholder="Password">
                 </div>
-            </ul>    
+                <label for="country">Country</label>
+                <input id="country" name="country" type="text" value="{{ user.country.title() }}" placeholder="Country">
+            </div>
+            <div class="btn-row center-text clear-float">
+                <button class="update-profile-btn" type="submit">Update</button>
+                <a href="{{ url_for('recipes', username=username) }}">
+                    <div class="cancel-profile-btn div-btn">Go Back</div>
+                </a>
+            </div>
         </form>
     </div>
 </section>

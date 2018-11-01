@@ -59,14 +59,16 @@ header {
 .sign-up-bg,
 .log-in-bg,
 .recipes-bg,
-.ingredients-bg {
+.ingredients-bg,
+.profile-img,
+.edit-add-ingredient-bg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; }
 
 .welcome-message, .left,
 .right, .fire-text-quote, .leaderboard-intro-section, .sign-up-section,
-.log-in-section, a ~ .recipe-row-bottom, .inner-delete-recipe-row .row, .add-edit-ingredient-section, .header-container {
+.log-in-section, a ~ .recipe-row-bottom, .inner-delete-recipe-row .row, .add-edit-ingredient-section, .profile-section, .header-container, .img-container {
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -112,9 +114,6 @@ button:active,
 .confirm-delete-recipe-btn,
 .delete-recipe-btn {
   float: left; }
-
-.update-profile-btn {
-  margin: 68px 0 0; }
 
 .add-recipe-btn {
   margin: 20px 0; }
@@ -496,36 +495,6 @@ nav ul li {
   width: 400px;
   top: 2px; }
 
-.profile-pic {
-  width: 294px;
-  height: 200px;
-  margin: 0 auto 30px;
-  display: block; }
-
-.profile-img ~ .profile-section {
-  padding: 20px;
-  background-color: rgba(255, 235, 0, 0.8);
-  margin: 50px auto;
-  border-radius: 14px; }
-
-.profile-section .row {
-  margin: 30px auto 0; }
-
-.profile-section .row:nth-of-type(2) {
-  margin: 15px auto; }
-
-.profile-section .new-user-form label {
-  color: #000;
-  float: left;
-  padding: 34px 0 0;
-  width: 300px; }
-
-.profile-section .new-user-form .picture-input {
-  width: 660px; }
-
-.profile-section .new-user-form input {
-  width: 400px; }
-
 .user-photo-instructions {
   display: none;
   position: absolute;
@@ -691,7 +660,10 @@ a ~ .recipe-row-bottom {
   min-height: 750px; }
 
 .add-edit-ingredient-section .container {
-  min-width: 900px; }
+  min-width: 900px;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px; }
 
 .add-edit-ingredient-section p {
   margin-bottom: 30px; }
@@ -714,11 +686,45 @@ a ~ .recipe-row-bottom {
   width: 360px;
   height: 250px; }
 
+.profile-section {
+  margin-top: 65px;
+  min-height: 750px; }
+
+.profile-section img {
+  width: 300px; }
+
+.profile-section .container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px; }
+
+.user-data {
+  padding: 20px;
+  background-color: slate; }
+
+.user-data label {
+  display: block; }
+
+.data-container {
+  float: left;
+  margin: 0 20px 0 0; }
+
+.user-photo-input {
+  width: 90%; }
+
+.user-data input {
+  font-size: 22px;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 1px;
+  margin: 15px 0; }
+
 .leaderboard-intro-bg,
 .sign-up-bg,
 .log-in-bg,
 .recipes-bg,
-.ingredients-bg {
+.ingredients-bg,
+.profile-img,
+.edit-add-ingredient-bg {
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -732,7 +738,7 @@ a ~ .recipe-row-bottom {
   background-image: url("../images/bbq.jpg"); }
 
 .profile-img {
-  background-image: url("../images/food-board.jpg"); }
+  background-image: url("../images/fancycrave-458022-unsplash.jpg"); }
 
 .recipes-bg {
   background-image: url("../images/bobby-rodriguezz-1052701-unsplash.jpg");
@@ -752,6 +758,9 @@ a ~ .recipe-row-bottom {
 
 .log-in-bg {
   background-image: url("../images/simple-322427-unsplash.jpg"); }
+
+.edit-add-ingredient-bg {
+  background-image: url("../images/adils-photography-419432-unsplash.jpg"); }
 
 body {
   font-family: 'K2D', sans-serif;
@@ -785,7 +794,8 @@ section:after,
 .recipe-row-bottom:after,
 .recipe-container:after,
 a:after,
-.ingredients-container:after {
+.ingredients-container:after,
+.profile-section:after {
   clear: both;
   content: "";
   display: block; }
@@ -869,7 +879,7 @@ input {
 
 li input,
 select {
-  font-size: 30px;
+  font-size: 26px;
   font-family: 'Oswald', sans-serif;
   letter-spacing: 1px;
   margin: 15px 0; }
