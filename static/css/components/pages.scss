@@ -308,15 +308,16 @@
 
 .user-photo-instructions {
     display: none;
-    border: 9px solid $black;
     position: absolute;
-    height: 189px;
+    height: 222px;
     width: 394px;
-    right: 20vw;
+    left: 50%;
+    margin-left: -196px;
     text-align: center;
-    top: 15vh;
-    background-color: white;
-    color: black;
+    top: 50%;
+    margin-top: -147px;
+    background-color: $fire-red;
+    color: $white;
     padding: 38px;
 }
 
@@ -457,7 +458,7 @@ a ~ .recipe-row-bottom {
 }
 
 .ingredient {
-    width: 23%;
+    width: 30%;
     float: left;
     padding: 8px;
     box-sizing: border-box;
@@ -472,6 +473,7 @@ a ~ .recipe-row-bottom {
 
 .ingredient p:nth-of-type(1){
     font-weight: 600;
+    max-width: 176px;
 }
 
 .ingredient-content-container button {
@@ -487,13 +489,62 @@ a ~ .recipe-row-bottom {
     color: $add-green;
 }
 
-.ingredient button {
-    width: 100px;
-    height: 42px;
+.ingredient a {
+    display: inline-block;
     float: right;
 }
 
-// Edit ingredients -----------------------------------------------------------
+
+.ingredient a i {
+    font-size: 30px;
+    color: $black;
+}
+
+.ingredient a i:hover {
+    color: $fire-red;
+}
+
+.details-container {
+    float:left;
+}
+// Add / Edit ingredient -----------------------------------------------------------
+
+.add-edit-ingredient-section {
+    margin-top: 65px;
+    min-height: 750px;
+    @extend %centralise-inner-container;
+}
+
+.add-edit-ingredient-section .container {
+    min-width: 900px;
+}
+
+.add-edit-ingredient-section p {
+    margin-bottom: 30px;
+}
+
+.add-edit-ingredient-section .container button {
+    float: left;
+    margin-left: 0;
+}
+
+.add-edit-ingredient-section .container label {
+    margin-right: 30px;
+}
+
+.text-input {
+    width: 80%;
+}
+
+.readonly {
+    background-color: grey;
+    color: white;
+}
+
+.add-edit-ingredient-section img {
+    width: 360px;
+    height: 250px;
+}
 
 // Edit Recipes ----------------------------------------------------------------
 

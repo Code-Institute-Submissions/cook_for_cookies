@@ -1,42 +1,41 @@
 {% extends 'base.html' %} {% block content %}
-
-<div class="container">
-    <div class="row">
-        <h1>Edit an Ingredient</h1>
-    </div>
-    <div class="row">
+<div class="user-photo-instructions">
+    <h3 class="photo-instructions-header">Use a personalised photo!</h3>
+    <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p> 
+    <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p> 
+    <p class="photo-instructions-para">And woila!  As if by magic, it will appear when you update!</p> 
+</div>
+<section class="add-edit-ingredient-section">
+    <div class="container">
+        <h1 class="section-title">Edit an Ingredient</h1>
         <p>Please update the details of this ingredient if needed...</p>
-    </div>
-    <div class="row">
         <form action="{{ url_for('update_ingredient', ingredient_id=ingredient._id) }}" method="POST">
-            <div class="row">
-                <ul class="new-user-form">
-                    <li><label for="ingredient_name">Ingredient Name</label></li>
-                    <li><input id="ingredient_name" name="ingredient_name" value="{{ ingredient.ingredient_name.title() }}" readonly></li>
-                    <hr>
-                    <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
-                    <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}"></li>
-                    <li><img class="edit-ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
-                    </li>
-                    <hr>
-                    <div class="switch">
-                        <label class="">Allergen? 
-                            {% if ingredient.allergens %}
-                            <input type="checkbox" name="allergens" id="allergens" checked><span class="slider"></span>
-                            {% else %}
-                            <input type="checkbox" name="allergens" id="allergens"><span class="slider"></span>
-                            {% endif %}
-                        </label>
-                    </div>
-                    <hr>
-                    <button class="update-ingredient-btn" type="submit">Update Ingredient</button>
-                    <a href="{{ url_for( 'ingredients') }} " class="center-text">
-                        <span class="go-back-btn div-btn">Go back</span>
-                    </a>
-                </ul>
-            </div>
+            {% if ingredient.ingredient_image_url %}
+            <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+            {% else %}
+            <img class="ingredient-img" src="{{ url_for('static', filename='images/valeriy-evtushenko-1077286-unsplash.jpg') }}"></img>
+            {% endif %}
+            <ul class="new-user-form">
+                <li><input id="ingredient_name" name="ingredient_name" value="{{ ingredient.ingredient_name.title() }}" class="text-input readonly" readonly></li>
+                <li>
+                    <input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}" class="text-input" placeholder="Ingredient photo image address (or leave blank)">
+                    <i class="fas fa-question-circle user-photo-instructions-btn"></i>
+                </li>
+                <div class="switch">
+                    <label for="allergens">Contains Allergen? 
+                        {% if ingredient.allergens %}
+                        <input type="checkbox" name="allergens" id="allergens" checked><span class="slider"></span>
+                        {% else %}
+                        <input type="checkbox" name="allergens" id="allergens"><span class="slider"></span>
+                        {% endif %}
+                    </label>
+                </div>
+                <button class="update-ingredient-btn" type="submit">Update</button>
+                <a href="{{ url_for( 'ingredients') }} " class="center-text">
+                    <span class="go-back-btn div-btn">Go back</span>
+                </a>
+            </ul>
         </form>
     </div>
-</div>
-
+</section>
 {% endblock %}

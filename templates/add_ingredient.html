@@ -1,43 +1,38 @@
-{% extends 'base.html' %} {% block content %} 
-
-<div class="container">
-    <div class="row">
-        <h2>Add an Ingredient</h2>
-    </div>
-    <div class="row">
-        <p>Please enter the details of the ingredient you would like to add...</p>
-    </div>
-    <div class="row">
-        <form action="{{ url_for('insert_ingredient', recipe_id=recipe_id) }}" method="POST">
-            <div class="row">
-                <ul class="new-user-form">
-                    <li><label for="ingredient_name">Ingredient Name</label></li>
-                    <li><input id="ingredient_name" name="ingredient_name" type="text" required></li>
-                    <hr>
-                    <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
-                    <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" required></li>
-                    <hr>
-                    <div class="switch">
-                        <label>Contains Allergens?</label>
-                        <input id="allergens" name="allergens" type="checkbox">
-                    </div>
-                    <hr>
-                    <button type="submit">Submit</button>
-                </ul>
-            </div>
-        </form>
-        <div class="row">
-            {% if recipe_id == "none" %}
-            <a href="{{ url_for( 'ingredients', username=username) }} " class="edit-recipe-btn ">
-                <button>Go back</button>
-            </a>
-            {% else %}
-            <a class="edit-recipe-btn" href="{{ url_for('edit_recipe', recipe_id=recipe_id) }}">
-                <button>Cancel</button>
-            </a>
-        {% endif %}
-        </div>
-    </div>
+{% extends 'base.html' %} {% block content %}
+<div class="user-photo-instructions">
+    <h3 class="photo-instructions-header">Use a personalised photo!</h3>
+    <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p> 
+    <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p> 
+    <p class="photo-instructions-para">And woila!  As if by magic, it will appear when you update!</p> 
 </div>
+<section class="add-edit-ingredient-section">
+    <div class="container">
+        <h1 class="section-title">Add an Ingredient</h1>
+        <p>Please enter the details of the ingredient you would like to add...</p>
+        <form action="{{ url_for('insert_ingredient', recipe_id=recipe_id) }}" method="POST">
+            <ul class="new-user-form">
+                <li><input class="text-input" id="ingredient_name" name="ingredient_name" type="text" placeholder="Ingredient Name" maxlength="36" required></li>
+                <li>
+                    <input class="text-input" id="ingredient_image_url" name="ingredient_image_url" type="text" placeholder="Ingredient photo image address (or leave blank)">
+                    <i class="fas fa-question-circle user-photo-instructions-btn"></i>
+                </li>
+                <div class="switch">
+                    <label>Contains Allergens?</label>
+                    <input id="allergens" name="allergens" type="checkbox">
+                </div>
+                <button type="submit">Submit</button> 
+                {% if recipe_id == "none" %}
+                <a href="{{ url_for( 'ingredients', username=username) }} " class="edit-recipe-btn ">
+                    <span class="div-btn">Go back</span>
+                </a> 
+                {% else %}
+                <a class="edit-recipe-btn" href="{{ url_for('edit_recipe', recipe_id=recipe_id) }}">
+                    <span class="div-btn">Cancel</span>
+                </a> 
+                {% endif %}
+            </ul>
+        </form>
+    </div>
+</section>
 
 {% endblock %}

@@ -12,16 +12,22 @@
         <div class="ingredients-container">
             {% for ingredient in ingredients_list %}
             <div class="ingredient">
-                    <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+                {% if ingredient.ingredient_image_url %}
+                <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+                {% else %}
+                <img class="ingredient-img" src="{{ url_for('static', filename='images/valeriy-evtushenko-1077286-unsplash.jpg') }}"></img>
+                {% endif %}
+                <div class="details-container">
                     <p class="ingredient-name">{{ ingredient.ingredient_name.title() }}</p>
-                    <p>Allergen free?
-                    {% if ingredient.allergens %}
-                    <i class="fas fa-exclamation-circle"></i> 
-                    {% else %}
-                    <i class="fas fa-smile"></i>
-                    {% endif %}
+                    <p>Allergen free? 
+                        {% if ingredient.allergens %}
+                        <i class="fas fa-exclamation-circle"></i> 
+                        {% else %}
+                        <i class="fas fa-smile"></i> 
+                        {% endif %}
                     </p>
-                    <a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}"><button>Edit</button></a>
+                </div>
+                <a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}"><i class="fas fa-edit"></i></a>
             </div>
             {% endfor %}
         </div>
