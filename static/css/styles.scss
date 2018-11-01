@@ -45,7 +45,8 @@ section:after,
 .container:after,
 .recipe-row-bottom:after,
 .recipe-container:after,
-a:after {
+a:after,
+.ingredients-container:after {
     clear: both;
     content: "";
     display: block;
@@ -177,4 +178,9 @@ ul {
 
 .no-float {
     float: none;
+}
+
+.header-container {
+    height: 400px;
+    @extend %centralise-inner-container;
 }

@@ -1,32 +1,30 @@
 {% extends 'base.html' %} {% block content %}
 <div class="page-bg ingredients-bg"></div>
-<section class="container standard-section-height">
-    <div class="sticky-div ingredients-header-box">
-        <h2 class="section-title flame">Ingredients list</h2>
-
-        <p>Please add any ingredients that are in your recipe but not on our list!</p>
-        <h3 class="clear-float">Need to add an ingredient?</h3>
-        <a href="{{ url_for('add_ingredient', recipe_id='none') }}"><button>Add Ingredient</button></a>
-
+<section class="ingredients-section">
+    <div class="header-container center-text">
+        <h1 class="section-title">Ingredients List</h1>
     </div>
-    <div class="ingredients-container container">
-        {% for ingredient in ingredients_list %}
-        <div class="ingredient-list-item">
-            <div class="row">
-                <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
-                <p class="ingredient-name">{{ ingredient.ingredient_name.title() }}</p>
-            </div>
-            <div class="row">
-                <p>Contains Allergens?</p> 
-                {% if ingredient.allergens %}
-                <i class="fas fa-exclamation-circle"></i> 
-                {% else %}
-                <i class="fas fa-smile"></i> 
-                {% endif %}
-                <a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}"><button>Edit Ingredient</button></a> 
-            </div>    
+    <div class="container">
+        <div class="ingredient-content-container center-text">
+            <p>Please add any ingredients that are in your recipe but not on our list!</p>
+            <a href="{{ url_for('add_ingredient', recipe_id='none') }}"><button>Add Ingredient</button></a>
         </div>
-        {% endfor %}
+        <div class="ingredients-container">
+            {% for ingredient in ingredients_list %}
+            <div class="ingredient">
+                    <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+                    <p class="ingredient-name">{{ ingredient.ingredient_name.title() }}</p>
+                    <p>Allergen free?
+                    {% if ingredient.allergens %}
+                    <i class="fas fa-exclamation-circle"></i> 
+                    {% else %}
+                    <i class="fas fa-smile"></i>
+                    {% endif %}
+                    </p>
+                    <a href="{{ url_for('edit_ingredient', ingredient_id=ingredient._id) }}"><button>Edit</button></a>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endblock %}

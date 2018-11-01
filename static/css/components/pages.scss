@@ -340,35 +340,34 @@
     margin-top: 0;
 }
 
-// Recipes.html ----------------------------------------------------------------
+// Recipes.html / Ingredients.html ---------------------------------------------
 
-.recipe-section {
+.recipe-section,
+.ingredients-section {
     margin-top: 65px;
 }
 
-.recipe-section .container {
+.recipe-section .container,
+.ingredients-section .container{
     background-color: $white;
     width: 100%;
     max-width: none;
 }
 
-.recipes-header-container {
-    height: 400px;
-    @extend %centralise-inner-container;
-}
-
-.recipes-header-container h1 {
+.header-container h1 {
     color: $white;
     letter-spacing: 7px;
 }
 
-.recipe-container {
+.recipe-container,
+.ingredients-container {
     background-color: $white;
     max-width: 1122px;
     margin: 0 auto;
 }
 
-.recipe-content-container {
+.recipe-content-container,
+.ingredient-content-container {
     background-color: $black;
     color: $white;
     padding: 8px 0;
@@ -390,9 +389,7 @@
     float: left;
     padding: 12px;
     background-color: rgb(255, 251, 238);
-    -webkit-box-shadow: 3px 6px 17px -5px rgba(0,0,0,0.75);
-    -moz-box-shadow: 3px 6px 17px -5px rgba(0,0,0,0.75);
-    box-shadow: 3px 6px 17px -5px rgba(0,0,0,0.75);
+    @extend %list-item-shadow;
 }
 
 .recipe p {
@@ -409,7 +406,8 @@
     display: inline-block;
 }
 
-.recipe a .recipe-row-top {
+.recipe a .recipe-row-top,
+.ingredient {
     background-color: rgb(255, 251, 238);
     transition: all 1s linear;
 }
@@ -451,9 +449,49 @@ a ~ .recipe-row-bottom {
     height: 220px;
 }
 
-// Ingredient lists --------------------------------------------------
+.ingredient img {
+    width: 85px;
+    height: 80px;
+    float: left;
+    margin-right: 18px;
+}
 
+.ingredient {
+    width: 23%;
+    float: left;
+    padding: 8px;
+    box-sizing: border-box;
+    margin: 10px;
+    @extend %list-item-shadow;
+}
 
+.ingredient p {
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.ingredient p:nth-of-type(1){
+    font-weight: 600;
+}
+
+.ingredient-content-container button {
+    font-size: 14px;
+    margin: 30px 0;
+}
+
+.fa-exclamation-circle {
+    color: $alert-red;    
+}
+
+.fa-smile {
+    color: $add-green;
+}
+
+.ingredient button {
+    width: 100px;
+    height: 42px;
+    float: right;
+}
 
 // Edit ingredients -----------------------------------------------------------
 

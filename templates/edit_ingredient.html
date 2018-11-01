@@ -15,7 +15,7 @@
                     <li><input id="ingredient_name" name="ingredient_name" value="{{ ingredient.ingredient_name.title() }}" readonly></li>
                     <hr>
                     <li><label for="ingredient_image_url">Ingredient Photo Image Address</label></li>
-                    <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}" required></li>
+                    <li><input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}"></li>
                     <li><img class="edit-ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
                     </li>
                     <hr>
