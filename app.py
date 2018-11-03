@@ -105,6 +105,7 @@ def recipe_already_exists(new_recipe_name):
     
 #     return new_recipe_ingredients_list
                 
+                
 # Views ------------------------------------------------------------------------
 
 @app.before_request
@@ -114,9 +115,9 @@ def before_request():
         return redirect(url_for('log_in'))
 
 @app.route('/')
-def home():
+def index():
     current_user = determine_current_user(session)
-    return render_template("home.html", users = mongo.db.Users.find(), username=current_user, page_title="Home")
+    return render_template("index.html", users = mongo.db.Users.find(), username=current_user, page_title="Home")
 
 # User related views -----------------------------------------------------------
 
@@ -136,7 +137,7 @@ def add_new_user():
         mongo.db.Users.insert_one(request.form.to_dict())
         user_has_logged_in(request.form['email'])
         flash("Hi {}, thanks for registering.\n  You may now add your own recipes and receive or write reviews!\n Good luck!".format(request.form['first_name']))
-        return redirect(url_for('home'))
+        return redirect(url_for('index'))
 
 @app.route('/log_in', methods=["GET", "POST"])
 def log_in():
@@ -160,7 +161,7 @@ def logout():
     session.pop('user_id', None)
     current_user = determine_current_user(session)
     flash("You have logged out. Come back now you hear!")
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
     
 @app.route('/<username>/profile.html', methods=["GET", "POST"])
 def profile(username):
@@ -300,8 +301,9 @@ def edit_recipe(recipe_id):
 def view_recipe(recipe_id):
     current_user = determine_current_user(session)
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    author = mongo.db.Users.find_one({"_id": ObjectId(the_recipe["author"])})
     
-    return render_template("view_recipe.html", page_title="View Recipe", cusines=cusine_list, this_recipe=the_recipe, username=current_user)
+    return render_template("view_recipe.html", page_title="View Recipe", cusines=cusine_list, this_recipe=the_recipe, username=current_user, author=author)
 
 @app.route('/update_recipe/<recipe_id>', methods=["POST"])
 def update_recipe(recipe_id):

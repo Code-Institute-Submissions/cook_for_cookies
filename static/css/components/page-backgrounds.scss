@@ -4,7 +4,8 @@
 .recipes-bg,
 .ingredients-bg,
 .profile-img,
-.edit-add-ingredient-bg {
+.edit-add-ingredient-bg,
+.add-recipe-bg {
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -29,10 +30,6 @@
     background-position: bottom;
 }
 
-.view-recipe-bg {
-    background-image: url('../images/food2.jpg');
-}
-
 .ingredients-bg {
     background-image: url('../images/ingredients-bg.jpg');
 }
@@ -53,4 +50,6 @@
     background-image: url('../images/adils-photography-419432-unsplash.jpg');
 }
 
-    
+.add-recipe-bg {
+    background-image: url('../images/adils-photography-419432-unsplash.jpg');
+}

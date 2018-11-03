@@ -33,16 +33,20 @@
     background: url(../images/fire.jpg) no-repeat;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: 5px;
 }
 
 .welcome-message-content h1,
 .welcome-message-content h3 {
     color: $white;
-    letter-spacing: 5px;
 }
 
 .welcome-message-content h3 {
     font-size: 24px;
+}
+
+.welcome-message-content h3 ~ p:nth-of-type(1) {
+        margin: 74px 0 30px;
 }
 
 .welcome-message-content p {
@@ -75,6 +79,11 @@
 .welcome-sentence,
 .ingredients-intro-section {
     background-color: $white;
+}
+
+.recipes-intro-content h2,
+.ingredients-intro-content h2 {
+    margin: 0 0 40px;
 }
 
 .recipes-intro-content p,
@@ -179,6 +188,10 @@
     margin: 0 auto;
 }
 
+.quote {
+    margin-bottom: 40px;
+}
+
 .fire-text-quote p {
     color: $white;  /* Fallback: assume this color ON TOP of image */
     background: url(../images/fire.jpg) no-repeat;
@@ -205,7 +218,12 @@
 
 .leaderboard-intro-content-container {
     color: $white;
-    width: 76%;
+    width: 100%;
+    margin-left: 85px;
+}
+
+.leaderboard-intro-content-container p {
+    line-height: 50px;
 }
 
 .fa-file-alt {
@@ -334,7 +352,7 @@
 .ingredient-content-container {
     background-color: $black;
     color: $white;
-    padding: 8px 0;
+    padding: 32px 0 8px;
     margin: 0 auto 54px;
     position: sticky;
     top: 65px;
@@ -366,8 +384,7 @@
 }
 
 .recipe-details-container {
-    padding: 5px 0 0 25px;
-    display: inline-block;
+    
 }
 
 .recipe a .recipe-row-top,
@@ -511,12 +528,151 @@ a ~ .recipe-row-bottom {
     width: 360px;
     height: 250px;
 }
+// Add_recipe.html -------------------------------------------------------------
+
+.add-a-recipe-section {
+    margin-top: 65px;
+    min-height: 750px;
+    @extend %centralise-inner-container;
+}
+
+.add-a-recipe-section .container {
+    min-width: 900px;
+    padding: 30px;
+    background-color: $white;
+    border-radius: 20px;
+}
+
+.add-a-recipe-section h1,
+.add-a-recipe-section .row {
+    margin: 20px 0;
+}
+
+.add-recipe-list ~ .add-recipe-button-row {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.add-recipe-button-row button {
+    margin-left: 0;
+}
+
+.add-recipe-list .cusine-selection-box {
+    width: 33%;
+}
+
+.add-recipe-list .recipe-data-box {
+    width: 67%;
+}
+
+.add-recipe-list .recipe-data-box input {
+    width: 80%;
+}
 
 // Edit Recipes ----------------------------------------------------------------
 
-// Add_recipe.html -------------------------------------------------------------
-
 // view_recipe.html ------------------------------------------------------------
+
+.view-recipe-section {
+    margin-top: 65px;
+}
+
+.view-recipe-section .container:nth-of-type(1) {
+    @extend %centralise-inner-container;
+    width: 100%;
+    max-width: none;
+    background-color: $black;
+}
+
+.view-recipe-section .container .image-container {
+    position: relative;
+    z-index: 1;
+}
+
+.view-recipe-section .container .image-container img {
+    height: 350px;
+    position: relative;
+    top: 1px;
+}
+
+.view-recipe-section h1 {
+    position: absolute;
+    color: white;
+    z-index: 2;
+    	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.recipe-details-container img {
+    height: 50px;
+}
+
+.recipe-details-container img,
+.recipe-details-container h2,
+.recipe-details-container p {
+    float: left;
+    display: inline-block;
+    clear: none;
+    margin: 0 20px 0 0;
+}
+
+.recipe-details-container p {
+    padding: 20px;
+}
+
+.recipe-details-container .row {
+    @extend %centralise-inner-container;
+    justify-content: unset;
+    margin: 20px 0;
+}
+
+.recipe-details-container .row p {
+    margin-bottom: 2px;
+}
+
+.recipe-instructions h2,
+.recipe-ingredients h2 {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.recipe-instructions p,
+.recipe-instructions th,
+.recipe-instructions td,
+.recipe-ingredients p,
+.ingredients-table-header th,
+.ingredients-table-header td,
+.inserted-ingredient-row th,
+.inserted-ingredient-row td {
+    text-align: left;
+    padding: 0;
+    margin: 0 20px 10px 0;
+    display: inline-block;
+    width: 150px;
+}
+
+.ingredients-table-header th,
+.ingredients-table-header td,
+.inserted-ingredient-row th,
+.inserted-ingredient-row td {
+     font-size: 14px;
+     letter-spacing: 2px;
+}
+
+tbody .ingredients-table-header th {
+    font-weight: 600px;
+}
+
+.recipe-instructions .no-details-row,
+.no-details-row {
+    width: 100%;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
 
 // Profile Section -------------------------------------------------------------
 

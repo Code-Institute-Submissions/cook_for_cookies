@@ -100,7 +100,7 @@ function createThisRecipeIngredientsList(recipe, ingredients) {
     // This adds a line to the page if there are no ingredients to display
     if ($('.ingredients-table-header').siblings().length === 0) {
         $('.ingredients-table-header').hide();
-        newIngredientRow = "<tr class='inserted-ingredient-row'><td> There are currently no ingredients for this recipe.</td>";
+        newIngredientRow = "<tr class='no-details-row'><td> There are currently no ingredients for this recipe.</td>";
         $(newIngredientRow).insertAfter('.ingredients-list-table').hide().fadeIn("slow");;
     }
     else {

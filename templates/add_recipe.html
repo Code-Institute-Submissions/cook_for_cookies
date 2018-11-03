@@ -1,24 +1,17 @@
 {% extends 'base.html' %} {% block content %}
-
-<section class="standard-section-height add-a-recipe-section">
+<div class="page-bg add-recipe-bg"></div>
+<section class="add-a-recipe-section">
     <div class="container">
-        <h2 class="section-title flame">Add a Recipe</h2>
-        <p>Here is your chance to shine! Share those amazing home recipes with the World and see what they think!</p>
-        <h3 class="add-a-recipe-header">Step 1:</h3>
-        <p>Please enter the initial details of your recipe in the boxes below...</p>
+        <h1 class="section-title">Add a Recipe - Step 1</h1>
+        <p>Here is your chance to shine! Share those amazing home recipes with the World and see what they think!
+            <br> Please enter the initial details of your recipe in the boxes below...
+        </p>
         <div class="row">
             <form action="{{ url_for('insert_recipe') }}" method="POST">
                 <ul class="new-user-form add-recipe-list">
                     <input class="hidden-div" type="text" id="author" name="author" value="{{ user._id }}">
                     <input class="hidden-div" type="text" id="author_COO" name="author_COO" value="{{ user.country }}">
-                    <div class="column">
-                        <li><label for="recipe_name">Recipe Name</label></li>
-                        <li><input id="recipe_name" name="recipe_name" type="text" maxlength="36" required></li>
-                        <li><label for="recipe_image_url">Recipe Photo Image Address</label></li>
-                        <li><input id="recipe_image_url" name="recipe_image_url" type="text" required><i class="fas fa-question-circle user-photo-instructions-btn"></i></li>
-                    </div>
-                    <div class="column">
-                        <li><label for="cusine">Cusine Category</label></li>
+                    <div class="column cusine-selection-box">
                         <li>
                             <select id="cusine" name="cusine" size="5" required>
                                 <option value="" disabled>Choose Cusine Type</option>
@@ -28,13 +21,19 @@
                             </select>
                         </li>
                     </div>
+                    <div class="column recipe-data-box">
+                        <li><input id="recipe_name" name="recipe_name" type="text" maxlength="36" required placeholder="Recipe Name"></li>
+                        <li><input id="recipe_image_url" name="recipe_image_url" type="text" placeholder="Your Photo Image Address (or leave blank)"><i class="fas fa-question-circle user-photo-instructions-btn"></i></li>
+                        <li>
+                            <div class="row add-recipe-button-row">
+                                <button type="submit">Submit</button>
+                                <a href="{{ url_for( 'recipes', username=username) }} " class="go-back-btn div-btn center-text">
+                                    <span>Go back</span>
+                                </a>
+                            </div>
+                        </li> 
+                    </div>
                 </ul>
-                <div class="row add-recipe-button-row">
-                    <button type="submit">Submit</button>
-                    <a href="{{ url_for( 'recipes', username=username) }} " class="go-back-btn div-btn center-text">
-                        <span>Go back</span>
-                    </a>
-                </div>
             </form>
         </div>
     </div>
