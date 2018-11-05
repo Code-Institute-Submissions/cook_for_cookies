@@ -33,7 +33,7 @@
                         <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
                         {% endif %}
                         <span class="recipe-details-container">
-                            <p class="recipe-list-item">{{ recipe.recipe_name.title() }}</p>
+                            <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
                             <p class="recipe-list-item">Not yet rated</p>
                         </span>
                     </span>

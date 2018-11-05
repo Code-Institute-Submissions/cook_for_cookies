@@ -12,10 +12,10 @@ function sortIngredients(a, b) {
 
     let comparison = 0;
     if (ingredientNameA > ingredientNameB) {
-        comparison = -1;
+        comparison = 1;
     }
     else if (ingredientNameA < ingredientNameB) {
-        comparison = 1;
+        comparison = -1;
     }
     return comparison;
 }
@@ -61,7 +61,8 @@ function prepareData(data) {
 }
 
 function createThisRecipeIngredientsList(recipe, ingredients) {
-    if (recipe.recipe_ingredients !== undefined) {
+    if (recipe.recipe_ingredients !== undefined && recipe.recipe_ingredients.length !== 0) {
+        console.log(recipe.recipe_ingredients)
         thisRecipeIngredients = [];
 
         for (i = 0; i < recipe.recipe_ingredients.length; i++) {
@@ -75,37 +76,32 @@ function createThisRecipeIngredientsList(recipe, ingredients) {
                 }
             });
         }
-
+    
         if (thisRecipeIngredients != []) {
             const sortedIngredients = thisRecipeIngredients.sort(sortIngredients);
             
-            if($('.edit-header').text() === "Edit a Recipe"){
+            if($('.edit-recipe-section').length === 1){
                 sortedIngredients.forEach(function(ingredient) {
-                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td><td><i class='remove fas fa-minus-square' type='button'></i></td></tr>";
-                    $(newIngredientRow).insertAfter('.ingredients-table-header').hide().fadeIn("slow");
+                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td><img src='" + ingredient.ingredient_image_url + "'</td><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td><td><i class='remove fas fa-minus-square' type='button'></i></td></tr>";
+                    $('.ingredients-table-header').append(newIngredientRow).hide().fadeIn("slow");
                 });    
             } else {
                 sortedIngredients.forEach(function(ingredient) {
-                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td></tr>";
-                    $(newIngredientRow).insertAfter('.ingredients-table-header').hide().fadeIn("slow");
-            });
-        }
-    }
-        $('.ingredient-box').val("");
-}
-
-    // This will enable the user to remove ingredients without having to reload the page and acts as both a listener and a function to action call
-    removeIngredient();
-
-    // This adds a line to the page if there are no ingredients to display
-    if ($('.ingredients-table-header').siblings().length === 0) {
+                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td><img src='" + ingredient.ingredient_image_url + "'</td><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td></tr>";
+                    $('.ingredients-table-header').append(newIngredientRow).hide().fadeIn("slow");
+                });
+            }
+        } 
+    } else {
+        // This adds a line to the page if there are no ingredients to display
         $('.ingredients-table-header').hide();
         newIngredientRow = "<tr class='no-details-row'><td> There are currently no ingredients for this recipe.</td>";
-        $(newIngredientRow).insertAfter('.ingredients-list-table').hide().fadeIn("slow");;
+        $('.ingredients-list-table').append(newIngredientRow).hide().fadeIn("slow");;
     }
-    else {
-        $('.ingredients-table-header').show();
-    }
+
+    $('.ingredient-box').val("");
+    // This will enable the user to remove ingredients without having to reload the page and acts as both a listener and a function to action call
+    removeIngredient();
 }
 
 function updateRecipe() {
@@ -121,7 +117,6 @@ function updateRecipe() {
         success: function(response) {
             console.log(response);
             loadData();
-            flashedMessage("Updated!");
         },
         error: function(error) {
             console.log(error);
@@ -223,6 +218,8 @@ $(document).ready(function() {
 
     $('.update-recipe-btn').click(function() {
         updateRecipe();
+        $('.no-details-row').hide();
+        
     });
     
     fadeInHomeTitle(1000);
@@ -234,8 +231,8 @@ $(document).ready(function() {
     
     showBoxOnHover(".user-photo-instructions-btn", '.user-photo-instructions');
     
-    zoomImage('.fa-file-alt', '.leaderboard-intro-bg')
-    zoomImage('.sign-up-btn', '.sign-up-bg')
-    zoomImage('.log-in-btn', '.log-in-bg')
+    zoomImage('.fa-file-alt', '.leaderboard-intro-bg');
+    zoomImage('.sign-up-btn', '.sign-up-bg');
+    zoomImage('.log-in-btn', '.log-in-bg');
     
 });

@@ -1,86 +1,95 @@
 {% extends 'base.html' %} {% block content %}
-
-<div class="container">
-    <div class="row">
-        <h1 class="edit-header">Edit a Recipe</h1>
-    </div>
-    <div class="row">
-        <p>Please edit any details of your recipe below...</p>
-    </div>
-    <div class="row">
-
-        <form action="{{ url_for('update_recipe', recipe_id=this_recipe._id) }}" method="POST">
-            <div class="row">
-                <section class="recipe-details-section">
-                    <div class="column">
-                        <ul class="new-user-form">
-                            <input class="hidden-div" type="text" id="author" name="author" value="{{ user._id }}">
-                            <input class="hidden-div" type="text" id="author_COO" name="author_COO" value="{{ user.country }}">
-                            <input class="hidden-div recipe-id" type="text" id="recipe-id" name="recipe-id" value="{{ this_recipe._id }}">
-                            
-                            <li><label for="recipe_name">Recipe Name</label></li>
-                            <li><input id="recipe_name" name="recipe_name" value="{{ this_recipe.recipe_name.title() }}" type="text" required></li>
-                            <hr>
-                            <li>
-                                <div>
-                                    {% if this_recipe.recipe_image_url %}
-                                    <img class="recipe-img" src="{{ this_recipe.recipe_image_url }}"></img>
-                                    {% else %}
-                                    <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
-                                    {% endif %}
-                                </div>
-                            </li>
-                            <li><label for="recipe_image_url">Recipe Photo Image Address</label></li>
-                            <li><input id="recipe_image_url" name="recipe_image_url" value="{{ this_recipe.recipe_image_url }}" type="text" required></li>
-
-                            <hr>
-                            <li><label for="cusine">Cusine Category</label></li>
-                            <li>
-                                <select id="cusine" name="cusine" required>
-                                <option value="{{ this_recipe.cusine }}" selected>{{ this_recipe.cusine }}</option>
-                                {% for cusine in cusines %}
-                                <option value="{{ cusine }} ">{{ cusine }}</option>
-                                {% endfor %}
-                            </select>
-                            </li>
-                            <li><label for="instructions">Recipe Instructions</label></li>
-                            <li><textarea id="instructions" name="instructions" class="instructions-box" type="text" required>{{ this_recipe.instructions }}</textarea></li>
-                            <hr>
-                            <li>
-                                <button class="update-recipe-btn " type="button">Update Recipe</button>
-                                <a href="{{ url_for( 'recipes', username=username) }} "><span class="go-back-btn div-btn center-text ">Go back</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <section class="recipe-ingredients-section">
-                    <div class="column ">
-                        <h2>Ingredients</h2>
-                        <hr class="ingredients-list-hr">
-                        <table class="ingredients-list-table">
-                            <tr class="ingredients-table-header">
-                                <th>Ingredient</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </table>
-                        <h3>Add additional ingredients</h3>
-                        <div class="new-ingredient-container">
-                            <select class="ingredient-box" id="ingredient_name" name="ingredient_name" required>
-                                <option value="{{ ingredients.ingredient_name }}" selected>Select an ingredient to add...</option>
-                                {% for ingredient in ingredients %}
-                                <option value="{{ ingredient._id }} ">{{ ingredient.ingredient_name }}</option>
-                                {% endfor %}
-                            </select>
-                            <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" required>
-                            <i class="update-recipe-btn fas fa-plus-square no-float" type="button"></i>
-                        </div>
-                        <p class="missing-ingredient-area"><span class="uppercase">Missing ingredient?!</span>Add it here...</p>
-                        <button><a href="{{ url_for('add_ingredient', recipe_id=this_recipe._id) }}">Add Ingredient</a></button>
-                    </div>
-                </section>
-            </div>
-        </form>
-    </div>
+<div class="user-photo-instructions">
+    <h3 class="photo-instructions-header">Use a personalised photo!</h3>
+    <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p>
+    <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p>
+    <p class="photo-instructions-para">And woila! As if by magic, it will appear when you update!</p>
 </div>
+<section class="edit-recipe-section">
+    <div class="container">
+        <div class="image-container center-text">
+            {% if this_recipe.recipe_image_url %}
+            <img class="recipe-img view-recipe-img" src="{{ this_recipe.recipe_image_url }}"></img>
+            {% else %}
+            <img class="recipe-img view-recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
+            {% endif %}
+        </div>
+        <h1 class="section-title">{{ this_recipe.recipe_name }}</h1>
+    </div>
+    <div class="container edit-recipe-container">
+        <div class="row">
+            <div class="pg-header-container">
+                <p>Please edit any details of your recipe below...</p>
+            </div>
+        </div>
+        <div class="row recipe-details-1">
+            <h2 class="center-text">Section 1 - Recipe Info</h2>
+            <form action="{{ url_for('update_recipe', recipe_id=this_recipe._id) }}" method="POST">
+                <div class="row section-1-data">
+                    <div class="hidden-box hidden-div">
+                        <input type="text" id="author" name="author" value="{{ user._id }}">
+                        <input type="text" id="author_COO" name="author_COO" value="{{ user.country }}">
+                        <input class="recipe-id" type="text" id="recipe-id" name="recipe-id" value="{{ this_recipe._id }}">
+                    </div>
+                    <div class="content-row">
+                        <label for="recipe_name">Recipe Name</label>
+                        <input id="recipe_name" name="recipe_name" value="{{ this_recipe.recipe_name.title() }}" type="text" required maxlength="34">
+                        <label for="cusine">Cusine Category</label>
+                        <select id="cusine" name="cusine" required>
+                            <option value="{{ this_recipe.cusine }}" selected>{{ this_recipe.cusine }}</option>
+                            {% for cusine in cusines %}
+                            <option value="{{ cusine }} ">{{ cusine }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="row photo-url">
+                        <label for="recipe_image_url">Recipe Photo Image Address</label><!--
+                     --><input id="recipe_image_url" name="recipe_image_url" value="{{ this_recipe.recipe_image_url }}" type="text" placeholder="Your Photo Image Address (or leave blank)">
+                        <i class="fas fa-question-circle user-photo-instructions-btn"></i>
+                    </div>
+                    <div class="row">
+                        <button class="update-recipe-btn " type="button">Update Recipe</button>
+                        <a href="{{ url_for( 'recipes', username=username) }} "><span class="go-back-btn div-btn center-text ">Go back</span></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row recipe-details-2">
+            <h2 class="center-text">Section 2 - Recipe Instructions</h2>
+            <div class="section-2-data">
+                <textarea id="instructions" name="instructions" class="instructions-box" type="text" required>{{ this_recipe.instructions }}</textarea>
+            </div>
+        </div>
+        <div class="row recipe-details-3">
+            <h2 class="center-text">Section 3 - Recipe Ingredients</h2>
+            <div class="recipe-existing-ingredients section-3-data">
+                <table class="ingredients-list-table">
+                    <tr class="ingredients-table-header">
+                        <th>Details:</th>     
+                        <th>Ingredient</th>
+                        <th>Quantity</th>
+                    </tr>
+                </table>
 
+                <h3>Add additional ingredients...</h3>
+                <form class="new-ingredient-container">
+                    <select class="ingredient-box" id="ingredient_name" name="ingredient_name" required>
+                        <option value="{{ ingredients.ingredient_name }}" selected>Select an ingredient to add...</option>
+                        {% for ingredient in ingredients %}
+                        <option value="{{ ingredient._id }} ">{{ ingredient.ingredient_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" required>
+                    <i class="update-recipe-btn fas fa-plus-square no-float" type="button"></i>
+                </form>
+                <hr>
+                <div class="row add-ingredient-container">
+                    <h3 class="missing-ingredient-area"><span class="uppercase">Missing ingredient?!</span> Add it here...</h3>
+                    <button><a href="{{ url_for('add_ingredient', recipe_id=this_recipe._id) }}">Add Ingredient</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
 {% endblock %}

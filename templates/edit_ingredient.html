@@ -23,13 +23,12 @@
                     <i class="fas fa-question-circle user-photo-instructions-btn"></i>
                 </li>
                 <div class="switch">
-                    <label for="allergens">Contains Allergen? 
-                        {% if ingredient.allergens %}
-                        <input type="checkbox" name="allergens" id="allergens" checked><span class="slider"></span>
-                        {% else %}
-                        <input type="checkbox" name="allergens" id="allergens"><span class="slider"></span>
-                        {% endif %}
-                    </label>
+                    <label for="allergens">Contains Allergen?</label>
+                    {% if ingredient.allergens %}
+                    <input type="checkbox" name="allergens" id="allergens" checked><span class="slider"></span>
+                    {% else %}
+                    <input type="checkbox" name="allergens" id="allergens"><span class="slider"></span>
+                    {% endif %}
                 </div>
                 <button class="update-ingredient-btn" type="submit">Update</button>
                 <a href="{{ url_for( 'ingredients') }} " class="center-text">

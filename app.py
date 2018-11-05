@@ -28,7 +28,6 @@ def user_has_logged_in(email):
     extract_id_1 = this_user_id_str.replace('{"$oid": "', "")
     extract_id_2 = extract_id_1.replace('"}', "")
     session['user_id'] = extract_id_2
-    print(session)
     
 def determine_current_user(session_data):
     if 'user' in session:
@@ -230,7 +229,7 @@ def insert_ingredient(recipe_id):
 def edit_ingredient(ingredient_id):
     current_user = determine_current_user(session)
     the_ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(ingredient_id)})
-    return render_template('edit_ingredient.html', ingredient=the_ingredient, username=current_user)
+    return render_template('edit_ingredient.html', ingredient=the_ingredient, username=current_user, page_title="Edit Ingredient")
 
 @app.route('/<ingredient_id>/update_ingredient', methods=["POST"])
 def update_ingredient(ingredient_id):
@@ -318,12 +317,10 @@ def update_recipe(recipe_id):
             {'recipe_name': request.form['recipe_name'],
             'recipe_image_url': request.form['recipe_image_url'],
             'cusine': request.form['cusine'],
-            'instructions': request.form['instructions'],
             'author': request.form['author'],
             'author_COO': request.form['author_COO'],
             'recipe_ingredients': this_recipe["recipe_ingredients"]
         })
-        print("Had ingredients")
         
     # If it has no ingredients in the recipe then this will run instead (ignoring the request to update with the existing ingredients in the recipe)...
         
@@ -333,7 +330,6 @@ def update_recipe(recipe_id):
             {'recipe_name': request.form['recipe_name'],
             'recipe_image_url': request.form['recipe_image_url'],
             'cusine': request.form['cusine'],
-            'instructions': request.form['instructions'],
             'author': request.form['author'],
             'author_COO': request.form['author_COO']
         })
@@ -354,15 +350,12 @@ def update_recipe(recipe_id):
                     {"_id": ObjectId(recipe_id)},
                     { "$push" : { "recipe_ingredients": {request.form["ingredient_name"] : request.form["ingredient_quantity"]}}}
                 )
-                print("Added")
-            else:
-                print("exists")
+
         except:
             mongo.db.recipes.update(
                 {"_id": ObjectId(recipe_id)},
                 { "$push" : { "recipe_ingredients": {request.form["ingredient_name"] : request.form["ingredient_quantity"]}}}
             )
-            print("Added")
             
     return json.dumps({'status':'OK'});
 
@@ -374,8 +367,6 @@ def delete_recipe(recipe_id):
 
 @app.route('/delete_ingredient_from_recipe/<recipe_id>/<ingredient_id>', methods=["POST"])
 def delete_ingredient_from_recipe(recipe_id, ingredient_id):
-    print(recipe_id)
-    print(ingredient_id)
     
     this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     
@@ -383,7 +374,6 @@ def delete_ingredient_from_recipe(recipe_id, ingredient_id):
         ingredientKey = ingredient.keys()
         stringIngKey = ingredientKey[0].replace(" ", "")
         if stringIngKey == ingredient_id:
-            print(ingredient)
             mongo.db.recipes.update(
             {'_id': ObjectId(recipe_id)}, 
             { "$pull": { "recipe_ingredients" : ingredient }},

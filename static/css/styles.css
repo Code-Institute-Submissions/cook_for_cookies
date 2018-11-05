@@ -50,7 +50,9 @@ header {
   -moz-box-shadow: 0px 10px 7px -8px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 10px 7px -8px rgba(0, 0, 0, 0.75); }
 
-.recipe, .ingredient {
+.recipe, .ingredient, .recipe-details-1,
+.recipe-details-2,
+.recipe-details-3 {
   -webkit-box-shadow: 3px 6px 17px -5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 6px 17px -5px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 6px 17px -5px rgba(0, 0, 0, 0.75); }
@@ -69,7 +71,8 @@ header {
 
 .welcome-message, .left,
 .right, .fire-text-quote, .leaderboard-intro-section, .sign-up-section,
-.log-in-section, a ~ .recipe-row-bottom, .inner-delete-recipe-row .row, .add-edit-ingredient-section, .add-a-recipe-section, .view-recipe-section .container:nth-of-type(1), .recipe-details-container .row, .profile-section, .header-container, .img-container {
+.log-in-section, a ~ .recipe-row-bottom, .inner-delete-recipe-row .row, .add-edit-ingredient-section, .add-a-recipe-section, .view-recipe-section .container:nth-of-type(1),
+.edit-recipe-section .container:nth-of-type(1), .recipe-details-container .row, .profile-section, .header-container, .img-container {
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -522,7 +525,8 @@ nav ul li {
   margin-top: -147px;
   background-color: #ff0000;
   color: #fff;
-  padding: 38px; }
+  padding: 38px;
+  z-index: 100; }
 
 .user-photo-instructions-btn {
   font-size: 40px;
@@ -580,7 +584,7 @@ nav ul li {
   margin: 10px 10px 10px 0;
   width: 30%;
   float: left;
-  padding: 12px;
+  padding: 12px 12px 0;
   background-color: #fffbee; }
 
 .recipe p {
@@ -592,11 +596,12 @@ nav ul li {
 
 .recipe a .recipe-row-top,
 .ingredient {
-  background-color: #fffbee;
-  transition: all 1s linear; }
+  background-color: #e8e4d6;
+  transition: all .5s linear; }
 
 .recipe a .recipe-row-top:hover {
-  background-color: #e8e4d6; }
+  background-color: #c8b262;
+  transition: all 0s linear; }
 
 .recipe-row-top,
 .recipe-row-bottom {
@@ -604,10 +609,11 @@ nav ul li {
 
 a ~ .recipe-row-bottom {
   clear: both;
-  height: 60px; }
+  height: 60px;
+  justify-content: left; }
 
 .recipe-row-bottom button {
-  margin: 10px 5px; }
+  margin: 10px 20px 10px 0; }
 
 .inner-delete-recipe-row form .delete-confirmation-message {
   max-width: 98%;
@@ -619,7 +625,7 @@ a ~ .recipe-row-bottom {
   z-index: 1;
   background-color: #f99806;
   width: 336px;
-  height: 220px; }
+  height: 201px; }
 
 .ingredient img {
   width: 85px;
@@ -727,28 +733,44 @@ a ~ .recipe-row-bottom {
 .add-recipe-list .recipe-data-box input {
   width: 80%; }
 
-.view-recipe-section {
+.view-recipe-section,
+.edit-recipe-section {
   margin-top: 65px; }
 
-.view-recipe-section .container:nth-of-type(1) {
+.view-recipe-section .container:nth-of-type(1),
+.edit-recipe-section .container:nth-of-type(1) {
   width: 100%;
   max-width: none;
   background-color: #000; }
 
-.view-recipe-section .container .image-container {
+.view-recipe-section .container .image-container,
+.edit-recipe-section .container .image-container {
   position: relative;
   z-index: 1; }
 
-.view-recipe-section .container .image-container img {
+.view-recipe-section .container .image-container img,
+.edit-recipe-section .container .image-container img {
   height: 350px;
   position: relative;
   top: 1px; }
 
-.view-recipe-section h1 {
+.image-container ~ h1 {
+  max-width: 468px;
+  text-align: center; }
+
+.view-recipe-section h1,
+.edit-recipe-section h1 {
   position: absolute;
   color: white;
   z-index: 2;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+
+.edit-recipe-section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: #e8e4d6;
+  padding: 20px 0; }
 
 .recipe-details-container img {
   height: 50px; }
@@ -762,7 +784,10 @@ a ~ .recipe-row-bottom {
   margin: 0 20px 0 0; }
 
 .recipe-details-container p {
-  padding: 20px; }
+  padding: 20px 20px 0; }
+
+.recipe-details-container .recipe-name {
+  max-width: 116px; }
 
 .recipe-details-container .row {
   justify-content: unset;
@@ -791,21 +816,103 @@ a ~ .recipe-row-bottom {
   display: inline-block;
   width: 150px; }
 
-.ingredients-table-header th,
 .ingredients-table-header td,
 .inserted-ingredient-row th,
 .inserted-ingredient-row td {
   font-size: 14px;
   letter-spacing: 2px; }
 
-tbody .ingredients-table-header th {
-  font-weight: 600px; }
+.ingredients-table-header th {
+  font-size: 16px;
+  letter-spacing: 0.5px; }
 
 .recipe-instructions .no-details-row,
 .no-details-row {
   width: 100%;
   letter-spacing: 0.5px;
   font-size: 16px; }
+
+.pg-header-container {
+  margin: 20px 0 10px; }
+
+.edit-recipe-container .row label {
+  width: 210px;
+  display: inline-block;
+  margin-left: 0px; }
+
+.edit-recipe-container input {
+  width: 300px;
+  margin-right: 20px; }
+
+.recipe-details-1,
+.recipe-details-2,
+.recipe-details-3 {
+  margin: 20px 0;
+  background-color: #fffbee; }
+
+.recipe-details-1 .content-row {
+  display: flex;
+  align-items: center; }
+
+.recipe-details-1 .photo-url input {
+  width: 726px; }
+
+.recipe-details-1 .photo-url i {
+  margin: 0; }
+
+.edit-recipe-container button {
+  margin-left: 0; }
+
+.edit-recipe-container hr {
+  margin: 21px 0; }
+
+.add-ingredient-container button {
+  font-size: 12px; }
+
+.recipe-details-3 table {
+  margin-bottom: 30px; }
+
+.section-1-data,
+.section-2-data,
+.section-3-data {
+  padding: 20px; }
+
+.fa-plus-square,
+.fa-minus-square {
+  font-size: 40px;
+  cursor: pointer; }
+
+.fa-plus-square {
+  color: #00f500; }
+
+.fa-minus-square {
+  color: #ff3434; }
+
+.ingredient-box {
+  margin-right: 20px; }
+
+.ingredient-box option {
+  background-color: #fffbee;
+  border: 1px 0 solid #fff; }
+
+.inserted-ingredient-row {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  margin: 10px;
+  padding: 5px; }
+
+.ingredients-table-header th,
+.inserted-ingredient-row td {
+  margin: 0;
+  width: 262px; }
+
+td > img {
+  width: 50px;
+  height: 50px; }
+
+.new-ingredient-container input {
+  margin-right: 144px; }
 
 .profile-section {
   margin-top: 65px;
@@ -998,6 +1105,7 @@ footer {
 input {
   margin: 20px 0; }
 
+input,
 li input,
 select {
   font-size: 26px;
