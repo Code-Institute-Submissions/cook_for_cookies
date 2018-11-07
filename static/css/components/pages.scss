@@ -748,6 +748,7 @@ a ~ .recipe-row-bottom {
     font-size: 12px;
 }
 
+.recipe-details-2 table,
 .recipe-details-3 table {
     margin-bottom: 30px;
 }
@@ -801,6 +802,11 @@ td > img {
 
 .new-ingredient-container input {
     margin-right: 144px;
+}
+
+.instructions-table-header,
+.ingredients-table-header {
+    display: none;
 }
 
 // Profile Section -------------------------------------------------------------

@@ -24,7 +24,7 @@
         </div>
         <div class="row recipe-details-1">
             <h2 class="center-text">Section 1 - Recipe Info</h2>
-            <form action="{{ url_for('update_recipe', recipe_id=this_recipe._id) }}" method="POST">
+            <form class="section1-form">
                 <div class="row section-1-data">
                     <div class="hidden-box hidden-div">
                         <input type="text" id="author" name="author" value="{{ user._id }}">
@@ -48,7 +48,7 @@
                         <i class="fas fa-question-circle user-photo-instructions-btn"></i>
                     </div>
                     <div class="row">
-                        <button class="update-recipe-btn " type="button">Update Recipe</button>
+                        <button class="update-section1-btn" type="button">Update Recipe</button>
                         <a href="{{ url_for( 'recipes', username=username) }} "><span class="go-back-btn div-btn center-text ">Go back</span></a>
                     </div>
                 </div>
@@ -56,8 +56,19 @@
         </div>
         <div class="row recipe-details-2">
             <h2 class="center-text">Section 2 - Recipe Instructions</h2>
-            <div class="section-2-data">
-                <textarea id="instructions" name="instructions" class="instructions-box" type="text" required>{{ this_recipe.instructions }}</textarea>
+            <div class="section-2-data recipe-existing-instructions">
+                <table class="instructions-list-table">
+                    <tr class="instructions-table-header">
+                        <th>Step</th>
+                        <th>Instructions</th>
+                    </tr>
+                </table>
+                <h3>Edit Instructions...</h3>
+                <form class="new-instructions-container">
+                    <input class="new-instructions-box" id="step" name="step" placeholder="Step no" type="number" required>
+                    <input class="new-instructions-box" id="instruction" name="instruction" placeholder="Instruction" type="text" required>
+                    <i class="add-instructions-btn fas fa-plus-square no-float" type="button"></i>
+                </form>
             </div>
         </div>
         <div class="row recipe-details-3">
@@ -80,7 +91,7 @@
                         {% endfor %}
                     </select>
                     <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" required>
-                    <i class="update-recipe-btn fas fa-plus-square no-float" type="button"></i>
+                    <i class="add-ingredients-btn fas fa-plus-square no-float" type="button"></i>
                 </form>
                 <hr>
                 <div class="row add-ingredient-container">

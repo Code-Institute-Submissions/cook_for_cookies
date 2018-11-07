@@ -272,8 +272,7 @@ def add_recipe():
         return redirect(url_for('recipes'))
     else:
         user = mongo.db.Users.find_one({"email": session["user"]})
-        ingredients_list = mongo.db.ingredients.find()
-        return render_template("add_recipe.html", page_title="Add a Recipe", username=current_user, cusines=cusine_list, user=user, ingredients=ingredients_list)
+        return render_template("add_recipe.html", page_title="Add a Recipe", username=current_user, cusines=cusine_list, user=user)
 
 @app.route('/insert_recipe', methods=["POST"])
 def insert_recipe():
@@ -304,66 +303,72 @@ def view_recipe(recipe_id):
     
     return render_template("view_recipe.html", page_title="View Recipe", cusines=cusine_list, this_recipe=the_recipe, username=current_user, author=author)
 
-@app.route('/update_recipe/<recipe_id>', methods=["POST"])
-def update_recipe(recipe_id):
+@app.route('/update_recipe/<section>/<recipe_id>', methods=["POST"])
+def update_recipe(section, recipe_id):
     
     this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     
     # This code will update the recipe details if it already has ingredients contained within the recipe on the database...
-    
-    try:
+    if section == "1":
         mongo.db.recipes.update(
             {"_id": ObjectId(recipe_id)},
-            {'recipe_name': request.form['recipe_name'],
-            'recipe_image_url': request.form['recipe_image_url'],
-            'cusine': request.form['cusine'],
-            'author': request.form['author'],
-            'author_COO': request.form['author_COO'],
-            'recipe_ingredients': this_recipe["recipe_ingredients"]
-        })
-        
-    # If it has no ingredients in the recipe then this will run instead (ignoring the request to update with the existing ingredients in the recipe)...
-        
-    except:
-        mongo.db.recipes.update(
-            {"_id": ObjectId(recipe_id)},
-            {'recipe_name': request.form['recipe_name'],
-            'recipe_image_url': request.form['recipe_image_url'],
-            'cusine': request.form['cusine'],
-            'author': request.form['author'],
-            'author_COO': request.form['author_COO']
-        })
+            { "$set":
+                {
+                    'recipe_name': request.form['recipe_name'],
+                    'recipe_image_url': request.form['recipe_image_url'],
+                    'cusine': request.form['cusine']
+                }
+            }
+        )
     
+        
     # If an ingredient has been added to the form for inclusion, this code will append it to the list...
     
-    record_exists = False
+    elif section == "2":        
+        instruction_exists = False
+        
+        if request.form["instruction"] != "" and request.form["step"] != "":
+            for instruction in this_recipe["recipe_instructions"]:
+                if request.form["step"] == instruction["step"]:
+                    instruction_exists = True
+                    break
+            if instruction_exists == True:
+                print("Not added")
+            else:
+                mongo.db.recipes.update(
+                    {"_id": ObjectId(recipe_id)},
+                    { "$push" : { "recipe_instructions": {"step" : request.form["step"], "instruction" : request.form["instruction"]}}}
+                )
+        
     
-    if request.form["ingredient_name"] != "":
-        try:
-            for ingredient in this_recipe["recipe_ingredients"]:
-                for key, value in ingredient.iteritems():
-                    if request.form["ingredient_name"] == key:
-                        record_exists = True
-                        break
-            if record_exists == False:
+    elif section == "3":
+        ingredient_exists = False
+    
+        if request.form["ingredient_name"] != "":
+            try:
+                for ingredient in this_recipe["recipe_ingredients"]:
+                    for key, value in ingredient.iteritems():
+                        if request.form["ingredient_name"] == key:
+                            ingredient_exists = True
+                            break
+                if ingredient_exists == False:
+                    mongo.db.recipes.update(
+                        {"_id": ObjectId(recipe_id)},
+                        { "$push" : { "recipe_ingredients": {request.form["ingredient_name"] : request.form["ingredient_quantity"]}}}
+                    )
+
+            except:
                 mongo.db.recipes.update(
                     {"_id": ObjectId(recipe_id)},
                     { "$push" : { "recipe_ingredients": {request.form["ingredient_name"] : request.form["ingredient_quantity"]}}}
                 )
-
-        except:
-            mongo.db.recipes.update(
-                {"_id": ObjectId(recipe_id)},
-                { "$push" : { "recipe_ingredients": {request.form["ingredient_name"] : request.form["ingredient_quantity"]}}}
-            )
-            
+        
     return json.dumps({'status':'OK'});
 
 @app.route('/delete_recipe/<recipe_id>', methods=["POST"])
 def delete_recipe(recipe_id):
     mongo.db.recipes.remove({"_id": ObjectId(recipe_id)})
     return redirect(url_for('recipes'))
-
 
 @app.route('/delete_ingredient_from_recipe/<recipe_id>/<ingredient_id>', methods=["POST"])
 def delete_ingredient_from_recipe(recipe_id, ingredient_id):
@@ -379,10 +384,20 @@ def delete_ingredient_from_recipe(recipe_id, ingredient_id):
             { "$pull": { "recipe_ingredients" : ingredient }},
             False, True);
             return json.dumps({'status':'OK'});
-            break
-        else:
-            print("Couldn't match {} to {}".format(stringIngKey, ingredient_id))
+
+@app.route('/delete_instruction_from_recipe/<recipe_id>/<step>', methods=["POST"])
+def delete_instruction_from_recipe(recipe_id, step):
     
+    this_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    
+    for instruction in this_recipe["recipe_instructions"]:
+        if step == instruction["step"]:
+            mongo.db.recipes.update(
+            {'_id': ObjectId(recipe_id)}, 
+            { "$pull": {"recipe_instructions" : instruction}},
+            False, True);
+            return json.dumps({'status':'OK'});
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),

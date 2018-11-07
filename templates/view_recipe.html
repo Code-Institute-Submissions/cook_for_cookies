@@ -30,11 +30,12 @@
             <div class="row">
                 <div class="recipe-instructions">
                     <h2>Recipe Instructions</h2>
-                    {% if this_recipe.instructions %}
-                    <p>{{ this_recipe.instructions }}</p>
-                    {% else %}
-                    <p class="no-details-row">There are currently on instructions for this recipe. </p>
-                    {% endif %}
+                    <table class="instructions-list-table">
+                        <tr class="instructions-table-header">
+                            <th>Step</th>
+                            <th>Instructions</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <hr>
