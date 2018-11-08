@@ -4,7 +4,7 @@
     <div class="header-container center-text">
         <h1 class="section-title">Recipes List</h1>
     </div>
-    <div class="container">
+    <div class="container outer-recipe-container">
         <div class="recipe-content-container center-text">
             <p>Please choose a recipe you would like to try from our list!<br>Alternatively, why not add your own and see if people like it?</p>
             <a href="{{ url_for('add_recipe') }}"><button class="add-recipe-btn">Add recipe</button></a>
@@ -32,7 +32,7 @@
                         {% else %}
                         <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
                         {% endif %}
-                        <span class="recipe-details-container">
+                        <span class="recipe-info-container">
                             <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
                             <p class="recipe-list-item">Not yet rated</p>
                         </span>

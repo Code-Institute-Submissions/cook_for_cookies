@@ -5,6 +5,7 @@
     <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p>
     <p class="photo-instructions-para">And woila! As if by magic, it will appear when you update!</p>
 </div>
+<div class="page-bg edit-recipe-bg"></div>
 <section class="edit-recipe-section">
     <div class="container">
         <div class="image-container center-text">
@@ -14,14 +15,9 @@
             <img class="recipe-img view-recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
             {% endif %}
         </div>
-        <h1 class="section-title">{{ this_recipe.recipe_name }}</h1>
+        <h1 class="section-title">{{ this_recipe.recipe_name.capitalize() }}</h1>
     </div>
     <div class="container edit-recipe-container">
-        <div class="row">
-            <div class="pg-header-container">
-                <p>Please edit any details of your recipe below...</p>
-            </div>
-        </div>
         <div class="row recipe-details-1">
             <h2 class="center-text">Section 1 - Recipe Info</h2>
             <form class="section1-form">
@@ -43,7 +39,8 @@
                         </select>
                     </div>
                     <div class="row photo-url">
-                        <label for="recipe_image_url">Recipe Photo Image Address</label><!--
+                        <label for="recipe_image_url">Recipe Photo Image Address</label>
+                        <!--
                      --><input id="recipe_image_url" name="recipe_image_url" value="{{ this_recipe.recipe_image_url }}" type="text" placeholder="Your Photo Image Address (or leave blank)">
                         <i class="fas fa-question-circle user-photo-instructions-btn"></i>
                     </div>
@@ -61,12 +58,15 @@
                     <tr class="instructions-table-header">
                         <th>Step</th>
                         <th>Instructions</th>
+                        <th></th>
                     </tr>
                 </table>
-                <h3>Edit Instructions...</h3>
+            </div>
+            <div class="add-instructions-container">
+                <h3>Add Instructions...</h3>
                 <form class="new-instructions-container">
-                    <input class="new-instructions-box" id="step" name="step" placeholder="Step no" type="number" required>
-                    <input class="new-instructions-box" id="instruction" name="instruction" placeholder="Instruction" type="text" required>
+                    <input class="new-instructions-box" id="step" name="step" placeholder="Step" type="number" min="1" max="25">
+                    <textarea class="new-instructions-box" id="instruction" name="instruction" placeholder="Instruction" type="text" maxlength="200"></textarea>
                     <i class="add-instructions-btn fas fa-plus-square no-float" type="button"></i>
                 </form>
             </div>
@@ -76,31 +76,35 @@
             <div class="recipe-existing-ingredients section-3-data">
                 <table class="ingredients-list-table">
                     <tr class="ingredients-table-header">
-                        <th>Details:</th>     
+                        <th></th>
                         <th>Ingredient</th>
                         <th>Quantity</th>
                     </tr>
                 </table>
-
-                <h3>Add additional ingredients...</h3>
-                <form class="new-ingredient-container">
-                    <select class="ingredient-box" id="ingredient_name" name="ingredient_name" required>
-                        <option value="{{ ingredients.ingredient_name }}" selected>Select an ingredient to add...</option>
-                        {% for ingredient in ingredients %}
-                        <option value="{{ ingredient._id }} ">{{ ingredient.ingredient_name }}</option>
-                        {% endfor %}
-                    </select>
-                    <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" required>
-                    <i class="add-ingredients-btn fas fa-plus-square no-float" type="button"></i>
-                </form>
-                <hr>
-                <div class="row add-ingredient-container">
-                    <h3 class="missing-ingredient-area"><span class="uppercase">Missing ingredient?!</span> Add it here...</h3>
-                    <button><a href="{{ url_for('add_ingredient', recipe_id=this_recipe._id) }}">Add Ingredient</a></button>
+            </div>
+            <div class="add-new-ingredient-container">
+                <div class="add-new-ingredient-container-section-1">
+                    <h3>Add additional ingredients...</h3>
+                    <form class="new-ingredient-container">
+                        <select class="ingredient-box" id="ingredient_name" name="ingredient_name" required>
+                            <option value="{{ ingredients.ingredient_name }}" selected>Select an ingredient to add...</option>
+                            {% for ingredient in ingredients %}
+                            <option value="{{ ingredient._id }} ">{{ ingredient.ingredient_name.capitalize() }}</option>
+                            {% endfor %}
+                        </select>
+                        <input class="ingredient-box" id="ingredient_quantity" name="ingredient_quantity" placeholder="Ingredient Quantity" type="text" maxlength="30">
+                        <i class="add-ingredients-btn fas fa-plus-square no-float" type="button"></i>
+                    </form>
+                </div>
+                <div class="add-new-ingredient-container-section-2">
+                    <hr>
+                    <div class="row add-ingredient-container">
+                        <h3 class="missing-ingredient-area"><span class="uppercase">Ingredient not in list?!</span>  Add it here...</h3>
+                        <a href="{{ url_for('add_ingredient', recipe_id=this_recipe._id) }}" class="div-btn">Add Ingredient</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </section>
 {% endblock %}

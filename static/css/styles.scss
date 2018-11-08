@@ -47,7 +47,9 @@ section:after,
 .recipe-container:after,
 a:after,
 .ingredients-container:after,
-.profile-section:after {
+.profile-section:after,
+.recipe-existing-instructions:after,
+.recipe-existing-ingredients:after{
     clear: both;
     content: "";
     display: block;
@@ -188,4 +190,16 @@ ul {
 
 .img-container {
     @extend %centralise-inner-container;
+}
+
+.spill-text {
+    white-space: nowrap;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+textarea {
+    resize: none;
 }

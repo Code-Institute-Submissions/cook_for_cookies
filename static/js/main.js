@@ -13,10 +13,10 @@ function sortIngredients(a, b) {
 
     let comparison = 0;
     if (ingredientNameA > ingredientNameB) {
-        comparison = 1;
+        comparison = - 1;
     }
     else if (ingredientNameA < ingredientNameB) {
-        comparison = -1;
+        comparison = 1;
     }
     return comparison;
 }
@@ -27,6 +27,11 @@ function removeExistingRows() {
     $('.inserted-instruction-row').remove();
 }
 
+function showDataRows(){
+    $('.instructions-list-table').fadeIn(500);
+    $('.ingredients-list-table').fadeIn(500);
+}
+
 function loadData() {
     Promise.all([
         fetch(recipeDatabaseURL).then(response => response.json()).catch(),
@@ -34,8 +39,10 @@ function loadData() {
         removeExistingRows()
     ]).then((response) => {
         prepareData(response);
+        showDataRows();
     }).catch((error) => {
         console.log(error);
+        flashedMessage("Oops, an error has occured.  Please try later")
     });
 }
 
@@ -66,13 +73,13 @@ function createThisRecipeData(recipe, ingredients) {
     if (recipe.recipe_instructions === undefined || recipe.recipe_instructions.length === 0){
         if ($('.no-instructions-row').length === 0){
             $('.instructions-table-header').hide();
-            newInstructionRow = "<tr class='no-instructions-row'><td> There are currently no instructions for this recipe.</td>";
-            $('.instructions-list-table').append(newInstructionRow).hide().fadeIn("slow");    
+            newInstructionRow = "<tr class='no-instructions-row spill-text'><td> There are currently no instructions for this recipe.</td>";
+            $('.instructions-list-table').after(newInstructionRow);    
         }
     } else {
         $('.instructions-table-header').show();
         sortedInstructions = recipe.recipe_instructions.sort(function(a, b){
-            return a.step - b.step;
+            return b.step - a.step;
         });
         
         if($('.edit-recipe-section').length === 1){
@@ -80,18 +87,18 @@ function createThisRecipeData(recipe, ingredients) {
                 
                 var newInstructionRow = "<tr class='inserted-instruction-row' id='" 
                 + instruction.step 
-                + "'><td>" 
+                + "'><td class='step-no'>" 
                 + instruction.step 
                 + "</td><td>" 
                 + instruction.instruction 
                 + "</td><td><i class='remove remove-instruction fas fa-minus-square' type='button'></i></td></tr>";
                 
-                $('.instructions-list-table').append(newInstructionRow).hide().fadeIn("slow");
+                $('.instructions-list-table').after(newInstructionRow);
             });    
         } else {
             sortedInstructions.forEach(function(instruction) {
                 var newInstructionRow = "<tr class='inserted-instruction-row' id='" + instruction.step + "><td>" + instruction.step + "</td><td>" + instruction.instruction + "</td></tr>";
-                $('.instructions-list-table').append(newInstructionRow).hide().fadeIn("slow");
+                $('.instructions-list-table').after(newInstructionRow);
             });
          }
     }
@@ -133,17 +140,26 @@ function createThisRecipeData(recipe, ingredients) {
                         + ingredient.quantity[0] 
                         + "</td><td><i class='remove remove-ingredient fas fa-minus-square' type='button'></i></td></tr>";
                         
-                    $('.ingredients-table-header').append(newIngredientRow).hide().fadeIn("slow");
+                    $('.ingredients-table-header').after(newIngredientRow);
                 });    
             } else {
                 sortedIngredients.forEach(function(ingredient) {
-                    if (ingredient.ingredient_image_url){
+                    if (ingredient.ingredient_image_url === undefined || ingredient.ingredient_image_url === ""){
                         var imageSrc = defaultIngredientImage;
                     } else {
                         var imageSrc = ingredient.ingredient_image_url;
                     }
-                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" + idToString(ingredient) + "'><td><img src='" + imageSrc + "'</td><td>" + ingredient.ingredient_name + "</td><td>" + ingredient.quantity[0] + "</td></tr>";
-                    $('.ingredients-table-header').append(newIngredientRow).hide().fadeIn("slow");
+                    
+                    var newIngredientRow = "<tr class='inserted-ingredient-row' id='" 
+                    + idToString(ingredient) 
+                    + "'><td><img src='" 
+                    + imageSrc + "'</td><td>" 
+                    + ingredient.ingredient_name 
+                    + "</td><td>" 
+                    + ingredient.quantity[0] 
+                    + "</td></tr>";
+                    
+                    $('.ingredients-table-header').after(newIngredientRow);
                 });
             }
         } 
@@ -151,8 +167,8 @@ function createThisRecipeData(recipe, ingredients) {
         // This adds a line to the page if there are no ingredients to display
         if ($('.no-ingredients-row').length === 0){
             $('.ingredients-table-header').hide();
-            newIngredientRow = "<tr class='no-ingredients-row'><td> There are currently no ingredients for this recipe.</td>";
-            $('.ingredients-list-table').append(newIngredientRow).hide().fadeIn("slow");
+            newIngredientRow = "<tr class='no-ingredients-row spill-text'><td> There are currently no ingredients for this recipe.</td>";
+            $('.ingredients-list-table').after(newIngredientRow);
         }
     }
 
@@ -175,9 +191,13 @@ function updateRecipe(section) {
         success: function(response) {
             console.log(response);
             loadData();
+            if(section == 1){
+                flashedMessage("Updated!")
+            }
         },
         error: function(error) {
             console.log(error);
+            flashedMessage("Oops, an error has occured.  Please try later");
         }
     });
 }
@@ -211,6 +231,7 @@ function removeIngredient() {
             },
             error: function(error) {
                 console.log(error);
+                flashedMessage("Oops, an error has occured.  Please try later");
             }
         });
     });
@@ -230,6 +251,7 @@ function removeInstruction() {
             },
             error: function(error) {
                 console.log(error);
+                flashedMessage("Oops, an error has occured.  Please try later")
             }
         });
     });
@@ -299,14 +321,28 @@ $(document).ready(function() {
     });
 
     $('.add-instructions-btn').click(function() {
-        $('.no-instructions-row').remove();
-        updateRecipe(2);
-        
+        if($('#step').val() == ""){
+            flashedMessage("Don't forget to enter a step no!");
+            $('html, body').animate({
+                scrollTop: ($('.edit-recipe-section').offset().top)
+            },500);
+        } else {
+            $('.no-instructions-row').remove();
+            updateRecipe(2);
+        }
     });
     
     $('.add-ingredients-btn').click(function() {
-        $('.no-ingredients-row').remove();
-        updateRecipe(3);
+        if($('#ingredient_quantity').val() == ""){
+            flashedMessage("Don't forget to enter a quantity!");
+            $('html, body').animate({
+                scrollTop: ($('.edit-recipe-section').offset().top)
+            },500);
+        } else {
+            $('.no-ingredients-row').remove();
+            $('.ingredients-table-header').show();
+            updateRecipe(3);
+        }
     });
     
     fadeInHomeTitle(1000);

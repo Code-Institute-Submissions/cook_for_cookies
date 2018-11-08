@@ -321,26 +321,31 @@ def update_recipe(section, recipe_id):
             }
         )
     
-        
     # If an ingredient has been added to the form for inclusion, this code will append it to the list...
     
     elif section == "2":        
         instruction_exists = False
         
         if request.form["instruction"] != "" and request.form["step"] != "":
-            for instruction in this_recipe["recipe_instructions"]:
-                if request.form["step"] == instruction["step"]:
-                    instruction_exists = True
-                    break
-            if instruction_exists == True:
-                print("Not added")
-            else:
+            try:
+                for instruction in this_recipe["recipe_instructions"]:
+                    if request.form["step"] == instruction["step"]:
+                        instruction_exists = True
+                        break
+                if instruction_exists == True:
+                    print("Not added")
+                else:
+                    mongo.db.recipes.update(
+                        {"_id": ObjectId(recipe_id)},
+                        { "$push" : { "recipe_instructions": {"step" : request.form["step"], "instruction" : request.form["instruction"]}}}
+                    )
+            except:
                 mongo.db.recipes.update(
-                    {"_id": ObjectId(recipe_id)},
-                    { "$push" : { "recipe_instructions": {"step" : request.form["step"], "instruction" : request.form["instruction"]}}}
-                )
-        
+                        {"_id": ObjectId(recipe_id)},
+                        { "$push" : { "recipe_instructions": {"step" : request.form["step"], "instruction" : request.form["instruction"]}}}
+                    )
     
+    # If an ingredient has been added to the form for inclusion, this code will append it to the list...
     elif section == "3":
         ingredient_exists = False
     

@@ -35,6 +35,12 @@
                             <th>Step</th>
                             <th>Instructions</th>
                         </tr>
+                        {% for instruction in this_recipe.recipe_instructions %}
+                        <tr>
+                            <td>{{ instruction.step }}</td> 
+                            <td>{{ instruction.instruction }}</td> 
+                        </tr>
+                        {% endfor %}
                     </table>
                 </div>
             </div>
