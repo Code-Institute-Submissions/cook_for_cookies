@@ -382,14 +382,17 @@ def delete_ingredient_from_recipe(recipe_id, ingredient_id):
     
     for ingredient in this_recipe["recipe_ingredients"]:
         ingredientKey = ingredient.keys()
-        stringIngKey = ingredientKey[0].replace(" ", "")
-        if stringIngKey == ingredient_id:
-            mongo.db.recipes.update(
-            {'_id': ObjectId(recipe_id)}, 
-            { "$pull": { "recipe_ingredients" : ingredient }},
-            False, True);
-            return json.dumps({'status':'OK'});
-
+        for key in ingredientKey:
+            stringIngKey = key.replace(" ", "")
+            if stringIngKey == ingredient_id:
+                mongo.db.recipes.update(
+                {'_id': ObjectId(recipe_id)}, 
+                { "$pull": { "recipe_ingredients" : ingredient }},
+                False, True);
+                return json.dumps({'status':'OK'});
+    
+    
+    
 @app.route('/delete_instruction_from_recipe/<recipe_id>/<step>', methods=["POST"])
 def delete_instruction_from_recipe(recipe_id, step):
     

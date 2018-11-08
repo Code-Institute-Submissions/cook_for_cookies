@@ -260,6 +260,9 @@ function removeInstruction() {
 function flashedMessage(message) {
     $('.flashed-message').text(message);
     $('.round-pop-up-container').show();
+    $('html, body').animate({
+                scrollTop: ($('.edit-recipe-section').offset().top)
+            },500);
 }
 
 function fadeInHomeTitle(delay){
@@ -323,9 +326,6 @@ $(document).ready(function() {
     $('.add-instructions-btn').click(function() {
         if($('#step').val() == ""){
             flashedMessage("Don't forget to enter a step no!");
-            $('html, body').animate({
-                scrollTop: ($('.edit-recipe-section').offset().top)
-            },500);
         } else {
             $('.no-instructions-row').remove();
             updateRecipe(2);
@@ -335,9 +335,6 @@ $(document).ready(function() {
     $('.add-ingredients-btn').click(function() {
         if($('#ingredient_quantity').val() == ""){
             flashedMessage("Don't forget to enter a quantity!");
-            $('html, body').animate({
-                scrollTop: ($('.edit-recipe-section').offset().top)
-            },500);
         } else {
             $('.no-ingredients-row').remove();
             $('.ingredients-table-header').show();
