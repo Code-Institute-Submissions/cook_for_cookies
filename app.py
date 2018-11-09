@@ -253,15 +253,106 @@ def update_ingredient(ingredient_id):
 @app.route('/recipes')
 def recipes():
     current_user = determine_current_user(session)
+    
+    recipe_db = mongo.db.recipes
+    
     try:
         user = mongo.db.Users.find_one({"email": session["user"]})
         user_id = session["user_id"]
     except:
         user = "guest"
         user_id = "guest"
+    
+    starting_sort_param = '_id'
+    starting_filter_field = "_id"
+    starting_filter_value = 1
+    starting_limit = 9
+    
+    try:    
+        new_filter_field = str(request.args["filter_field"])
+        new_filter_value = str(request.args["filter_value"])
+    except:
+        new_filter_field = "None"
+    
+    try:
+        existing_filter_field = session['filter_field']
+        existing_filter_value = session['filter_value']
+    except:
+        existing_filter_field = "None"
+
+    if new_filter_field != "None":
+        session['filter_field'] = new_filter_field
+        session['filter_value'] = new_filter_value
+        filter_field = session['filter_field']
+        filter_value = session['filter_value']
+    elif existing_filter_field != "None":
+        filter_field = existing_filter_field
+        filter_value = existing_filter_value
+    else:
+        filter_field = starting_filter_field
+        filter_value = starting_filter_value
+    
+    try:    
+        new_limit = int(request.args["limit"])
+    except:
+        new_limit = "None"
+    
+    try:
+        existing_limit = session['limit']
+    except:
+        existing_limit = "None"
+
+    if new_limit != "None":
+        session['limit'] = new_limit
+        limit = session['limit']
+    elif existing_limit != "None":
+        limit = existing_limit
+    else:
+        limit = starting_limit
+    
+    try:
+        new_offset = int(request.args["offset"])
+    except:
+        new_offset = 0
+    
+    if new_offset < 0:
+        offset = 0
+    elif new_offset >= recipe_db.find().count():
+        offset = recipe_db.find().count() - limit;
+    else:
+        offset = new_offset
+    
+    try:    
+        new_sort = str(request.args["sort_param"])
+    except:
+        new_sort = "None"
+    
+    try:
+        existing_sort = session['sort_param']
+    except:
+        existing_sort = "None"
+
+    if new_sort != "None":
+        session['sort_param'] = new_sort
+        sort_param = session['sort_param']
+    elif existing_sort != "None":
+        sort_param = existing_sort
+    else:
+        sort_param = starting_sort_param
+    
+    print(sort_param)
+    
+    if sort_param == "_id":
+        order = -1
+    else:
+        order = 1
         
-    recipes = mongo.db.recipes.find().sort([("recipe_name", 1)])
-    return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, user_id = user_id)
+    starting_id = recipe_db.find().sort([("_id", 1)])
+    last_id = starting_id[offset]['_id']
+
+    recipes = mongo.db.recipes.find({filter_field : filter_value, '_id':{'$gte' : last_id}}).limit(limit).sort([(sort_param, order)])
+    
+    return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, user_id = user_id, limit = limit, offset = offset, cusines = cusine_list, filter_field = filter_field, filter_value = filter_value, sort_param = sort_param)
 
 @app.route('/add_recipe')
 def add_recipe():

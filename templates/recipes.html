@@ -10,6 +10,42 @@
             <a href="{{ url_for('add_recipe') }}"><button class="add-recipe-btn">Add recipe</button></a>
         </div>
         <div class="recipe-container">
+            <div class="row filter-btn-row">
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 3) }}">View 3 Recipes</a>
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 6) }}">View 6 Recipes</a>
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 9) }}">View 9 Recipes</a>
+                <p class="filter-display">
+                    Current filter - 
+                    {% if filter_value == "1" %}
+                    All
+                    {% else %}
+                    {{ filter_value }}
+                    {% endif %}
+                </p> 
+                <div class="dropdown-box filter-box">
+                    <button class="dropbtn">Filter 
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-options">
+                        <a href="{{ url_for('recipes', offset = 0, filter_field = "_id", filter_value = 1 ) }}">All</a> {% for cusine in cusines %}
+                        <a href="{{ url_for('recipes', offset = 0, filter_field = "cusine", filter_value = cusine ) }}">{{ cusine }}</a> {% endfor %}
+                    </div>
+                </div>
+                <div class="dropdown-box sort-box">
+                    <button class="dropbtn">Sort
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-options">
+                        <a href="{{ url_for('recipes', offset = 0, sort_param = "_id" ) }}">Latest</a> 
+                        <a href="{{ url_for('recipes', offset = 0, sort_param = "recipe_name" ) }}">Recipe Name</a>
+                    </div>
+                </div>
+            </div>
+            {% if recipes_list.count() < 1 %}
+            <div class="no-recipes-box">
+                <p class="center-text">I'm sorry but there doesn't appear to be any {{ filter_value }} recipes at the moment.  Please try another category!</p> 
+            </div>
+            {% endif %}
             {% for recipe in recipes_list %}
             <div class="recipe">
                 {% if recipe.author == user_id %}
@@ -26,32 +62,35 @@
                 </div>
                 {% endif %}
                 <a href="{{ url_for('view_recipe', username=username, recipe_id=recipe._id) }}">
-                    <span class="recipe-row-top container">
-                        {% if recipe.recipe_image_url %}
-                        <img class="recipe-img" src="{{ recipe.recipe_image_url }}"></img>
-                        {% else %}
-                        <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
-                        {% endif %}
-                        <span class="recipe-info-container">
-                            <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
-                            <p class="recipe-list-item">Not yet rated</p>
-                        </span>
+                <span class="recipe-row-top container">
+                    {% if recipe.recipe_image_url %}
+                    <img class="recipe-img" src="{{ recipe.recipe_image_url }}"></img>
+                    {% else %}
+                    <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
+                    {% endif %}
+                    <span class="recipe-info-container">
+                        <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
+                        <p class="recipe-list-item">Not yet rated</p>
                     </span>
-                </a>
-                {% if recipe.author == user_id %}
+                </span>
+            </a> {% if recipe.author == user_id %}
                 <div class="recipe-row-bottom">
                     <button class="delete-recipe-btn" id="{{ recipe.author }}">Delete</button>
                     <a class="edit-recipe-btn" href="{{ url_for('edit_recipe', recipe_id=recipe._id) }}">
-                        <button class="center-text">Edit</button>
-                    </a>
+                    <button class="center-text">Edit</button>
+                </a>
                 </div>
                 {% else %}
                 <div class="recipe-row-bottom"></div>
                 {% endif %}
             </div>
             {% endfor %}
-
+            <div class="row filter-btn-row">
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', offset = offset - limit) }}">Prev</a>
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', offset = offset + limit) }}">Next</a>
+            </div>
         </div>
+
     </div>
 </section>
 {% endblock %}
