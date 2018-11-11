@@ -11,9 +11,9 @@
         </div>
         <div class="recipe-container">
             <div class="row filter-btn-row">
-                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 3) }}">View 3 Recipes</a>
-                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 6) }}">View 6 Recipes</a>
-                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 9) }}">View 9 Recipes</a>
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 3, offset = 0) }}">View 3 Recipes</a>
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 6, offset = 0) }}">View 6 Recipes</a>
+                <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 9, offset = 0) }}">View 9 Recipes</a>
                 <p class="filter-display">
                     Current filter - 
                     {% if filter_value == "1" %}
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            {% if recipes_list.count() < 1 %}
+            {% if recipes_list == [] %}
             <div class="no-recipes-box">
                 <p class="center-text">I'm sorry but there doesn't appear to be any {{ filter_value }} recipes at the moment.  Please try another category!</p> 
             </div>

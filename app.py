@@ -292,6 +292,10 @@ def recipes():
         filter_field = starting_filter_field
         filter_value = starting_filter_value
     
+    print(filter_field)
+    print(filter_value)
+    
+    
     try:    
         new_limit = int(request.args["limit"])
     except:
@@ -318,7 +322,10 @@ def recipes():
     if new_offset < 0:
         offset = 0
     elif new_offset >= recipe_db.find().count():
-        offset = recipe_db.find().count() - limit;
+        if recipe_db.find().count() - limit < 0:
+            offset = 0
+        else:
+            offset = recipe_db.find().count() - limit;
     else:
         offset = new_offset
     
@@ -339,18 +346,54 @@ def recipes():
         sort_param = existing_sort
     else:
         sort_param = starting_sort_param
-    
-    print(sort_param)
-    
-    if sort_param == "_id":
-        order = -1
-    else:
-        order = 1
         
-    starting_id = recipe_db.find().sort([("_id", 1)])
-    last_id = starting_id[offset]['_id']
+    if sort_param == "_id":
+        sort_order = -1
+    else:
+        sort_order = 1
 
-    recipes = mongo.db.recipes.find({filter_field : filter_value, '_id':{'$gte' : last_id}}).limit(limit).sort([(sort_param, order)])
+    # Execute if no filters applied....
+
+    if filter_field == "_id":
+        
+        # Sort by latest ................
+        
+        if sort_param == "_id":
+            first_id_in_db = recipe_db.find().sort([(sort_param, sort_order)])
+            id_to_start_from = first_id_in_db[offset]['_id']
+    
+            recipes = mongo.db.recipes.find({'_id' :{'$lte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
+            
+        # Sort by recipe_name ..............
+        
+        else:
+            first_id_in_db = recipe_db.find().sort([(sort_param, sort_order)])
+            id_to_start_from = first_id_in_db[offset][sort_param]
+    
+            recipes = mongo.db.recipes.find({sort_param :{'$gte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
+     
+    
+    # If filters applied...        
+            
+    else:
+        try:
+            # Sort by latest ................
+        
+            if sort_param == "_id":
+                first_id_in_db = recipe_db.find({filter_field : filter_value}).sort([(sort_param, sort_order)])
+                id_to_start_from = first_id_in_db[offset]['_id']
+    
+                recipes = mongo.db.recipes.find({filter_field : filter_value, '_id' :{'$lte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
+            
+            # Sort by recipe_name ..............
+        
+            else:
+                first_id_in_db = recipe_db.find({filter_field : filter_value}).sort([(sort_param, sort_order)])
+                id_to_start_from = first_id_in_db[offset][sort_param]
+    
+                recipes = mongo.db.recipes.find({filter_field : filter_value, sort_param :{'$gte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
+        except:
+            recipes = []      
     
     return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, user_id = user_id, limit = limit, offset = offset, cusines = cusine_list, filter_field = filter_field, filter_value = filter_value, sort_param = sort_param)
 
