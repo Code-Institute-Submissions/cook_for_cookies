@@ -122,20 +122,14 @@ a:visited {
     font-size: 48px;
     letter-spacing: 2px;
     font-weight: 600;
-}
-
-footer {
-    background-color: $black;
-    min-height: 266px;
-    clear: both;
-}
-
-.footer-item {
-    color: $white;
-    float: left;
-    display: inline-block;
-    margin: 25px 50px;
-    width: 24%;
+    
+    @include laptop {
+        font-size: 38px;    
+    }
+    
+    @include large-tablet {
+        font-size: 26px;    
+    }
 }
 
 .no-opacity {

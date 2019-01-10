@@ -9,6 +9,10 @@ header {
     background-size: contain;
     @extend %bottom-box-shadow;
     z-index: 10000;
+    
+    @include tablet {
+        height: 58px;
+    }
 }
 
 nav,
@@ -25,11 +29,32 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    
+    @include tablet {
+        display: block;
+        padding: 0;
+    }
+}
+
+nav ul {
+    @include tablet {
+        margin: 0;
+        padding: 0;
+        clear: both;
+    }
 }
 
 nav ul,
 nav ul li {
     float: right;
+    
+    @include tablet {
+        background-color: $black;
+        display: block;
+        width: 100%;
+        margin: 0;
+        float: none;
+    }
 }
 
 nav ul li {
@@ -37,6 +62,28 @@ nav ul li {
     margin: 5px 30px;
     background-color: $black;
     padding: 5px;
+    
+    @include laptop {
+        margin: 5px 22px;
+    }
+    
+    @include large-tablet {
+        font-size: 12px;
+        margin: 5px 6px;
+    }
+    
+    @include tablet {
+        padding: 16px 66px;
+        border-top: 1px solid $white;
+        margin: 0;
+    }
+}
+
+nav a:after {
+    
+    @include tablet {
+        clear: none;
+    }
 }
 
 .logo {
@@ -44,10 +91,44 @@ nav ul li {
     margin: 10px;
     padding: 8px 30px 8px 8px;
     height: 56px;
+    
+    @include large-tablet {
+        padding: 0;    
+    }
+    
+    @include tablet {
+        height: 40px;    
+        margin: 10px 10px 0;
+    }
 }
 
 .nav-icon {
     padding: 0 12px 0 0;
+}
+
+.fa-caret-square-down {
+    display: none;
+    transition: all 0.2s ease-in;
+    
+    @include tablet {
+        display: block;
+        position: relative;
+        float: right;
+        margin: 20px;
+        cursor: pointer;
+    }
+}
+
+.dropdown-menu {
+    display: inline-block;
+    
+    @include tablet {
+        display: none;
+    }
+}
+
+.turn-red {
+    color: $fire-red;
 }
 
 // Message containers ----------------------------------------------------------
@@ -75,4 +156,36 @@ nav ul li {
 
 .pop-up-btn {
     margin: 20px auto;
+}
+
+// Footer ----------------------------------------------------------
+
+footer {
+    background-color: $black;
+    min-height: 266px;
+    clear: both;
+}
+
+.footer-item {
+    color: $white;
+    float: left;
+    display: inline-block;
+    margin: 25px 50px;
+    width: 24%;
+    box-sizing: border-box;
+    
+    @include laptop {
+        margin: 25px 40px;
+    }
+    
+    @include large-tablet {
+        margin: 25px 35px;
+    }
+    
+    @include tablet {
+        margin: 0px;
+        padding: 20px;
+        width: 50%;
+        height: 150px;
+    }
 }

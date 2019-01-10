@@ -29,7 +29,7 @@
         <div class="right">
             <div class="content-container">
                 <h2 class="section-title uppercase">So many recipes...</h2>
-                <p>You like delicious?<br><a href="{{ url_for('recipes', username=username) }}">Try a recipe now ></a></p>
+                <p>You like delicious?<br><a class="link-underline" href="{{ url_for('recipes', username=username) }}">Try a recipe now ></a></p>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
             <div class="ingredients-intro-content">
                 <h2 class="section-title uppercase">It's all in the ingredients...</h2>
                 <p>Use our comprehensive ingredients list to seamlessly build your recipes. Ingredient missing? No problem, add it yourself for everyone to share.</p>
-                <a href="{{ url_for('ingredients', username=username) }}">See ingredients list ></a>
+                <p><a class="link-underline" href="{{ url_for('ingredients', username=username) }}">See ingredients list ></a></p>
             </div>
         </div>
         <div class="right">

@@ -16,7 +16,8 @@
             <a href="{{ url_for('index') }}">
                 <img class="logo grow" src="{{ url_for('static', filename='images/flame-sizzle-logo.gif') }}">
             </a>
-            <ul>
+            <i class="far fa-caret-square-down"></i>
+            <ul class="dropdown-menu">
                 {% if username != "guest" %}
                 <li class="grow"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt nav-icon"></i>Logout</a></li>
                 <li class="grow"><a href="{{ url_for('profile', username=username) }}"><i class="fas fa-user nav-icon"></i>Profile</a></li>

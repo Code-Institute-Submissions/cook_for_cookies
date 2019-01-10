@@ -1,7 +1,6 @@
 // Home page -------------------------------------------------------------------
 
 .welcome-message-section {
-    min-width: 1240px;
     background-color: $black;
 }
 
@@ -10,20 +9,58 @@
     float: left;
     box-sizing: border-box;
     height: 100vh;
-    min-width: 600px;
+    
 }
 
 .welcome-message-section img {
     width: 54%;
+    
+    @include large-tablet {
+        height: 72vh;
+        position: relative;
+        width: 100%;
+    }
+    
+    @include tablet {
+        height: 100vh;
+    }
 }
 
-.welcome-message {
+.welcome-message-section .welcome-message {
     @extend %centralise-inner-container;
     width: 46%;
+    
+    @include large-tablet {
+        height: auto;
+        position: absolute;
+        top: 106px;
+        width: 100%;
+        z-index: 1;
+        background-color: $black;
+        text-align: center;
+        padding: 30px;
+    }
+    
+    @include tablet {
+        padding: 12px;
+    }
+    
+    @include large-mobile {
+        top: 84px;
+    }
 }
 
 .welcome-message-content {
     width: 58%;
+    
+    @include laptop {
+        margin-top: 50px;
+        width: 74%;
+    }
+    
+    @include large-tablet {
+        margin-top: 10px;
+    }
 }
 
 .welcome-message-content h1 {
@@ -34,6 +71,24 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: 5px;
+    
+    @include laptop {
+        font-size: 40px;
+        margin: 21px 0;
+    }
+    
+    @include large-tablet {
+        font-size: 58px;
+        margin: 14px 0;
+    }
+    
+    @include tablet {
+        font-size: 50px;
+    }
+    
+    @include large-mobile {
+        font-size: 38px;
+    }
 }
 
 .welcome-message-content h1,
@@ -43,10 +98,22 @@
 
 .welcome-message-content h3 {
     font-size: 24px;
+    
+    @include laptop {
+        font-size: 18px;
+    }
 }
 
 .welcome-message-content h3 ~ p:nth-of-type(1) {
-        margin: 74px 0 30px;
+    margin: 74px 0 30px;
+        
+    @include laptop {
+        margin: 50px 0 30px;
+    }    
+    
+    @include large-tablet {
+        margin: 20px 0;
+    }
 }
 
 .welcome-message-content p {
@@ -54,21 +121,61 @@
     font-size: 15px;
     line-height: 28px;
     font-family: 'Oswald', sans-serif;
+    
+    @include laptop {
+        font-size: 12px;
+    }
+    
+    @include large-mobile {
+        font-size: 10px;
+    }
+}
+
+.welcome-message-content p:nth-of-type(2){
+    
+    @include large-tablet {
+        display: none;    
+    }
 }
 
 .welcome-message-content button {
     margin-left: 0;
     margin-top: 76px;
+    
+    @include laptop {
+        margin-top: 30px;
+    }
+    
+    @include tablet {
+        margin-top: 14px;
+    }
 }
 
 .welcome-sentence {
     padding: 100px 0;
+    
+    @include laptop {
+        padding: 70px 0;
+    }
+    
+    @include large-tablet {
+        padding: 56px 0;
+    }
 }
 
 .welcome-sentence p {
     padding: 0;
     font-size: 18px;
     line-height: 2.4;
+    
+    @include large-tablet {
+        font-size: 15px;
+    }
+    
+    @include large-mobile {
+        font-size: 12px;
+        padding: 0px 50px;
+    }
 }
 
 .welcome-sentence span {
@@ -84,6 +191,17 @@
 .recipes-intro-content h2,
 .ingredients-intro-content h2 {
     margin: 0 0 40px;
+    
+    @include tablet {
+        margin: 0 0 20px;
+    }
+}
+
+.ingredients-intro-content h2 {
+    
+    @include large-tablet {
+        margin: 0 0 29px;
+    }
 }
 
 .recipes-intro-content p,
@@ -107,23 +225,43 @@
     position: absolute;
     width: 50%;
     background-color: rgba(30,30,0,.15);
+    
+    @include tablet {
+        width: 100%;
+    }
 }
 
 .recipes-intro-content .pic-overlay,
 .recipes-intro-content img,
 .recipes-intro-section .right {
     height: 750px;
+    
+    @include laptop {
+        height: 500px;
+    }
+    
+    @include large-tablet {
+        height: 390px;
+    }
 }
 
 .recipes-intro-content .right a,
-.ingredients-intro-content p ~ a {
+.ingredients-intro-content p a {
     font-weight: 600;
     color: $fire-red;
+    
+    @include laptop {
+        font-size: 17px;
+    }
 }
 
-.ingredients-intro-content a {
+.ingredients-intro-content p a {
     display: block;
     margin-top: 42px;
+    
+    @include tablet {
+        margin-top: 18px;
+    }
 }
 
 .left,
@@ -134,45 +272,125 @@
 
 .recipes-intro-section .left {
     width: 50%;
+    
+    @include tablet {
+        width: 100%;
+    }
 }
 
 .recipes-intro-section .right {
     background-color: $black;
     color: $white;
     width: 50%;
+    box-sizing: border-box;
+    
+    @include laptop {
+        padding-left: 68px;    
+    }
+    
+    @include large-tablet {
+        padding-left: 0;    
+    }
+    
+    @include tablet {
+        width: 100%;
+        height: 220px;
+    }
 }
 
 .ingredients-intro-section {
     padding: 100px 0;
     width: 100%;
+    
+    @include large-tablet {
+        padding: 70px 0;
+    }
+    
+    @include tablet {
+        padding: 54px 0;
+    }
+    
+    @include large-mobile {
+        padding: 54px 0 0;
+    }
 }
 
 .ingredients-intro-section .container {
     max-width: 1122px;
     margin: 0 auto;
+    display: flex;
+    
+    @include large-tablet {
+        justify-content: center;    
+    }
+    
+    @include tablet {
+        display: block;    
+    }
+    
 }
 
 .ingredients-intro-section img {
     height: 400px;
     width: 250px;
     margin: 0 20px;
+    
+    @include laptop {
+        height: 280px;
+        width: 185px;
+    }
+    
+    @include large-tablet {
+        height: 264px;
+        width: 158px;
+        margin: 0 12px;
+    }
+    
+    @include large-mobile {
+        margin: 0px;
+        width: 50%;
+    }
 }
 
 .ingredients-intro-section .left {
     justify-content: left;
+    
+    @include large-tablet {
+        justify-content: center;
+    }
+    
+    @include tablet {
+        padding-bottom: 20px;
+    }
 }
 
 .ingredients-intro-section .left,
 .ingredients-intro-section .right {
     width: 50%;
+    
+    @include tablet {
+        width: 100%;
+    }
 }
 
 .ingredients-intro-content {
     width: 80%;
+    
+    @include laptop {
+        margin-left: 78px;
+    }
+    
+    @include large-tablet {
+        margin-left: 48px;
+    }
 }
 
 .ingredients-intro-content p {
     color: #060606;
+    
+    @include laptop {
+        font-size: 15px;
+    }
 }
 
 .fire-text-quote {
@@ -180,16 +398,37 @@
     width: 100%;
     height: 600px;
     @extend %centralise-inner-container;
+    
+    @include laptop {
+        height: 400px;
+    }
+    
+    @include large-tablet {
+        height: 362px;
+    }
+    
+    @include large-mobile {
+        height: 442px;
+        padding: 52px 0;
+    }
 }
 
 
 .fire-text-quote div {
     max-width: 60%;
     margin: 0 auto;
+    
+    @include laptop {
+        max-width: 72%;
+    }
 }
 
 .quote {
     margin-bottom: 40px;
+    
+    @include large-tablet {
+        margin-bottom: 25px;
+    }
 }
 
 .fire-text-quote p {
@@ -199,6 +438,24 @@
     -webkit-text-fill-color: transparent;
     font-size: 46px;
     line-height: 60px;
+    
+    @include laptop {
+        font-size: 36px;
+        line-height: 45px;
+    }
+    
+    @include large-tablet {
+        font-size: 25px;
+        line-height: 40px;
+    }
+    
+    @include tablet {
+        text-align: center;
+    }
+    
+    @include large-mobile {
+        font-size: 18px;
+    }
 }
 
 .fire-text-quote p:nth-of-type(2){
@@ -207,6 +464,14 @@
     -webkit-text-fill-color: $white;
     font-size: 30px;
     letter-spacing: 0;
+    
+    @include laptop {
+        font-size: 20px;
+    }
+    
+    @include large-tablet {
+        font-size: 16px;
+    }
 }
 
 .leaderboard-intro-section {
@@ -214,21 +479,79 @@
     height: 700px;
     @extend %centralise-inner-container;
     background-color: rgba(0,0,0,.4);
+    
+    @include laptop {
+        height: 600px;
+    }
+    
+    @include large-tablet {
+        height: 530px;
+    }
+    
+    @include tablet {
+        flex-wrap: wrap;
+        height: 460px;
+    }
+    
+    @include large-mobile {
+        padding-bottom: 20px;
+    }
+}
+
+.leaderboard-intro-section .left,
+.leaderboard-intro-section .right {
+     width: 78%;   
+     display: block;
+     position: static;
+     float: none;
+     clear: both;
+     text-align: center;
+}
+
+.leaderboard-intro-section .left {
+    @include large-mobile {
+        padding-top: 50px;
+    }
 }
 
 .leaderboard-intro-content-container {
     color: $white;
     width: 100%;
     margin-left: 85px;
+    
+    @include laptop {
+        margin-left: 48px;
+    }
+    
+    @include large-tablet {
+        margin-left: 40px;
+    }
+    
+    @include tablet {
+        margin-left: 0px;
+    }
 }
 
 .leaderboard-intro-content-container p {
     line-height: 50px;
+    
+    @include large-tablet {
+        line-height: 36px;
+        font-size: 11px;
+    }
 }
 
 .fa-file-alt {
     font-size: 200px;
     color: $white;
+    
+    @include laptop {
+        font-size: 120px;
+    }
+    
+    @include large-tablet {
+        font-size: 92px;
+    }
 }
 
 // Sign-up / Sign-in -----------------------------------------------------------

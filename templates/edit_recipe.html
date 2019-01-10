@@ -15,7 +15,7 @@
             <img class="recipe-img view-recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
             {% endif %}
         </div>
-        <h1 class="section-title">{{ this_recipe.recipe_name.capitalize() }}</h1>
+        <h1 class="section-title">{{ this_recipe.recipe_name.title() }}</h1>
     </div>
     <div class="container edit-recipe-container">
         <div class="row recipe-details-1">

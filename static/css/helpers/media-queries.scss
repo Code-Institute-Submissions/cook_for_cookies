@@ -4,6 +4,7 @@ $mobileMaxWidth: 320px;
 $lgMobileMaxWidth: 500px;
 $tabletMaxWidth: 768px;
 $lgTabletMaxWidth: 1024px;
+$laptopMaxWidth: 1440px;
 
 @mixin mobile {
      @media (max-width: $mobileMaxWidth){
@@ -25,6 +26,12 @@ $lgTabletMaxWidth: 1024px;
 
 @mixin large-tablet {
      @media (max-width: $lgTabletMaxWidth){
+        @content
+    }
+}
+
+@mixin laptop {
+     @media (max-width: $laptopMaxWidth){
         @content
     }
 }
