@@ -781,14 +781,15 @@ footer {
     .leaderboard-intro-section {
       padding-bottom: 20px; } }
 
-.leaderboard-intro-section .left,
-.leaderboard-intro-section .right {
-  width: 78%;
-  display: block;
-  position: static;
-  float: none;
-  clear: both;
-  text-align: center; }
+@media (max-width: 500px) {
+  .leaderboard-intro-section .left,
+  .leaderboard-intro-section .right {
+    width: 78%;
+    display: block;
+    position: static;
+    float: none;
+    clear: both;
+    text-align: center; } }
 
 @media (max-width: 500px) {
   .leaderboard-intro-section .left {

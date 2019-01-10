@@ -500,12 +500,15 @@
 
 .leaderboard-intro-section .left,
 .leaderboard-intro-section .right {
-     width: 78%;   
-     display: block;
-     position: static;
-     float: none;
-     clear: both;
-     text-align: center;
+    
+    @include large-mobile {
+         width: 78%;   
+         display: block;
+         position: static;
+         float: none;
+         clear: both;
+         text-align: center;
+    }
 }
 
 .leaderboard-intro-section .left {
