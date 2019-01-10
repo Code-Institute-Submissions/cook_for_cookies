@@ -86,21 +86,29 @@ function createThisRecipeData(recipe, ingredients) {
             sortedInstructions.forEach(function(instruction) {
                 
                 var newInstructionRow = "<tr class='inserted-instruction-row' id='" 
-                + instruction.step 
-                + "'><td class='step-no'>" 
-                + instruction.step 
-                + "</td><td>" 
-                + instruction.instruction 
-                + "</td><td><i class='remove remove-instruction fas fa-minus-square' type='button'></i></td></tr>";
+                    + instruction.step 
+                    + "'><td class='step-no'>" 
+                    + instruction.step 
+                    + "</td><td>" 
+                    + instruction.instruction 
+                    + "</td><td><i class='remove remove-instruction fas fa-minus-square' type='button'></i></td></tr>";
                 
-                $('.instructions-list-table').after(newInstructionRow);
+                $('.instructions-table-header').after(newInstructionRow);
             });    
         } else {
             sortedInstructions.forEach(function(instruction) {
-                var newInstructionRow = "<tr class='inserted-instruction-row' id='" + instruction.step + "><td>" + instruction.step + "</td><td>" + instruction.instruction + "</td></tr>";
-                $('.instructions-list-table').after(newInstructionRow);
+                
+                var newInstructionRow = "<tr class='inserted-instruction-row' id='" 
+                    + instruction.step 
+                    + "'><td class='step-no'>" 
+                    + instruction.step 
+                    + "</td><td>" 
+                    + instruction.instruction 
+                    + "</td><td>";
+                
+                $('.instructions-table-header').after(newInstructionRow);
             });
-         }
+        }
     }
     
     $('.new-instructions-box').val("");
@@ -143,6 +151,7 @@ function createThisRecipeData(recipe, ingredients) {
                     $('.ingredients-table-header').after(newIngredientRow);
                 });    
             } else {
+                
                 sortedIngredients.forEach(function(ingredient) {
                     if (ingredient.ingredient_image_url === undefined || ingredient.ingredient_image_url === ""){
                         var imageSrc = defaultIngredientImage;
@@ -293,6 +302,13 @@ function zoomImage(hoverElement, pictureElement){
   });
 }
 
+function toggleMenu(){
+    $('.fa-caret-square-down').on("click", function() {
+        $('.dropdown-menu').toggle("fast");
+        $('.fa-caret-square-down').toggleClass('turn-red');
+    });
+}
+
 // DOCUMENT FUNCTIONS ----------------------------------------------------------
 
 $(document).ready(function() {
@@ -354,5 +370,7 @@ $(document).ready(function() {
     zoomImage('.fa-file-alt', '.leaderboard-intro-bg');
     zoomImage('.sign-up-btn', '.sign-up-bg');
     zoomImage('.log-in-btn', '.log-in-bg');
+    
+    toggleMenu();
     
 });

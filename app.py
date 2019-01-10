@@ -265,7 +265,7 @@ def recipes():
     
     starting_sort_param = '_id'
     starting_filter_field = "_id"
-    starting_filter_value = 1
+    starting_filter_value = "All"
     starting_limit = 9
     
     try:    
@@ -291,10 +291,6 @@ def recipes():
     else:
         filter_field = starting_filter_field
         filter_value = starting_filter_value
-    
-    print(filter_field)
-    print(filter_value)
-    
     
     try:    
         new_limit = int(request.args["limit"])
@@ -524,8 +520,6 @@ def delete_ingredient_from_recipe(recipe_id, ingredient_id):
                 { "$pull": { "recipe_ingredients" : ingredient }},
                 False, True);
                 return json.dumps({'status':'OK'});
-    
-    
     
 @app.route('/delete_instruction_from_recipe/<recipe_id>/<step>', methods=["POST"])
 def delete_instruction_from_recipe(recipe_id, step):
