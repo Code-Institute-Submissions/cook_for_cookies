@@ -8,7 +8,7 @@
 .welcome-message-section img {
     float: left;
     box-sizing: border-box;
-    height: 100vh;
+    height: 740px;
     
 }
 
@@ -16,13 +16,21 @@
     width: 54%;
     
     @include large-tablet {
-        height: 72vh;
+        height: 740x;
         position: relative;
         width: 100%;
     }
     
     @include tablet {
-        height: 100vh;
+        height: 700px;
+    }
+    
+    @include large-mobile {
+        height: 558px;
+    }
+    
+    @include mobile {
+        height: 490px;
     }
 }
 
@@ -295,6 +303,7 @@
     @include tablet {
         width: 100%;
         height: 220px;
+        text-align: center;
     }
 }
 
@@ -308,6 +317,7 @@
     
     @include tablet {
         padding: 54px 0;
+        text-align: center;
     }
     
     @include large-mobile {
@@ -382,6 +392,10 @@
     
     @include large-tablet {
         margin-left: 48px;
+    }
+    
+    @include tablet {
+        margin-left: 0;
     }
 }
 
@@ -491,10 +505,12 @@
     @include tablet {
         flex-wrap: wrap;
         height: 460px;
+        text-align: center;
+        padding: 0 58px;
     }
     
     @include large-mobile {
-        padding-bottom: 20px;
+        padding: 0 0 20px;
     }
 }
 
@@ -562,9 +578,17 @@
 .sign-up-section,
 .log-in-section {
     margin-top: 65px;
-    min-height: 800px;
+    min-height: 80vh;
     @extend %centralise-inner-container;
     background-color: rgba(100,100,70,.4);
+    
+    @include large-tablet {
+        margin-top: 58px;
+    }
+    
+    @include large-mobile {
+        margin-top: 56px;
+    }
 }
 
 .sign-up-section-content,
@@ -575,8 +599,21 @@
     background-color: $white;
 }
 
+.log-in-section .container {
+    margin: 20px auto;
+    
+    @include large-mobile {
+        margin: 0px auto;
+        width: 100%;
+    }
+}
+
 .sign-up-section-content {
     border-radius: 26px 26px 0 0;
+    
+    @include large-mobile {
+        border-radius: 0;
+    }
 }
 
 .log-in-section-content,
@@ -585,12 +622,22 @@
     margin: 0 auto;
     padding: 20px 0 50px;
     box-sizing: border-box;
+    
+    @include large-mobile {
+        width: 100%;
+        max-width: none;
+        padding: 20px 0 18px;
+    }
 }
 
 .log-in-form-container,
 .sign-up-form-container {
     padding: 0px 0 20px;
     border-radius: 0 0 26px 26px;
+    
+    @include large-mobile {
+        border-radius: 0;
+    }
 }
 
 .sign-up-section-content p,
@@ -609,6 +656,10 @@
     position: relative;
     width: 400px;
     top: 2px;
+    
+    @include large-mobile {
+        width: 100%;
+    }
 }
 
 // User photo pop up -----------------------------------------------------------
@@ -698,16 +749,38 @@
     position: sticky;
     top: 65px;
     z-index: 3;
+    
+    @include tablet {
+        top: 58px;
+    }
 }
 
 .recipe-content-container {
     margin: 0 auto 20px;
+    
+    @include tablet {
+        margin: 0 auto 8px;
+    }
+    
+    @include large-mobile {
+        padding: 32px 20px 8px;
+    }
+    
+    @include mobile {
+        padding: 8px 20px 0px;
+    }
 }
 
 .recipe-container img {
-    width: 160px;
+    width: 50%;
     height: 150px;
     float: left;
+}
+
+.recipe-container .recipe-info-container {
+    width: 50%;
+    display: inline-block;
+    text-align: left;
 }
 
 .recipe-container .next-recipes-btn {
@@ -719,6 +792,12 @@
     color: $black;
     border-color: $black;
     padding: 2px 0;
+    
+    @include tablet {
+        font-size: 9px;
+        margin: 8px 2px;
+        width: 80px;
+    }
 }
 
 .recipe-container .next-recipes-btn:hover {
@@ -728,9 +807,33 @@
 .recipe-container .filter-btn-row {
     top: 225px;
     background-color: white;
+    z-index: 5;
+    @extend %centralise-inner-container;
+    
+    @include tablet {
+        top: 213px;
+    }
+    
+    @include large-mobile {
+        top: 235px;
+    }
 }
+
+.filter-btn-row .container {
+    width: auto;
+    text-align: center;
+    
+    @include large-mobile {
+        padding-bottom: 10px;
+    }
+}
+
 .recipe-container .filter-btn-row:nth-of-type(1) {
     position: sticky;
+    
+    @include mobile {
+        position: static;
+    }
 }
 
 .dropdown-box {
@@ -742,6 +845,14 @@
 .dropdown-options,
 .dropdown-options a {
     width: 200px;
+    
+    @include large-tablet {
+        width: 106px;
+    }
+    
+    @include large-mobile {
+        width: 152px;
+    }
 }
 
 .dropdown-box .dropbtn {
@@ -750,17 +861,25 @@
 
 .dropdown-box {
     display: inline-block;
-    position: absolute;
-    background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    
+    @include large-tablet {
+        min-width: 92px;
+    }
 }
 
 .dropdown-options {
     display: none;
-    max-height: 500px;
+    max-height: 470px;
     overflow: auto;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f9f9f9;
+    
+    @include tablet {
+        max-height: 300px;
+    }
 }
 
 .dropdown-box:hover .dropdown-options{
@@ -776,6 +895,11 @@
     display: block;
     text-align: left;
     box-sizing: border-box;
+    
+    @include large-tablet {
+        font-size: 12px;    
+    }
+    
 }
 
 .dropdown-options a:hover {
@@ -785,6 +909,10 @@
 .recipe-container .filter-display {
     display: inline-block;
     margin: 0 20px;
+    
+    @include tablet {
+        display: none;
+    }
 }
 
 .no-recipes-box {
@@ -801,19 +929,46 @@
 
 .filter-box {
     margin-left: 50px;
+    
+    @include large-tablet {
+        margin-left: 0px;
+    }
 }
 
 .sort-box {
-    margin-left: 266px;
+    margin-left: 40px;
+    
+    @include large-tablet {
+        margin-left: 20px;
+    }
+    
+    @include tablet {
+        margin-left: 0px;
+    }
+}
+
+.center-recipes {
+    text-align: center;
+    vertical-align: middle;
+    max-width: 1122px;
 }
 
 .recipe {
-    margin: 10px 10px 10px 0;
-    width: 30%;
-    float: left;
+    position: relative;
+    box-sizing: border-box;
+    width: 330px;
+    height: 233px;
+    display: inline-block;
     padding: 12px 12px 0;
     background-color: rgb(255, 251, 238);
     @extend %list-item-shadow;
+    margin: 10px 10px;
+    vertical-align: middle;
+    
+    @include mobile {
+        width: 310px;
+        margin: 10px 0;
+    }
 }
 
 .recipe p {
@@ -837,8 +992,7 @@
     transition: all 0s linear;
 }
 
-.recipe-row-top,
-.recipe-row-bottom {
+.recipe-row-top {
     display: block;
 }
 
@@ -846,17 +1000,19 @@
     background-color: #ffefaa;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 .recipe-row-bottom button {
-    margin: 0;
-    height: 42px;
-    margin-top: 10px;
+    margin: 10px 0;
+    position: relative;
+    height: 45px;
+    width: 136px;
 }
 
 a ~ .recipe-row-bottom {
     clear: both;
-    height: 60px;
+    height: 66px;
 }
 
 .inner-delete-recipe-row form .delete-confirmation-message {
@@ -873,8 +1029,11 @@ a ~ .recipe-row-bottom {
     position: absolute;
     z-index: 1;
     background-color: $flame-orange;
-    width: 336px;
-    height: 201px;
+    width: auto;
+    top: 7px;
+    bottom: 7px;
+    left: 7px;
+    right: 7px;
 }
 
 .ingredient img {
@@ -1096,6 +1255,7 @@ a ~ .recipe-row-bottom {
 
 .recipe-info-container p {
     padding: 20px 20px 0;
+    margin: 0;
 }
 
 .recipe-details-container .recipe-name,

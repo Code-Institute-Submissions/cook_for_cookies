@@ -23,9 +23,10 @@ button,
     border: solid 1px $white;
     text-transform: uppercase;
     
-    @include large-mobile {
+    @include tablet {
         width: 110px;
         font-size: 12px;
+        padding: 6px 13px;
     }
 }
 
