@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<div class="page-bg profile-img"></div>
+<div class="page-bg profile-img full-page-bg"></div>
 <div class="user-photo-instructions">
     <h3 class="photo-instructions-header">Use a personalised photo!</h3>
     <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p>
@@ -17,9 +17,9 @@
                 {% endif %}
             </div>
             <div class="user-data">
-                <label for="user_photo">Photo image address</label>
-                <input class="user-photo-input" id="user_photo" name="user_photo" type="text" value="{{ user.user_photo }}" placeholder="Your Photo Image Address (or leave blank)">
-                <i class="fas fa-question-circle user-photo-instructions-btn"></i>
+                <label class="hide-on-mobile" for="user_photo">Photo image address</label>
+                <input class="user-photo-input hide-on-mobile" id="user_photo" name="user_photo" type="text" value="{{ user.user_photo }}" placeholder="Your Photo Image Address (or leave blank)">
+                <i class="fas fa-question-circle user-photo-instructions-btn hide-on-mobile"></i>
                 <div class="data-container">
                     <label for="first-name">First Name</label>
                     <input id="first_name" name="first_name" type="text" value="{{ user.first_name.title() }}" placeholder="First Name">
@@ -27,8 +27,8 @@
                     <input id="surname" name="surname" type="text" value="{{ user.surname.title() }}" placeholder="Surname">
                 </div>
                 <div class="data-container">
-                    <label for="email">Email</label>
-                    <input id="email" name="email" type="email" value="{{ user.email.lower() }}" placeholder="Email Address">
+                    <label for="email">Email (Cannot edit)</label>
+                    <input id="email" name="email" type="email" value="{{ user.email.lower() }}" readonly>
                     <label for="password">Password</label>
                     <input id="password" required minlength="5" name="password" type="password" value="{{ user.password }}" placeholder="Password">
                 </div>

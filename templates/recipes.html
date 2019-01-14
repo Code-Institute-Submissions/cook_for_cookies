@@ -23,22 +23,25 @@
                         {{ filter_value }}
                         {% endif %}
                     </p> 
-                    <div class="dropdown-box filter-box">
-                        <button class="dropbtn">Filter 
-                          <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-options">
-                            <a href="{{ url_for('recipes', offset = 0, filter_field = "_id", filter_value = 1 ) }}">All</a> {% for cusine in cusines %}
-                            <a href="{{ url_for('recipes', offset = 0, filter_field = "cusine", filter_value = cusine ) }}">{{ cusine }}</a> {% endfor %}
+                    <div class="filter-box-container">
+                        <div class="dropdown-box filter-box">
+                            <button class="dropbtn">Filter 
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-options">
+                                <a href="{{ url_for('recipes', offset = 0, filter_field = "author_id", filter_value = author ) }}">My Recipes</a>
+                                <a href="{{ url_for('recipes', offset = 0, filter_field = "_id", filter_value = 1 ) }}">All</a> {% for cusine in cusines %}
+                                <a href="{{ url_for('recipes', offset = 0, filter_field = "cusine", filter_value = cusine ) }}">{{ cusine }}</a> {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="dropdown-box sort-box">
-                        <button class="dropbtn">Sort
-                          <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-options">
-                            <a href="{{ url_for('recipes', offset = 0, sort_param = "_id" ) }}">Latest</a> 
-                            <a href="{{ url_for('recipes', offset = 0, sort_param = "recipe_name" ) }}">Recipe Name</a>
+                        <div class="dropdown-box sort-box">
+                            <button class="dropbtn">Sort
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-options">
+                                <a href="{{ url_for('recipes', offset = 0, sort_param = "_id" ) }}">Latest</a> 
+                                <a href="{{ url_for('recipes', offset = 0, sort_param = "recipe_name" ) }}">Recipe Name</a>
+                            </div>
                         </div>
                     </div>
                 </div>

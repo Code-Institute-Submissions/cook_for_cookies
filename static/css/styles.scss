@@ -177,9 +177,19 @@ ul {
     }
     
     @include large-tablet {
-        height: 62vh;
+        height: 100vh;
         top: -78px;
         min-height: 550px;
+    }
+    
+    @include tablet {
+        min-height: 0;
+    }
+}
+
+.full-page-bg {
+    @include large-tablet {
+        top: 0
     }
 }
 
@@ -218,4 +228,10 @@ textarea:focus, input:focus{
 
 textarea {
     resize: none;
+}
+
+.hide-on-mobile {
+    @include large-mobile {
+        display: none !important;
+    }
 }

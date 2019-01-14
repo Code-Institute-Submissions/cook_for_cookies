@@ -679,6 +679,13 @@
     padding: 38px;
     z-index: 100;
     @extend %box-shadow-large;
+    
+    @include large-tablet {
+        left: 42%;
+        top: 40%;
+        padding: 30px;
+        height: 183px;
+    }
 }
 
 .user-photo-instructions-btn {
@@ -686,6 +693,10 @@
     margin-left: 24px;
     color: $question-dark-blue;
     cursor: pointer;
+    
+    @include large-tablet {
+        font-size: 25px;
+    }
 }
 
 .photo-instructions-header {
@@ -700,12 +711,22 @@
     padding: 5px;
     margin: 10px;
     font-size: 12px;
-    letter-spacing: 1x;
+    letter-spacing: 1px;
+    
+    @include tablet {
+        padding: 4px;
+        font-size: 10px;
+        margin: 8px;
+    }
 }
 
 .photo-instructions-header {
     letter-spacing: 3px;
     margin-top: 0;
+    
+    @include tablet {
+        font-size: 16px;
+    }
 }
 
 // Recipes.html / Ingredients.html ---------------------------------------------
@@ -917,7 +938,7 @@
 
 .no-recipes-box {
     min-height: 200px;
-    padding: 50px 20px 0 0;
+    padding: 50px 20px 0;
 }
 
 .no-recipes-box p {
@@ -925,6 +946,12 @@
     background-color: #e8e4d6;
     border-radius: 20px;
     padding: 10px ;
+    max-width: 410px;
+    margin: 0 auto;
+}
+
+.filter-box-container {
+    display: inline-block;    
 }
 
 .filter-box {
@@ -1537,6 +1564,20 @@ td > img {
     margin-top: 65px;
     min-height: 750px;
     @extend %centralise-inner-container;
+    
+    @include large-tablet {
+        width: 90%;
+        margin: 0 auto;
+        padding: 80px 0 20px;
+        min-height: 100vh;
+    }
+    
+    @include tablet {
+        width: 100%;
+        margin: 0 ;
+        padding: 60px 0 0;
+        min-height: 0px;
+    }
 }
 
 .profile-section img {
@@ -1548,11 +1589,21 @@ td > img {
     padding: 30px;
     border-radius: 20px;
     min-width: 860px;
+    
+    @include large-tablet {
+        min-width: 650px;
+    }
+    
+    @include tablet {
+        min-width: 0;
+        width: 100%;
+        padding: 10px;
+        border-radius: 0;
+    }
 }
 
 .user-data {
     padding: 20px;
-    background-color: slate;
 }
 
 .user-data label {
@@ -1562,10 +1613,35 @@ td > img {
 .data-container {
    float: left; 
    margin: 0 20px 0 0;
+   
+   @include tablet {
+       float: none;
+       width: 43%;
+       box-sizing: border-box;
+       display: inline-block;
+   }
+   
+   @include large-mobile {
+       width: 100%;
+   }
+}
+
+.data-container ~ label {
+    @include large-tablet {
+        clear: both;
+    }
 }
 
 .user-photo-input {
     width: 90%;
+    
+    @include large-tablet {
+       width: 79%;
+   }
+    
+    @include tablet {
+        width: 85%;
+    }
 }
 
 .user-data input {
@@ -1574,4 +1650,9 @@ td > img {
     letter-spacing: 1px;
     margin: 15px 0;
     min-width: 230px;
+    
+    @include tablet {
+       width: 86%;
+       min-width: 0;
+   }
 }

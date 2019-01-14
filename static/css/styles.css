@@ -928,12 +928,21 @@ footer {
   color: #000;
   padding: 38px;
   z-index: 100; }
+  @media (max-width: 1024px) {
+    .user-photo-instructions {
+      left: 42%;
+      top: 40%;
+      padding: 30px;
+      height: 183px; } }
 
 .user-photo-instructions-btn {
   font-size: 40px;
   margin-left: 24px;
   color: #0688fa;
   cursor: pointer; }
+  @media (max-width: 1024px) {
+    .user-photo-instructions-btn {
+      font-size: 25px; } }
 
 .photo-instructions-header {
   padding: 5px;
@@ -946,11 +955,19 @@ footer {
   padding: 5px;
   margin: 10px;
   font-size: 12px;
-  letter-spacing: 1x; }
+  letter-spacing: 1px; }
+  @media (max-width: 768px) {
+    .photo-instructions-para {
+      padding: 4px;
+      font-size: 10px;
+      margin: 8px; } }
 
 .photo-instructions-header {
   letter-spacing: 3px;
   margin-top: 0; }
+  @media (max-width: 768px) {
+    .photo-instructions-header {
+      font-size: 16px; } }
 
 .recipe-section,
 .ingredients-section {
@@ -1125,13 +1142,18 @@ footer {
 
 .no-recipes-box {
   min-height: 200px;
-  padding: 50px 20px 0 0; }
+  padding: 50px 20px 0; }
 
 .no-recipes-box p {
   font-size: 20px;
   background-color: #e8e4d6;
   border-radius: 20px;
-  padding: 10px; }
+  padding: 10px;
+  max-width: 410px;
+  margin: 0 auto; }
+
+.filter-box-container {
+  display: inline-block; }
 
 .filter-box {
   margin-left: 50px; }
@@ -1610,6 +1632,18 @@ td > img {
 .profile-section {
   margin-top: 65px;
   min-height: 750px; }
+  @media (max-width: 1024px) {
+    .profile-section {
+      width: 90%;
+      margin: 0 auto;
+      padding: 80px 0 20px;
+      min-height: 100vh; } }
+  @media (max-width: 768px) {
+    .profile-section {
+      width: 100%;
+      margin: 0;
+      padding: 60px 0 0;
+      min-height: 0px; } }
 
 .profile-section img {
   width: 300px; }
@@ -1619,10 +1653,18 @@ td > img {
   padding: 30px;
   border-radius: 20px;
   min-width: 860px; }
+  @media (max-width: 1024px) {
+    .profile-section .container {
+      min-width: 650px; } }
+  @media (max-width: 768px) {
+    .profile-section .container {
+      min-width: 0;
+      width: 100%;
+      padding: 10px;
+      border-radius: 0; } }
 
 .user-data {
-  padding: 20px;
-  background-color: slate; }
+  padding: 20px; }
 
 .user-data label {
   display: block; }
@@ -1630,9 +1672,28 @@ td > img {
 .data-container {
   float: left;
   margin: 0 20px 0 0; }
+  @media (max-width: 768px) {
+    .data-container {
+      float: none;
+      width: 43%;
+      box-sizing: border-box;
+      display: inline-block; } }
+  @media (max-width: 500px) {
+    .data-container {
+      width: 100%; } }
+
+@media (max-width: 1024px) {
+  .data-container ~ label {
+    clear: both; } }
 
 .user-photo-input {
   width: 90%; }
+  @media (max-width: 1024px) {
+    .user-photo-input {
+      width: 79%; } }
+  @media (max-width: 768px) {
+    .user-photo-input {
+      width: 85%; } }
 
 .user-data input {
   font-size: 18px;
@@ -1640,6 +1701,10 @@ td > img {
   letter-spacing: 1px;
   margin: 15px 0;
   min-width: 230px; }
+  @media (max-width: 768px) {
+    .user-data input {
+      width: 86%;
+      min-width: 0; } }
 
 .leaderboard-intro-bg,
 .sign-up-bg,
@@ -1826,9 +1891,16 @@ ul {
       top: -27px; } }
   @media (max-width: 1024px) {
     .page-bg {
-      height: 62vh;
+      height: 100vh;
       top: -78px;
       min-height: 550px; } }
+  @media (max-width: 768px) {
+    .page-bg {
+      min-height: 0; } }
+
+@media (max-width: 1024px) {
+  .full-page-bg {
+    top: 0; } }
 
 .full-width-div {
   width: 100%; }
@@ -1853,5 +1925,9 @@ textarea:focus, input:focus {
 
 textarea {
   resize: none; }
+
+@media (max-width: 500px) {
+  .hide-on-mobile {
+    display: none !important; } }
 
 /*# sourceMappingURL=styles.css.map */
