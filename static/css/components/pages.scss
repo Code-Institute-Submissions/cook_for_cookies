@@ -773,7 +773,12 @@
     
     @include tablet {
         top: 58px;
+        margin: 0 auto 22px;
     }
+}
+
+.ingredient-content-container p {
+    padding: 0 20px;
 }
 
 .recipe-content-container {
@@ -1068,6 +1073,12 @@ a ~ .recipe-row-bottom {
     height: 80px;
     float: left;
     margin-right: 18px;
+    
+    @include large-mobile {
+        float: none;
+        display: block;
+        margin: 2px auto;
+    }
 }
 
 .ingredient {
@@ -1077,6 +1088,13 @@ a ~ .recipe-row-bottom {
     box-sizing: border-box;
     margin: 10px;
     @extend %list-item-shadow;
+    
+    @include tablet {
+        float:none;
+        display: inline-block;
+        width: 48%;
+        margin: 2px;
+    }
 }
 
 .ingredient p {
@@ -1092,6 +1110,11 @@ a ~ .recipe-row-bottom {
 .ingredient-content-container button {
     font-size: 14px;
     margin: 30px 0;
+    
+    @include tablet {
+        font-size: 11px;
+        margin: 15px 0;
+    }
 }
 
 .fa-exclamation-circle {
@@ -1119,6 +1142,16 @@ a ~ .recipe-row-bottom {
 
 .details-container {
     float:left;
+    
+    @include large-mobile {
+        float: none;
+        
+        p {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+    }
 }
 // Add / Edit ingredient -----------------------------------------------------------
 

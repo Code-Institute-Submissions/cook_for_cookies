@@ -212,6 +212,10 @@ ul {
     @include large-tablet {
         height: 360px;
     }
+    
+    @include large-mobile {
+        height: 265px;
+    }
 }
 
 .img-container {
