@@ -19,6 +19,8 @@
                         Current filter - 
                         {% if filter_value == "1" %}
                         All
+                        {% elif filter_value == user_id %}
+                        My Recipes
                         {% else %}
                         {{ filter_value }}
                         {% endif %}
@@ -29,9 +31,11 @@
                               <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-options">
-                                <a href="{{ url_for('recipes', offset = 0, filter_field = "author_id", filter_value = author ) }}">My Recipes</a>
-                                <a href="{{ url_for('recipes', offset = 0, filter_field = "_id", filter_value = 1 ) }}">All</a> {% for cusine in cusines %}
-                                <a href="{{ url_for('recipes', offset = 0, filter_field = "cusine", filter_value = cusine ) }}">{{ cusine }}</a> {% endfor %}
+                                <a href="{{ url_for('recipes', offset = 0, filter_field = "author", filter_value = user_id ) }}">My Recipes</a>
+                                <a href="{{ url_for('recipes', offset = 0, filter_field = "_id", filter_value = 1 ) }}">All</a> 
+                                {% for cusine in cusines %}
+                                <a href="{{ url_for('recipes', offset = 0, filter_field = "cusine", filter_value = cusine ) }}">{{ cusine }}</a> 
+                                {% endfor %}
                             </div>
                         </div>
                         <div class="dropdown-box sort-box">
@@ -48,7 +52,11 @@
             </div>
             {% if recipes_list == [] %}
             <div class="no-recipes-box">
+                {% if filter_field == "author" %}
+                <p class="center-text">I'm sorry, we can't find any recipes you've added.  Please try another category!</p> 
+                {% else %}
                 <p class="center-text">I'm sorry but there doesn't appear to be any {{ filter_value }} recipes at the moment.  Please try another category!</p> 
+                {% endif %}
             </div>
             {% endif %}
             <div class="center-recipes">

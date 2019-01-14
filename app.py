@@ -135,7 +135,7 @@ def add_new_user():
     else:
         mongo.db.Users.insert_one(request.form.to_dict())
         user_has_logged_in(request.form['email'])
-        flash("Hi {}, thanks for registering.\n  You may now add your own recipes and receive or write reviews!\n Good luck!".format(request.form['first_name']))
+        flash("Hi {}, thanks for registering.\n  You may now add your own recipes and receive or write reviews!\n Good luck!".format(request.form['email']))
         return redirect(url_for('index'))
 
 @app.route('/log_in', methods=["GET", "POST"])
@@ -158,6 +158,10 @@ def log_in():
 def logout():
     session.pop('user', None)
     session.pop('user_id', None)
+    session.pop('sort_param', None)
+    session.pop('filter_value', None)
+    session.pop('filter_field', None)
+    session.pop('limit', None)
     current_user = determine_current_user(session)
     flash("You have logged out. Come back now you hear!")
     return redirect(url_for('index'))
@@ -359,6 +363,7 @@ def recipes():
             id_to_start_from = first_id_in_db[offset]['_id']
     
             recipes = mongo.db.recipes.find({'_id' :{'$lte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
+        
             
         # Sort by recipe_name ..............
         
@@ -389,7 +394,9 @@ def recipes():
     
                 recipes = mongo.db.recipes.find({filter_field : filter_value, sort_param :{'$gte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
         except:
-            recipes = []      
+            recipes = []     
+            
+            print(filter_field)
     
     return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, user_id = user_id, limit = limit, offset = offset, cusines = cusine_list, filter_field = filter_field, filter_value = filter_value, sort_param = sort_param)
 
