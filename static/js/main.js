@@ -90,7 +90,7 @@ function createThisRecipeData(recipe, ingredients) {
                     + "'><td class='step-no'>" 
                     + instruction.step 
                     + "</td><td>" 
-                    + instruction.instruction 
+                    + instruction.instruction
                     + "</td><td><i class='remove remove-instruction fas fa-minus-square' type='button'></i></td></tr>";
                 
                 $('.instructions-table-header').after(newInstructionRow);
@@ -102,9 +102,9 @@ function createThisRecipeData(recipe, ingredients) {
                     + instruction.step 
                     + "'><td class='step-no'>" 
                     + instruction.step 
-                    + "</td><td>" 
-                    + instruction.instruction 
-                    + "</td><td>";
+                    + "</td><td class='grow'>" 
+                    + instruction.instruction
+                    + "</td></tr>";
                 
                 $('.instructions-table-header').after(newInstructionRow);
             });
@@ -141,12 +141,13 @@ function createThisRecipeData(recipe, ingredients) {
                     
                     var newIngredientRow = "<tr class='inserted-ingredient-row' id='" 
                         + idToString(ingredient) 
-                        + "'><td><img src='" 
-                        + imageSrc + "'</td><td>" 
+                        + "'><td>" 
                         + ingredient.ingredient_name 
                         + "</td><td>" 
                         + ingredient.quantity[0] 
-                        + "</td><td><i class='remove remove-ingredient fas fa-minus-square' type='button'></i></td></tr>";
+                        + "</td><td class='hide-on-mobile'><img src='" 
+                        + imageSrc 
+                        + "'</td><td><i class='remove remove-ingredient fas fa-minus-square' type='button'></i></td></tr>";
                         
                     $('.ingredients-table-header').after(newIngredientRow);
                 });    
@@ -161,12 +162,13 @@ function createThisRecipeData(recipe, ingredients) {
                     
                     var newIngredientRow = "<tr class='inserted-ingredient-row' id='" 
                     + idToString(ingredient) 
-                    + "'><td><img src='" 
-                    + imageSrc + "'</td><td>" 
+                    + "'><td class='grow'>" 
                     + ingredient.ingredient_name 
                     + "</td><td>" 
                     + ingredient.quantity[0] 
-                    + "</td></tr>";
+                    + "</td><td class='hide-on-mobile'><img src='" 
+                    + imageSrc 
+                    + "'</td></tr>";
                     
                     $('.ingredients-table-header').after(newIngredientRow);
                 });

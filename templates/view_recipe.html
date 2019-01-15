@@ -17,40 +17,47 @@
         <div class="recipe-details-container">
             <div class="row">
                 <img src="{{ author.user_photo }}"></img>
-                <h2>Posted by</h2>
-                {% if author.first_name == "TBC" %}
-                <p>{{ author.email }}</p>
-                {% else %}
-                <p>{{ author.first_name }} {{ author.surname }}</p>
-                {% endif %}
-                <h2>Cusine Category</h2>
-                <p>{{ this_recipe.cusine }}</p>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="recipe-instructions">
-                    <h2>Recipe Instructions</h2>
-                    <table class="instructions-list-table">
-                        <tr class="instructions-table-header">
-                            <th>Step</th>
-                            <th>Instructions</th>
-                        </tr>
-                    </table>
+                <div class="data">
+                    <div class="data1">
+                        <h2>Posted by</h2>
+                        {% if author.first_name == "TBC" %}
+                        <p>{{ author.email }}</p>
+                        {% else %}
+                        <p>{{ author.first_name }} {{ author.surname }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="data2">
+                        <h2>Cusine Category</h2>
+                        <p>{{ this_recipe.cusine }}</p>
+                    </div>
                 </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="recipe-ingredients">
-                    <h2>Ingredients</h2>
-                    <table class="ingredients-list-table">
-                        <tr class="ingredients-table-header">
-                            <th></th>
-                            <th>Ingredient</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </table>
+            <div class="row instructions-and-ingredients">
+                <div class="instructions-row">
+                    <div class="recipe-instructions">
+                        <h2>Recipe Instructions</h2>
+                        <table class="instructions-list-table">
+                            <tr class="instructions-table-header">
+                                <th>Step</th>
+                                <th>Instructions</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div><!--
+             --><div class="ingredients-row">
+                    <div class="recipe-ingredients">
+                        <h2>Ingredients</h2>
+                        <table class="ingredients-list-table">
+                            <tr class="ingredients-table-header">
+                                <th>Ingredient</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
+            <hr> 
             <div class="row">
                 <a href="{{ url_for( 'recipes', username=username) }} " class="go-back-btn div-btn center-text center-div ">
                     <span>Go back</span>

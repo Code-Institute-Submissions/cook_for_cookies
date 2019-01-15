@@ -1376,6 +1376,10 @@ a ~ .recipe-row-bottom {
 .view-recipe-section,
 .edit-recipe-section {
   margin-top: 65px; }
+  @media (max-width: 1024px) {
+    .view-recipe-section,
+    .edit-recipe-section {
+      margin-top: 58px; } }
 
 .edit-recipe-section {
   background-color: rgba(0, 0, 0, 0.8);
@@ -1399,6 +1403,10 @@ a ~ .recipe-row-bottom {
   height: 350px;
   position: relative;
   top: 1px; }
+  @media (max-width: 500px) {
+    .view-recipe-section .container .image-container img,
+    .edit-recipe-section .container .image-container img {
+      height: 200px; } }
 
 .image-container ~ h1 {
   max-width: 468px;
@@ -1419,6 +1427,10 @@ a ~ .recipe-row-bottom {
   padding: 20px 0;
   border-radius: 20px 20px 0 0; }
 
+@media (max-width: 500px) {
+  .recipe-details-container {
+    padding: 0 10px; } }
+
 .recipe-details-container img {
   height: 50px; }
 
@@ -1432,6 +1444,14 @@ a ~ .recipe-row-bottom {
   display: inline-block;
   clear: none;
   margin: 0 20px 0 0; }
+  @media (max-width: 1024px) {
+    .recipe-details-container img,
+    .recipe-details-container h2,
+    .recipe-details-container p,
+    .recipe-info-container img,
+    .recipe-info-container h2,
+    .recipe-info-container p {
+      margin: 0 10px 0 0; } }
 
 .recipe-info-container p {
   padding: 20px 20px 0;
@@ -1445,6 +1465,21 @@ a ~ .recipe-row-bottom {
 .recipe-info-container .row {
   justify-content: unset;
   margin: 20px 0; }
+  @media (max-width: 1024px) {
+    .recipe-details-container .row,
+    .recipe-info-container .row {
+      justify-content: center; } }
+
+@media (max-width: 500px) {
+  .recipe-details-container .row:nth-of-type(1) {
+    display: block; }
+    .recipe-details-container .row:nth-of-type(1) p {
+      line-height: 16px;
+      margin-bottom: 5px;
+      font-size: 12px; }
+    .recipe-details-container .row:nth-of-type(1) h2 {
+      margin-bottom: 5px;
+      font-size: 14px; } }
 
 .recipe-info-container .row p {
   margin-bottom: 2px; }
@@ -1454,6 +1489,22 @@ a ~ .recipe-row-bottom {
   float: none;
   width: 100%;
   margin-bottom: 20px; }
+  @media (max-width: 768px) {
+    .recipe-instructions h2,
+    .recipe-ingredients h2 {
+      text-align: center; } }
+
+.data1,
+.data2 {
+  display: inline-block; }
+  @media (max-width: 500px) {
+    .data1,
+    .data2 {
+      display: block; }
+      .data1 h2, .data1 p,
+      .data2 h2,
+      .data2 p {
+        float: none; } }
 
 .recipe-instructions p,
 .recipe-instructions th,
@@ -1469,8 +1520,63 @@ a ~ .recipe-row-bottom {
   display: inline-block;
   width: 150px; }
 
+.recipe-instructions td:nth-of-type(1),
+.recipe-instructions th:nth-of-type(1) {
+  min-width: 50px;
+  width: 50px; }
+  @media (max-width: 500px) {
+    .recipe-instructions td:nth-of-type(1),
+    .recipe-instructions th:nth-of-type(1) {
+      min-width: 25px;
+      width: 25px; } }
+
+.recipe-details-container .instructions-and-ingredients {
+  align-items: normal; }
+  @media (max-width: 1024px) {
+    .recipe-details-container .instructions-and-ingredients {
+      display: block; } }
+
+.instructions-and-ingredients .instructions-row,
+.instructions-and-ingredients .ingredients-row {
+  display: inline-block;
+  box-sizing: border-box;
+  padding-top: 20px; }
+  @media (max-width: 1024px) {
+    .instructions-and-ingredients .instructions-row,
+    .instructions-and-ingredients .ingredients-row {
+      display: block;
+      width: 80%;
+      margin: 0 auto; } }
+  @media (max-width: 500px) {
+    .instructions-and-ingredients .instructions-row,
+    .instructions-and-ingredients .ingredients-row {
+      padding-top: 5px;
+      width: 90%; } }
+
+.instructions-row {
+  width: 55%; }
+  @media (max-width: 1024px) {
+    .instructions-row {
+      border-bottom: solid 1px #9a9a9a; } }
+
+.ingredients-row {
+  width: 40%;
+  border-left: solid 1px #9a9a9a;
+  padding-left: 40px; }
+  @media (max-width: 1024px) {
+    .ingredients-row {
+      border-left: none;
+      padding-left: 0px; } }
+
+.recipe-instructions th,
+.ingredients-table-header th {
+  color: #ff0000; }
+
+.recipe-instructions td:nth-of-type(2) {
+  width: unset; }
+
 .inserted-ingredient-row td:nth-of-type(3) {
-  width: 265px; }
+  width: 50px; }
 
 .ingredients-table-header td,
 .inserted-ingredient-row th,
@@ -1488,6 +1594,12 @@ a ~ .recipe-row-bottom {
   letter-spacing: 0.5px;
   font-size: 16px; }
 
+.recipe-ingredients .no-ingredients-row td,
+.recipe-instructions .no-instructions-row td {
+  width: 100%;
+  white-space: normal;
+  margin-bottom: 38px; }
+
 .pg-header-container {
   margin: 20px 0 10px; }
 
@@ -1502,6 +1614,15 @@ a ~ .recipe-row-bottom {
 .edit-recipe-container input {
   width: 300px;
   margin-right: 20px; }
+
+.recipe-details-section {
+  min-height: 650px; }
+  @media (max-width: 768px) {
+    .recipe-details-section {
+      min-height: 500px; } }
+  @media (max-width: 500px) {
+    .recipe-details-section {
+      min-height: 300px; } }
 
 .recipe-details-1,
 .recipe-details-2,
@@ -1561,13 +1682,22 @@ a ~ .recipe-row-bottom {
   display: flex;
   align-items: center;
   background-color: #fff;
-  margin: 10px;
+  margin: 1px 10px;
   padding: 5px; }
+  @media (max-width: 500px) {
+    .inserted-ingredient-row {
+      margin: 0;
+      padding: 0;
+      min-height: 45px; } }
 
 .ingredients-table-header th,
 .inserted-ingredient-row td {
   margin: 0;
-  width: 190px; }
+  width: 160px; }
+  @media (max-width: 500px) {
+    .ingredients-table-header th,
+    .inserted-ingredient-row td {
+      width: 50%; } }
 
 td > img {
   width: 50px;
@@ -1616,16 +1746,21 @@ td > img {
   min-width: 800px;
   margin: 0 20px 0 0; }
 
-.inserted-instruction-row {
+.recipe-instructions .inserted-instruction-row,
+.recipe-instructions .inserted-ingredient-row {
   display: flex;
   align-items: center;
-  height: 50px;
+  min-height: 45px;
   background-color: #fff;
-  margin: 10px; }
+  font-size: 16px; }
 
 .instructions-list-table,
 .ingredients-list-table {
   display: none; }
+  @media (max-width: 500px) {
+    .instructions-list-table,
+    .ingredients-list-table {
+      width: 100%; } }
 
 .recipe-existing-instructions,
 .recipe-existing-ingredients {
@@ -1803,6 +1938,7 @@ h1 {
   max-width: 1122px;
   margin: 0 auto; }
 
+.row:after,
 section:after,
 .full-length-recipe-row:after,
 .ingredient-row:after,
