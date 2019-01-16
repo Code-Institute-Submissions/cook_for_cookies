@@ -73,7 +73,7 @@ function createThisRecipeData(recipe, ingredients) {
     if (recipe.recipe_instructions === undefined || recipe.recipe_instructions.length === 0){
         if ($('.no-instructions-row').length === 0){
             $('.instructions-table-header').hide();
-            newInstructionRow = "<tr class='no-instructions-row spill-text'><td> There are currently no instructions for this recipe.</td>";
+            newInstructionRow = "<tr class='no-instructions-row '><td> There are currently no instructions for this recipe.</td>";
             $('.instructions-list-table').after(newInstructionRow);    
         }
     } else {
@@ -178,7 +178,7 @@ function createThisRecipeData(recipe, ingredients) {
         // This adds a line to the page if there are no ingredients to display
         if ($('.no-ingredients-row').length === 0){
             $('.ingredients-table-header').hide();
-            newIngredientRow = "<tr class='no-ingredients-row spill-text'><td> There are currently no ingredients for this recipe.</td>";
+            newIngredientRow = "<tr class='no-ingredients-row'><td> There are currently no ingredients for this recipe.</td>";
             $('.ingredients-list-table').after(newIngredientRow);
         }
     }

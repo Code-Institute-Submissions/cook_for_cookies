@@ -1006,7 +1006,7 @@
     vertical-align: middle;
     
     @include mobile {
-        width: 310px;
+        width: 305px;
         margin: 10px 0;
     }
 }
@@ -1167,6 +1167,10 @@ a ~ .recipe-row-bottom {
     margin-top: 65px;
     min-height: 750px;
     @extend %centralise-inner-container;
+    
+    @include large-tablet {
+        min-height: 100vh;
+    }
 }
 
 .add-edit-ingredient-section .container {
@@ -1174,6 +1178,16 @@ a ~ .recipe-row-bottom {
     padding: 30px;
     background-color: $white;
     border-radius: 20px;
+    
+    @include large-tablet {
+        min-width: 650px;
+    }
+    
+    @include tablet {
+        min-width: 90%;
+        box-sizing: border-box;
+        border-radius: 0px;
+    }
 }
 
 .add-edit-ingredient-section p {
@@ -1202,6 +1216,11 @@ a ~ .recipe-row-bottom {
 .add-edit-ingredient-section img {
     width: 360px;
     height: 250px;
+    
+    @include large-mobile {
+        width: 256px;
+        height: 200px;
+    }
 }
 // Add_recipe.html -------------------------------------------------------------
 

@@ -13,7 +13,7 @@
         <form action="{{ url_for('insert_ingredient', recipe_id=recipe_id) }}" method="POST">
             <ul class="new-user-form">
                 <li><input class="text-input" id="ingredient_name" name="ingredient_name" type="text" placeholder="Ingredient Name" maxlength="36" required></li>
-                <li>
+                <li class="hide-on-mobile">
                     <input class="text-input" id="ingredient_image_url" name="ingredient_image_url" type="text" placeholder="Ingredient photo image address (or leave blank)">
                     <i class="fas fa-question-circle user-photo-instructions-btn"></i>
                 </li>

@@ -1201,7 +1201,7 @@ footer {
   vertical-align: middle; }
   @media (max-width: 320px) {
     .recipe {
-      width: 310px;
+      width: 305px;
       margin: 10px 0; } }
 
 .recipe p {
@@ -1324,12 +1324,23 @@ a ~ .recipe-row-bottom {
 .add-edit-ingredient-section {
   margin-top: 65px;
   min-height: 750px; }
+  @media (max-width: 1024px) {
+    .add-edit-ingredient-section {
+      min-height: 100vh; } }
 
 .add-edit-ingredient-section .container {
   min-width: 900px;
   padding: 30px;
   background-color: #fff;
   border-radius: 20px; }
+  @media (max-width: 1024px) {
+    .add-edit-ingredient-section .container {
+      min-width: 650px; } }
+  @media (max-width: 768px) {
+    .add-edit-ingredient-section .container {
+      min-width: 90%;
+      box-sizing: border-box;
+      border-radius: 0px; } }
 
 .add-edit-ingredient-section p {
   margin-bottom: 30px;
@@ -1352,6 +1363,10 @@ a ~ .recipe-row-bottom {
 .add-edit-ingredient-section img {
   width: 360px;
   height: 250px; }
+  @media (max-width: 500px) {
+    .add-edit-ingredient-section img {
+      width: 256px;
+      height: 200px; } }
 
 .add-recipe-bg {
   top: 0 !important; }
@@ -2096,7 +2111,8 @@ td > img {
   background-image: url("../images/simple-322427-unsplash.jpg"); }
 
 .edit-add-ingredient-bg {
-  background-image: url("../images/adils-photography-419432-unsplash.jpg"); }
+  background-image: url("../images/adils-photography-419432-unsplash.jpg");
+  top: 0 !important; }
 
 .add-recipe-bg,
 .edit-recipe-bg {
