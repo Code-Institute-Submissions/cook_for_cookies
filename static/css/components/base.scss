@@ -147,6 +147,11 @@ nav a:after {
     box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
     background-color: $pop-up-box-yellow;
     z-index: 100;
+    
+    @include tablet {
+        width: 250px;
+        height: 250px;
+    }
 }
 
 .flashed-message {

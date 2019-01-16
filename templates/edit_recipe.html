@@ -38,7 +38,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="row photo-url">
+                    <div class="row photo-url hide-on-mobile">
                         <label for="recipe_image_url">Recipe Photo Image Address</label>
                         <!--
                      --><input id="recipe_image_url" name="recipe_image_url" value="{{ this_recipe.recipe_image_url }}" type="text" placeholder="Your Photo Image Address (or leave blank)">
@@ -57,7 +57,7 @@
                 <table class="instructions-list-table">
                     <tr class="instructions-table-header">
                         <th>Step</th>
-                        <th>Instructions</th>
+                        <th class="text-left">Instructions</th>
                         <th></th>
                     </tr>
                 </table>
@@ -76,9 +76,9 @@
             <div class="recipe-existing-ingredients section-3-data">
                 <table class="ingredients-list-table">
                     <tr class="ingredients-table-header">
-                        <th></th>
                         <th>Ingredient</th>
                         <th>Quantity</th>
+                        <th></th>
                     </tr>
                 </table>
             </div>

@@ -61,6 +61,7 @@ a:after,
     clear: both;
     display: block;
     width: 100%;
+    box-sizing: border-box;
 }
 
 p {
@@ -158,6 +159,14 @@ select {
     font-family: 'Oswald', sans-serif;
     letter-spacing: 1px;
     margin: 15px 0;
+    
+    @include large-tablet {
+        font-size: 19px;
+    }
+    
+    @include large-mobile {
+        font-size: 12px;
+    }
 }
 
 ul {
@@ -239,4 +248,8 @@ textarea {
     @include large-mobile {
         display: none !important;
     }
+}
+
+.text-left {
+    text-align: left;
 }
