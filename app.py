@@ -104,6 +104,18 @@ def recipe_already_exists(new_recipe_name):
     
 #     return new_recipe_ingredients_list
                 
+
+# Recipe Review Functions ------------------------------------------------------
+
+def review_is_present(review_db, user):
+    try:
+        for review in review_db:
+            if review["reviewing_user"] == user:
+                return "Yes"
+        return "No"
+    except:
+        return "No"
+    
                 
 # Views ------------------------------------------------------------------------
 
@@ -205,6 +217,7 @@ def update_user(username):
 @app.route('/ingredients')
 def ingredients():
     current_user = determine_current_user(session)
+    
     ingredients = mongo.db.ingredients.find().sort([("ingredient_name", 1)])
     return render_template("ingredients.html", ingredients_list = ingredients, page_title="Ingredients", username=current_user)
 
@@ -438,7 +451,17 @@ def view_recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     author = mongo.db.Users.find_one({"_id": ObjectId(the_recipe["author"])})
     
-    return render_template("view_recipe.html", page_title="View Recipe", cusines=cusine_list, this_recipe=the_recipe, username=current_user, author=author)
+    if mongo.db.recipe_comments.find({"reviewed_recipe_id": recipe_id}).count() == 0:
+        print("Count is zero")
+        the_reviews = "None"
+    else:
+        the_reviews = mongo.db.recipe_comments.find({"reviewed_recipe_id": recipe_id}).sort([("_id", -1)])
+
+    already_reviewed = review_is_present(the_reviews, current_user)
+    
+    return render_template("view_recipe.html", page_title="View Recipe", 
+        cusines=cusine_list, this_recipe=the_recipe, username=current_user, 
+        author=author, already_reviewed = already_reviewed)
 
 @app.route('/update_recipe/<section>/<recipe_id>', methods=["POST"])
 def update_recipe(section, recipe_id):
@@ -540,6 +563,18 @@ def delete_instruction_from_recipe(recipe_id, step):
             { "$pull": {"recipe_instructions" : instruction}},
             False, True);
             return json.dumps({'status':'OK'});
+
+@app.route('/add_review_to_recipe/<recipe_id>/<reviewing_user>', methods=["POST"])
+def add_review(recipe_id, reviewing_user):
+    
+    mongo.db.recipe_comments.insert_one({
+        "reviewed_recipe_id": recipe_id,
+        "reviewing_user": reviewing_user,
+        "review_comments" : request.form["review-comments"],
+        "review_score" : request.form["review-score"]
+        })
+    
+    return redirect(url_for('view_recipe', recipe_id=recipe_id))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

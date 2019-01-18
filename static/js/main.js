@@ -2,6 +2,7 @@
 
 var ingredientDatabaseURL = "https://api.mlab.com/api/1/databases/onlinecookbook/collections/ingredients?apiKey=s7gyGaddJoxspRO2AkhmKaO0Wz0d_HH9";
 var recipeDatabaseURL = 'https://api.mlab.com/api/1/databases/onlinecookbook/collections/recipes?apiKey=s7gyGaddJoxspRO2AkhmKaO0Wz0d_HH9';
+var reviewsDatabaseURL = 'https://api.mlab.com/api/1/databases/onlinecookbook/collections/recipe_comments?apiKey=s7gyGaddJoxspRO2AkhmKaO0Wz0d_HH9';
 
 var defaultIngredientImage = "https://images.unsplash.com/photo-1538140177897-d71d1643349e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058d4a817fafacf72008b4fe55a4f07f&auto=format&fit=crop&w=500&q=60"
 
@@ -21,10 +22,10 @@ function sortIngredients(a, b) {
     return comparison;
 }
 
-
 function removeExistingRows() {
     $('.inserted-ingredient-row').remove();
     $('.inserted-instruction-row').remove();
+    $('.inserted-reviews-row').remove();
 }
 
 function showDataRows(){
@@ -36,6 +37,7 @@ function loadData() {
     Promise.all([
         fetch(recipeDatabaseURL).then(response => response.json()).catch(),
         fetch(ingredientDatabaseURL).then(response => response.json()).catch(),
+        fetch(reviewsDatabaseURL).then(response => response.json()).catch(),
         removeExistingRows()
     ]).then((response) => {
         prepareData(response);
@@ -59,21 +61,22 @@ function prepareData(data) {
     const thisRecipeID = $('#recipe-id').val();
     const recipeData = data[0];
     const ingredientData = data[1];
+    const reviewData = data[2];
     
     recipeData.forEach(function(recipe) {
         var stringId = idToString(recipe);
         if (thisRecipeID === stringId) {
             let thisRecipe = recipe;
-            createThisRecipeData(thisRecipe, ingredientData);
+            createThisRecipeData(thisRecipe, ingredientData, reviewData);
         }
     });
 }
 
-function createThisRecipeData(recipe, ingredients) {
+function createThisRecipeData(recipe, ingredients, reviews) {
     if (recipe.recipe_instructions === undefined || recipe.recipe_instructions.length === 0){
         if ($('.no-instructions-row').length === 0){
             $('.instructions-table-header').hide();
-            newInstructionRow = "<tr class='no-instructions-row '><td> There are currently no instructions for this recipe.</td>";
+            newInstructionRow = "<tr class='no-instructions-row '><td> There are currently no instructions for this recipe.</td></tr>";
             $('.instructions-list-table').after(newInstructionRow);    
         }
     } else {
@@ -178,15 +181,65 @@ function createThisRecipeData(recipe, ingredients) {
         // This adds a line to the page if there are no ingredients to display
         if ($('.no-ingredients-row').length === 0){
             $('.ingredients-table-header').hide();
-            newIngredientRow = "<tr class='no-ingredients-row'><td> There are currently no ingredients for this recipe.</td>";
+            newIngredientRow = "<tr class='no-ingredients-row'><td> There are currently no ingredients for this recipe.</td></tr>";
             $('.ingredients-list-table').after(newIngredientRow);
         }
     }
-
+    
+    var thisRecipesReviews = [];
+    
+    reviews.forEach(function(review){
+        thisRecipeID = idToString(recipe)
+        if(thisRecipeID === review.reviewed_recipe_id){
+            thisRecipesReviews.push(review);
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+    });
+    
+    if (thisRecipesReviews.length !== 0) {
+         $('.reviews-table-header').show();
+        console.log("reviews here");
+        
+        thisRecipesReviews.forEach(function(review) {
+            var newReviewRow = "<tr class='inserted-reviews-row' id='" 
+            + idToString(review) 
+            + "'><td>" 
+            + review.review_comments 
+            + "</td><td>" 
+            + review.review_score
+            + "</td><td class='hide-on-mobile'>" 
+            + review.reviewing_user
+            + "</td></tr>";
+            
+            $('.reviews-table-header').after(newReviewRow);
+        });
+        
+        var recipeScore = calcRecipeScore(thisRecipesReviews);
+        console.log(recipeScore)
+        
+        $('.recipe-score').text("User rating: " + recipeScore);
+        
+    } else {
+        // This adds a line to the page if there are no reviews to display
+        $('.reviews-table-header').hide();
+        noReviewRow = "<tr class='no-review-row'><td> There are currently no Reviews for this recipe.</td></tr>";
+        $('.reviews-table').after(noReviewRow);
+    }
+    
     $('.ingredient-box').val("");
     // This will enable the user to remove ingredients without having to reload the page and acts as both a listener and a function to action call
     removeIngredient();
     removeInstruction();
+}
+
+function calcRecipeScore(reviews_list){
+    let total_score = 0;
+    reviews_list.forEach(function(review){
+        total_score += Number(review.review_score);
+    });
+    
+    avg_score = total_score / reviews_list.length;
+    
+    return avg_score;
 }
 
 function updateRecipe(section) {
@@ -212,8 +265,6 @@ function updateRecipe(section) {
         }
     });
 }
-
-
 
 function dataToJSON(databaseExtract) {
 

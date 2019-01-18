@@ -1402,6 +1402,11 @@ a ~ .recipe-row-bottom {
 
 .recipe-details-container img {
     height: 50px;
+    float: left;
+    
+    @include large-mobile {
+        margin: 0 auto !important;
+    }
 }
 
 .recipe-details-container img,
@@ -1410,7 +1415,6 @@ a ~ .recipe-row-bottom {
 .recipe-info-container img,
 .recipe-info-container h2,
 .recipe-info-container p {
-    float: left;
     display: inline-block;
     clear: none;
     margin: 0 20px 0 0;
@@ -1595,6 +1599,88 @@ a ~ .recipe-row-bottom {
     margin-bottom: 38px;
 }
 
+.view-recipe-section ~ .reviews-section {
+    margin: 20px auto;
+    padding-bottom: 20px;
+    min-height: 25vh;
+    
+    .reviews-section-row {
+        width: 80%;
+        margin: 0px auto;
+    }
+}
+
+.recipe-details-container .review-heading {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.user-new-review form {
+    width: 100%;
+    
+    @include large-mobile {
+        text-align: center;
+    }
+    
+    button {
+        margin-bottom: 20px;
+    }
+    
+}
+    
+.user-new-review input {
+    font-size: 18px;
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    margin: 40px 0;
+    
+    @include large-mobile {
+        width: 80%;
+    }
+}
+
+.user-new-review input:nth-of-type(2) {
+    width: 10%;
+    
+    @include large-mobile {
+        width: 15%;
+    }
+}
+
+.reviews-table,
+.reviews-table-header {
+    width: 100%;
+    
+    tr {
+        height: 50px;
+    }
+}
+
+.reviews-table-header {
+    display: none;
+    
+    th, td {
+        text-align: left;
+        min-width: 100px;
+    }
+    
+    th:nth-of-type(1), td:nth-of-type(1) {
+        min-width: 50%;
+    }
+    
+    th {
+        color: $fire-red;
+    }
+    
+    th:nth-of-type(2), td:nth-of-type(2) {
+        
+        @include large-mobile {
+            min-width: 20px;    
+        }
+    }
+}
+
 // Edit Recipes ----------------------------------------------------------------
 
 .edit-recipe-bg {
@@ -1644,18 +1730,6 @@ a ~ .recipe-row-bottom {
     
     @include large-mobile {
         width: 237px;
-    }
-}
-
-.recipe-details-section {
-    min-height: 650px;
-    
-    @include tablet {
-        min-height: 500px;
-    }
-    
-    @include large-mobile {
-        min-height: 300px;
     }
 }
 

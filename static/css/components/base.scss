@@ -44,9 +44,12 @@ nav ul {
     }
 }
 
+nav ul {
+    float: right;
+}
+
 nav ul,
 nav ul li {
-    float: right;
     
     @include tablet {
         background-color: $black;
@@ -58,7 +61,7 @@ nav ul li {
 }
 
 nav ul li {
-    display: block;
+    display: inline-block;
     margin: 5px 30px;
     background-color: $black;
     padding: 5px;

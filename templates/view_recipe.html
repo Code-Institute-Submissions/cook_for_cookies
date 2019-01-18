@@ -30,6 +30,10 @@
                         <h2>Cusine Category</h2>
                         <p>{{ this_recipe.cusine }}</p>
                     </div>
+                    <div class="data2">
+                        <h2 class="recipe-score">Unrated</h2>
+                        <p></p>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -63,7 +67,31 @@
                     <span>Go back</span>
                 </a>
             </div>
+            <hr>
         </div>
     </div>
+</section>
+<section class="reviews-section container">
+    <div class="row reviews-section-row">
+        <!--To add a review, the user must be logged in, this must not be the users own recipe and the user must not have already reviewed the recipe-->
+        <h2 class="review-heading">Reviews</h2>
+        {% if username != "guest" and author.email != username and already_reviewed != "Yes" %}
+        <p>Have you tried this recipe?  Provide a review and let the World know your thoughts!</p> 
+        <div class="row user-new-review">
+            <form action="{{ url_for('add_review', recipe_id = this_recipe._id, reviewing_user = username ) }}" method="POST">
+                <input class="review-comments" type="text" id="review-comments" name="review-comments" placeholder="Please feel free to add a review of this recipe here!" maxlength="200" required>
+                <input class="review-score" type="number" id="review-score" name="review-score" placeholder="Score" min="0" max="5" required>
+                <button type="submit">Add Review</button>
+            </form>
+        </div>
+        {% endif %}
+        <table class="reviews-table">
+            <tr class=reviews-table-header>
+                <th>User Comments</th> 
+                <th>User Score</th> 
+                <th class="hide-on-mobile">User email</th> 
+            </tr> 
+        </table>
+    </div> 
 </section>
 {% endblock %}
