@@ -216,13 +216,13 @@ function createThisRecipeData(recipe, ingredients, reviews) {
         var recipeScore = calcRecipeScore(thisRecipesReviews);
         console.log(recipeScore)
         
-        $('.recipe-score').text("User rating: " + recipeScore);
+        $('.recipe-score ~ p').text(recipeScore);
         
     } else {
         // This adds a line to the page if there are no reviews to display
         $('.reviews-table-header').hide();
         noReviewRow = "<tr class='no-review-row'><td> There are currently no Reviews for this recipe.</td></tr>";
-        $('.reviews-table').after(noReviewRow);
+        $('.reviews-table-header').after(noReviewRow);
     }
     
     $('.ingredient-box').val("");
@@ -425,5 +425,4 @@ $(document).ready(function() {
     zoomImage('.log-in-btn', '.log-in-bg');
     
     toggleMenu();
-    
 });

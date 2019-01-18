@@ -1364,7 +1364,7 @@ a ~ .recipe-row-bottom {
     }
     
     @include large-mobile {
-        height: 200px;
+        height: 250px;
     }
 }
 
@@ -1475,6 +1475,12 @@ a ~ .recipe-row-bottom {
     @include tablet {
         text-align: center;
     }
+}
+
+.data {
+    @include large-mobile {
+        text-align: center;
+    } 
 }
 
 .data1,
