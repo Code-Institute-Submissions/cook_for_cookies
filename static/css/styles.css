@@ -1459,7 +1459,7 @@ a ~ .recipe-row-bottom {
 .edit-recipe-section .container:nth-of-type(1) {
   width: 100%;
   max-width: none;
-  min-height: 250px; }
+  min-height: 202px; }
 
 .view-recipe-section .container:nth-of-type(1) {
   background-color: #000; }
@@ -1481,7 +1481,7 @@ a ~ .recipe-row-bottom {
   @media (max-width: 500px) {
     .view-recipe-section .container .image-container img,
     .edit-recipe-section .container .image-container img {
-      height: 250px; } }
+      height: 202px; } }
 
 .image-container ~ h1 {
   max-width: 468px;

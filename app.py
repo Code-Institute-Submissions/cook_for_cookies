@@ -574,6 +574,11 @@ def add_review(recipe_id, reviewing_user):
         "review_score" : request.form["review-score"]
         })
     
+    mongo.db.recipes.update(
+        {"_id": ObjectId(recipe_id)},
+            { "$push" : { "user_score": int(request.form["review-score"])}
+        })
+    
     return redirect(url_for('view_recipe', recipe_id=recipe_id))
 
 if __name__ == '__main__':

@@ -197,7 +197,6 @@ function createThisRecipeData(recipe, ingredients, reviews) {
     
     if (thisRecipesReviews.length !== 0) {
          $('.reviews-table-header').show();
-        console.log("reviews here");
         
         thisRecipesReviews.forEach(function(review) {
             var newReviewRow = "<tr class='inserted-reviews-row' id='" 

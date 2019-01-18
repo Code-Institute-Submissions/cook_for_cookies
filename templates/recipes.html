@@ -71,7 +71,13 @@
                         {% endif %}
                         <span class="recipe-info-container">
                             <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
-                            <p class="recipe-list-item">Not yet rated</p>
+                            <p class="recipe-list-item">
+                                {% if recipe.user_score %}
+                                    User rating: {{ recipe.user_score|sum / recipe.user_score|count }}
+                                {% else %}
+                                    Not yet rated
+                                {% endif %}
+                            </p>
                         </span>
                     </span>
                     </a>

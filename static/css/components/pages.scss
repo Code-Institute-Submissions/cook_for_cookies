@@ -1340,7 +1340,7 @@ a ~ .recipe-row-bottom {
     @extend %centralise-inner-container;
     width: 100%;
     max-width: none;
-    min-height: 250px;
+    min-height: 202px;
 }
 
 .view-recipe-section .container:nth-of-type(1){
@@ -1364,7 +1364,7 @@ a ~ .recipe-row-bottom {
     }
     
     @include large-mobile {
-        height: 250px;
+        height: 202px;
     }
 }
 
