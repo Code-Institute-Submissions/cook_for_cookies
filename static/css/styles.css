@@ -353,15 +353,19 @@ nav ul li {
   -moz-box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
   box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
   background-color: #f2ff00;
-  z-index: 100; }
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center; }
   @media (max-width: 768px) {
     .round-pop-up-container {
       width: 250px;
       height: 250px; } }
 
 .flashed-message {
-  width: 70%;
-  padding: 86px 20px 20px; }
+  width: 80%;
+  padding: 5px 20px 20px; }
 
 .pop-up-btn {
   margin: 20px auto; }

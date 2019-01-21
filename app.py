@@ -47,11 +47,11 @@ def validate_password_on_log_in(email_given, password_given):
     log_on_validation_status = []
         
     for user in users:
-        if email_given == user["email"] and password_given == user["password"]:
+        if email_given.lower() == user["email"].lower() and password_given == user["password"]:
             user_has_logged_in(email_given)
             log_on_validation_status.append("username & password match")
             break
-        elif email_given == user["email"] and password_given != user["password"]:
+        elif email_given.lower() == user["email"].lower() and password_given != user["password"]:
             log_on_validation_status.append("username found, password incorrect")
             break
         
@@ -362,8 +362,14 @@ def recipes():
         
     if sort_param == "_id":
         sort_order = -1
+    elif sort_param == "user_score":
+        sort_order = 1
+        sort_param = "user_score"
     else:
         sort_order = 1
+    
+    print(sort_param)
+    print(filter_field)
 
     # Execute if no filters applied....
 
@@ -376,6 +382,17 @@ def recipes():
             id_to_start_from = first_id_in_db[offset]['_id']
     
             recipes = mongo.db.recipes.find({'_id' :{'$lte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
+        
+        # Sort by user score ................
+        
+        elif sort_param == "user_score":
+            aggrDB = recipe_db.aggregate([ { '$project' : { "_id" : 1 , 
+                "user_score" : 1, "cusine" : 1, "recipe_image_url" : 1, "author" : 1,
+                "recipe_name" : 1, "average_score" : { '$avg' : { '$ifNull' : ["$user_score", 0 ]} }}}, 
+                { '$sort' : { "average_score" : -1 }}, { '$skip' : offset },
+                { '$limit': limit }])
+    
+            recipes = aggrDB
         
             
         # Sort by recipe_name ..............
@@ -390,6 +407,7 @@ def recipes():
     # If filters applied...        
             
     else:
+        
         try:
             # Sort by latest ................
         
@@ -399,6 +417,17 @@ def recipes():
     
                 recipes = mongo.db.recipes.find({filter_field : filter_value, '_id' :{'$lte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
             
+            # Sort by user score ................
+            
+            elif sort_param == "user_score":
+                aggrDB = recipe_db.aggregate([ { '$project' : { "_id" : 1 , 
+                    "user_score" : 1, "cusine" : 1, "recipe_image_url" : 1, "author" : 1,
+                    "recipe_name" : 1, "average_score" : { '$avg' : { '$ifNull' : ["$user_score", 0 ]} }}}, 
+                    { '$sort' : { "average_score" : -1 }}, { '$match' : { filter_field : filter_value }}, { '$skip' : offset },
+                    { '$limit': limit }])
+        
+                recipes = aggrDB
+            
             # Sort by recipe_name ..............
         
             else:
@@ -407,9 +436,7 @@ def recipes():
     
                 recipes = mongo.db.recipes.find({filter_field : filter_value, sort_param :{'$gte' : id_to_start_from}}).limit(limit).sort([(sort_param, sort_order)])
         except:
-            recipes = []     
-            
-            print(filter_field)
+            recipes = []
     
     return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, user_id = user_id, limit = limit, offset = offset, cusines = cusine_list, filter_field = filter_field, filter_value = filter_value, sort_param = sort_param)
 

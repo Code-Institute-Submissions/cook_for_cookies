@@ -45,12 +45,13 @@
                             <div class="dropdown-options">
                                 <a href="{{ url_for('recipes', offset = 0, sort_param = "_id" ) }}">Latest</a> 
                                 <a href="{{ url_for('recipes', offset = 0, sort_param = "recipe_name" ) }}">Recipe Name</a>
+                                <a href="{{ url_for('recipes', offset = 0, sort_param = "user_score" ) }}">User Rating</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            {% if recipes_list == [] %}
+            {% if recipes_list == [] or recipes_list == "" %}
             <div class="no-recipes-box">
                 {% if filter_field == "author" %}
                 <p class="center-text">I'm sorry, we can't find any recipes you've added.  Please try another category!</p> 
@@ -58,6 +59,8 @@
                 <p class="center-text">I'm sorry but there doesn't appear to be any {{ filter_value }} recipes at the moment.  Please try another category!</p> 
                 {% endif %}
             </div>
+            {% else %}
+            <p>{{ recipes_list.recipe_name }}</p> 
             {% endif %}
             <div class="center-recipes">
                 {% for recipe in recipes_list %}
@@ -72,8 +75,8 @@
                         <span class="recipe-info-container">
                             <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
                             <p class="recipe-list-item">
-                                {% if recipe.user_score %}
-                                    User rating: {{ recipe.user_score|sum / recipe.user_score|count }}
+                                {% if recipe.average_score or recipe.average_score != 0 %}
+                                    User rating: {{ (recipe.user_score|sum / recipe.user_score|count)|round(1, 'ceil') }}
                                 {% else %}
                                     Not yet rated
                                 {% endif %}

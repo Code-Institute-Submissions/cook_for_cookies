@@ -321,6 +321,7 @@ function removeInstruction() {
 function flashedMessage(message) {
     $('.flashed-message').text(message);
     $('.round-pop-up-container').show();
+    $('.round-pop-up-container').css('display', 'flex')
     $('html, body').animate({
                 scrollTop: ($('.edit-recipe-section').offset().top)
             },500);

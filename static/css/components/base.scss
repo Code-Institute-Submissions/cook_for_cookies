@@ -150,6 +150,10 @@ nav a:after {
     box-shadow: 7px 10px 32px -5px rgba(0, 0, 0, 0.75);
     background-color: $pop-up-box-yellow;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     
     @include tablet {
         width: 250px;
@@ -158,8 +162,8 @@ nav a:after {
 }
 
 .flashed-message {
-    width: 70%;
-    padding: 86px 20px 20px;
+    width: 80%;
+    padding: 5px 20px 20px;
 }
 
 .pop-up-btn {
