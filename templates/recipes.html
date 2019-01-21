@@ -75,7 +75,7 @@
                         <span class="recipe-info-container">
                             <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
                             <p class="recipe-list-item">
-                                {% if recipe.average_score or recipe.average_score != 0 %}
+                                {% if recipe.user_score %}
                                     User rating: {{ (recipe.user_score|sum / recipe.user_score|count)|round(1, 'ceil') }}
                                 {% else %}
                                     Not yet rated
