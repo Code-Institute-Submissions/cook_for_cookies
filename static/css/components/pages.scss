@@ -2162,3 +2162,99 @@ td > img {
        min-width: 0;
    }
 }
+
+// Head Chef Section -----------------------------------------------------------
+
+.head-chefs-section {
+    
+    .container, 
+    .outer-container {
+        min-height: 50vh;
+        text-align: center;
+    }
+    
+    .container {
+        padding-bottom: 40px;
+        
+        .para-container {
+            color: $white;
+            width: 80%;
+            margin: 0 auto;
+        }
+        
+        p {
+            padding: 10px;
+            font-size: 23px;
+            line-height: 34px;
+        }
+    }
+    
+    .table-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 200px;
+        
+        tr {
+            color: $white;
+        }
+        
+        table {
+            margin-top: 30px;
+            background-color: $black;
+            border-radius: 20px;
+            min-width: 80%;
+            max-width: 98%;
+        }
+        
+        tr, td, th {
+            padding: 14px;
+        }
+        
+        th {
+            color: $white;
+            padding-top: 30px;
+        }
+        
+        tr:nth-of-type(2) {
+            font-size: 1.6em;
+            color: $fire-red;
+            
+            @include tablet {
+                font-size: 1.3em;
+            }    
+        }
+        
+        tr:nth-of-type(3) {
+            font-size: 1.2em;
+            color: $flame-orange;
+            
+            @include tablet {
+                font-size: 1.3em;
+            }    
+        }
+        
+        tr:nth-of-type(4) {
+            font-size: 1.2em;
+            color: $flame-yellow;
+            
+            @include tablet {
+                font-size: 1.1em;
+            }    
+        }
+        
+        tr:last-of-type td{
+            padding-bottom: 48px;    
+        }
+        
+        @include tablet {
+            th:nth-of-type(2),
+            td:nth-of-type(2),
+            th:nth-of-type(3),
+            td:nth-of-type(3){
+                max-width: 72px;
+            }
+        }
+    }
+    
+}

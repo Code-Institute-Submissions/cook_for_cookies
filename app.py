@@ -608,6 +608,30 @@ def add_review(recipe_id, reviewing_user):
     
     return redirect(url_for('view_recipe', recipe_id=recipe_id))
 
+@app.route('/head_chefs')
+def head_chefs():
+    current_user = determine_current_user(session)
+    recipe_db = mongo.db.recipes
+    
+    aggrDB = recipe_db.aggregate([ {
+        '$unwind' : '$author_email'
+        },
+        { '$lookup' : {
+        'from' : "Users",
+        'localField' : "author_email",
+        'foreignField': "email",
+        'as' : "author_details"}},
+        { '$project' : { "_id" : 1 ,
+        "user_score" : 1, "author" : 1,  
+        "recipe_name" : 1, "email" : "$author_email", "average_score" : { '$avg' : "$user_score" }}},
+        { '$group' : { "_id" : "$author" , "author" : { '$first' : "$author"}, 
+        "score" : { '$avg' : '$average_score' }, "email" : { '$first' : "$email"}, "recipes_count" : { '$sum' : 1 }}},
+        { '$sort' : { "score" : -1 }},
+        { '$limit': 10 }
+        ])
+    
+    return render_template("head_chefs.html", page_title="Head Chefs", username=current_user, table = aggrDB)
+
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),

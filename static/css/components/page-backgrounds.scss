@@ -5,7 +5,8 @@
 .ingredients-bg,
 .profile-img,
 .edit-add-ingredient-bg,
-.add-recipe-bg {
+.add-recipe-bg,
+.head-chefs-bg {
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -55,5 +56,11 @@
 .add-recipe-bg,
 .edit-recipe-bg {
     background-image: url('../images/adils-photography-419432-unsplash.jpg');
+    top: 0 !important;
+}
+
+.head-chefs-bg {
+    background-image: url('../images/nick-karvounis-624439-unsplash.jpg');
+    background-position: top;
     top: 0 !important;
 }

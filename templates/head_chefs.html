@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<div class="page-bg head-chefs-bg"></div>
+<div class="page-bg overlay"></div>
+<section class="head-chefs-section">
+    <div class="header-container center-text">
+        <h1 class="section-title">Head Chefs</h1>
+    </div>
+    <div class="outer-container">
+        <div class="container">
+            <div class="para-container">
+                <p>Well, here they are, the top 10. What a lot of clever people!</p>
+                <p>If you've made the list then congratulations! If not, get adding those recipes fast...</p>
+            </div>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Chefs Email</th>
+                        <th class="hide-on-mobile">Recipes Submitted</th>
+                        <th>Average Score</th>
+                    </tr>
+                    {% for entry in table %}
+                    <tr>
+                        <td>{{ entry.email }}</td>
+                        <td class="hide-on-mobile">{{ entry.recipes_count }}</td>
+                        {% if entry.score != None %}
+                            <td>{{ entry.score|round(1, 'ceil') }}</td>
+                        {% else %}
+                            <td>No reviews</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

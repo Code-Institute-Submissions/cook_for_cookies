@@ -213,9 +213,8 @@ function createThisRecipeData(recipe, ingredients, reviews) {
         });
         
         var recipeScore = calcRecipeScore(thisRecipesReviews);
-        console.log(recipeScore)
         
-        $('.recipe-score ~ p').text(recipeScore);
+        $('.recipe-score ~ p').text(recipeScore.toFixed(2));
         
     } else {
         // This adds a line to the page if there are no reviews to display

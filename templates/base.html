@@ -24,7 +24,7 @@
                 {% endif %}
                 <li class="grow"><a href="{{ url_for('recipes', username=username) }}"><i class="fas fa-utensils nav-icon"></i>Recipes</a></li>
                 <li class="grow"><a href="{{ url_for('ingredients', username=username) }}"><i class="far fa-lemon nav-icon"></i>Ingredients</a></li>
-                <li class="grow"><i class="fas fa-fire nav-icon"></i>Head Chefs</li>
+                <li class="grow"><a href="{{ url_for('head_chefs', username=username) }}"><i class="fas fa-fire nav-icon"></i>Head Chefs</li></a>
                 {% if username != "guest" %}
                 <li class="grow"><a href="{{ url_for('profile', username=username) }}"><i class="fas fa-user nav-icon"></i>Profile</a></li>
                 <li class="grow"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt nav-icon"></i>Logout</a></li>
