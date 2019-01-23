@@ -79,7 +79,7 @@ header {
 .right, .fire-text-quote, .leaderboard-intro-section, .sign-up-section,
 .log-in-section, .recipe-container .filter-btn-row, .inner-delete-recipe-row .row, .add-edit-ingredient-section, .add-a-recipe-section, .view-recipe-section .container:nth-of-type(1),
 .edit-recipe-section .container:nth-of-type(1), .recipe-details-container .row,
-.recipe-info-container .row, .profile-section, .header-container, .img-container {
+.recipe-info-container .row, .please-wait-container, .profile-section, .header-container, .img-container {
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -233,6 +233,21 @@ button:active,
 .slide-in-from-right {
   right: 0; }
 
+.rotate {
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite; }
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
 header {
   width: 100%;
   color: #fff;
@@ -1487,6 +1502,10 @@ a ~ .recipe-row-bottom {
     .view-recipe-section .container .image-container img,
     .edit-recipe-section .container .image-container img {
       height: 202px; } }
+  @media (max-width: 320px) {
+    .view-recipe-section .container .image-container img,
+    .edit-recipe-section .container .image-container img {
+      height: 180px; } }
 
 .image-container ~ h1 {
   max-width: 468px;
@@ -1507,9 +1526,11 @@ a ~ .recipe-row-bottom {
   padding: 20px 0;
   border-radius: 20px 20px 0 0; }
 
-@media (max-width: 500px) {
-  .recipe-details-container {
-    padding: 0 10px; } }
+.recipe-details-container {
+  position: relative; }
+  @media (max-width: 500px) {
+    .recipe-details-container {
+      padding: 0 10px; } }
 
 .recipe-details-container img {
   height: 50px;
@@ -1742,6 +1763,21 @@ a ~ .recipe-row-bottom {
   @media (max-width: 500px) {
     .reviews-table-header th:nth-of-type(2), .reviews-table-header td:nth-of-type(2) {
       min-width: 20px; } }
+
+.please-wait-container {
+  position: absolute;
+  z-index: 1;
+  height: 160px;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  flex-direction: column; }
+  @media (max-width: 500px) {
+    .please-wait-container {
+      height: 190px; } }
+  .please-wait-container p, .please-wait-container i {
+    font-size: 40px;
+    padding: 16px; }
 
 .pg-header-container {
   margin: 20px 0 10px; }

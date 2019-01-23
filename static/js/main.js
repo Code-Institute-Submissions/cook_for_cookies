@@ -41,10 +41,15 @@ function loadData() {
         removeExistingRows()
     ]).then((response) => {
         prepareData(response);
+        $('.please-wait-container').hide();
         showDataRows();
     }).catch((error) => {
         console.log(error);
-        flashedMessage("Oops, an error has occured.  Please try later")
+        flashedMessage("Oops, an error has occured.  Please try later");
+        if($('.please-wait-container').length === 1){
+            $('.please-wait-message').text("Please try later");
+            $('.please-wait-container i').removeClass('rotate');    
+        }
     });
 }
 
@@ -320,10 +325,12 @@ function removeInstruction() {
 function flashedMessage(message) {
     $('.flashed-message').text(message);
     $('.round-pop-up-container').show();
-    $('.round-pop-up-container').css('display', 'flex')
-    $('html, body').animate({
+    $('.round-pop-up-container').css('display', 'flex');
+    if($('.edit-recipe-section').length === 1){
+        $('html, body').animate({
                 scrollTop: ($('.edit-recipe-section').offset().top)
-            },500);
+            },500);    
+    }
 }
 
 function fadeInHomeTitle(delay){
