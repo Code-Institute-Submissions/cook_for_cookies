@@ -10,9 +10,9 @@
     <div class="container">
         <div class="image-container center-text">
             {% if this_recipe.recipe_image_url %}
-            <img class="recipe-img view-recipe-img" src="{{ this_recipe.recipe_image_url }}"></img>
+            <img class="recipe-img view-recipe-img" src="{{ this_recipe.recipe_image_url }}">
             {% else %}
-            <img class="recipe-img view-recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
+            <img class="recipe-img view-recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}">
             {% endif %}
         </div>
         <h1 class="section-title">{{ this_recipe.recipe_name.title() }}</h1>

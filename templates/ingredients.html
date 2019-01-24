@@ -13,9 +13,9 @@
             {% for ingredient in ingredients_list %}
             <div class="ingredient">
                 {% if ingredient.ingredient_image_url %}
-                <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+                <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}" alt="A user provided picture of the specified ingredient">
                 {% else %}
-                <img class="ingredient-img" src="{{ url_for('static', filename='images/valeriy-evtushenko-1077286-unsplash.jpg') }}"></img>
+                <img class="ingredient-img" src="{{ url_for('static', filename='images/valeriy-evtushenko-1077286-unsplash.jpg') }}" alt="A default picture of lots of different ingredients">
                 {% endif %}
                 <div class="details-container">
                     <p class="ingredient-name">{{ ingredient.ingredient_name.title() }}</p>

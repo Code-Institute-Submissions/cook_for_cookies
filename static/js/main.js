@@ -183,7 +183,9 @@ function createThisRecipeData(recipe, ingredients, reviews) {
             }
         } 
     } else {
+        
         // This adds a line to the page if there are no ingredients to display
+        
         if ($('.no-ingredients-row').length === 0){
             $('.ingredients-table-header').hide();
             newIngredientRow = "<tr class='no-ingredients-row'><td> There are currently no ingredients for this recipe.</td></tr>";
@@ -229,12 +231,17 @@ function createThisRecipeData(recipe, ingredients, reviews) {
     }
     
     $('.ingredient-box').val("");
+    
     // This will enable the user to remove ingredients without having to reload the page and acts as both a listener and a function to action call
+    
     removeIngredient();
     removeInstruction();
 }
 
 function calcRecipeScore(reviews_list){
+    
+    // This function takes a list of the reviews for a given recipe and calculates the recipes average score
+    
     let total_score = 0;
     reviews_list.forEach(function(review){
         total_score += Number(review.review_score);

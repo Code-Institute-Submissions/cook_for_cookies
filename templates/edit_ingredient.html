@@ -12,9 +12,9 @@
         <p>Please update the details of this ingredient if needed...</p>
         <form action="{{ url_for('update_ingredient', ingredient_id=ingredient._id) }}" method="POST">
             {% if ingredient.ingredient_image_url %}
-            <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}"></img>
+            <img class="ingredient-img" src="{{ ingredient.ingredient_image_url }}" alt="User provided picture of specified ingredient">
             {% else %}
-            <img class="ingredient-img" src="{{ url_for('static', filename='images/valeriy-evtushenko-1077286-unsplash.jpg') }}"></img>
+            <img class="ingredient-img" src="{{ url_for('static', filename='images/valeriy-evtushenko-1077286-unsplash.jpg') }}" alt="Default picture of a variety of ingredients">
             {% endif %}
             <ul class="new-user-form">
                 <li><input id="ingredient_name" name="ingredient_name" value="{{ ingredient.ingredient_name.title() }}" class="text-input readonly" readonly></li>
@@ -22,18 +22,24 @@
                     <input id="ingredient_image_url" name="ingredient_image_url" type="text" value="{{ ingredient.ingredient_image_url }}" class="text-input" placeholder="Ingredient photo image address (or leave blank)">
                     <i class="fas fa-question-circle user-photo-instructions-btn"></i>
                 </li>
-                <div class="switch">
-                    <label for="allergens">Contains Allergen?</label>
-                    {% if ingredient.allergens %}
-                    <input type="checkbox" name="allergens" id="allergens" checked><span class="slider"></span>
-                    {% else %}
-                    <input type="checkbox" name="allergens" id="allergens"><span class="slider"></span>
-                    {% endif %}
-                </div>
-                <button class="update-ingredient-btn" type="submit">Update</button>
-                <a href="{{ url_for( 'ingredients') }} " class="center-text">
-                    <span class="go-back-btn div-btn">Go back</span>
-                </a>
+                <li>
+                    <div class="switch">
+                        <label for="allergens">Contains Allergen?</label>
+                        {% if ingredient.allergens %}
+                        <input type="checkbox" name="allergens" id="allergens" checked><span class="slider"></span>
+                        {% else %}
+                        <input type="checkbox" name="allergens" id="allergens"><span class="slider"></span>
+                        {% endif %}
+                    </div>
+                </li> 
+                <li>
+                    <button class="update-ingredient-btn" type="submit">Update</button>
+                </li>
+                <li>
+                    <a href="{{ url_for( 'ingredients') }} " class="center-text">
+                        <span class="go-back-btn div-btn">Go back</span>
+                    </a>
+                </li> 
             </ul>
         </form>
     </div>

@@ -2,7 +2,7 @@
 <div class="log-in-bg"></div>
 <section class="log-in-section no-overflow">
     <div class="container">
-        <img class="chef-gif" src="{{ url_for('static', filename='images/chef.webp') }}">
+        <img class="chef-gif" src="{{ url_for('static', filename='images/chef.webp') }}" alt="A Chef from the muppet show hitting pans with a spoon">
         <div class="log-in-section-content center-text">
             <h2 class="section-title uppercase">Log in!</h2>
             <p>Already a member? Great news!</p>
@@ -14,8 +14,8 @@
                     <ul class="log-in-form">
                         <li><input id="email" name="email" type="email" placeholder="Email"></li>
                         <li><input id="password" name="password" type="password" placeholder="Password"></li>
-                        <button class="no-float log-in-btn" type="submit">Submit</button>
                     </ul>
+                    <button class="no-float log-in-btn" type="submit">Submit</button>
                 </div>
             </form>
         </div>

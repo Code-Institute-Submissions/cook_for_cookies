@@ -68,9 +68,9 @@
                     <a href="{{ url_for('view_recipe', username=username, recipe_id=recipe._id) }}">
                     <span class="recipe-row-top container">
                         {% if recipe.recipe_image_url %}
-                        <img class="recipe-img" src="{{ recipe.recipe_image_url }}"></img>
+                        <img class="recipe-img" src="{{ recipe.recipe_image_url }}" alt="A user provided picture of their recipe">
                         {% else %}
-                        <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}"></img>
+                        <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}" alt="A default picture of multiple varieties of food">
                         {% endif %}
                         <span class="recipe-info-container">
                             <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>

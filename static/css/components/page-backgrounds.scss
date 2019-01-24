@@ -15,7 +15,7 @@
     @extend %cover-background;
     transition-property: transform;
     transition-duration: .5s;
-    transition-timing-function: cubic-bezier;
+    transition-timing-function: ease-in-out;
     
 }
 

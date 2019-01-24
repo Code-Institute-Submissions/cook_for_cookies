@@ -146,7 +146,7 @@ button:active,
 .grow-pic {
   transition-property: transform;
   transition-duration: .5s;
-  transition-timing-function: cubic-bezier;
+  transition-timing-function: ease-in-out;
   transform: scale(1.1); }
 
 .link-underline:hover {
@@ -424,7 +424,6 @@ footer {
   width: 54%; }
   @media (max-width: 1024px) {
     .welcome-message-section img {
-      height: 740x;
       position: relative;
       width: 100%; } }
   @media (max-width: 768px) {
@@ -1081,7 +1080,7 @@ footer {
   background-color: #e8e4d6; }
 
 .recipe-container .filter-btn-row {
-  top: 225px;
+  top: 227px;
   background-color: white;
   z-index: 5; }
   @media (max-width: 768px) {
@@ -1880,7 +1879,7 @@ a ~ .recipe-row-bottom {
 
 .ingredient-box option {
   background-color: #fffbee;
-  border: 1px 0 solid #fff; }
+  border: 1px solid #fff; }
 
 .inserted-ingredient-row {
   display: flex;
@@ -2083,7 +2082,6 @@ td > img {
 .inserted-instruction-row,
 .inserted-ingredient-row {
   display: flex;
-  justify-contents: center;
   align-items: center; }
   .inserted-instruction-row td,
   .inserted-ingredient-row td {
@@ -2241,7 +2239,7 @@ td > img {
   top: 0px;
   transition-property: transform;
   transition-duration: .5s;
-  transition-timing-function: cubic-bezier; }
+  transition-timing-function: ease-in-out; }
 
 .home-image {
   background-image: url("../images/bbq.jpg"); }
@@ -2359,7 +2357,8 @@ a:visited {
 .clickable-link {
   display: block; }
 
-.hidden-div {
+.hidden-div,
+.hidden-item {
   display: none; }
 
 .no-float {

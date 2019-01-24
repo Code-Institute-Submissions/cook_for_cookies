@@ -16,7 +16,6 @@
     width: 54%;
     
     @include large-tablet {
-        height: 740x;
         position: relative;
         width: 100%;
     }
@@ -839,7 +838,7 @@
 }
 
 .recipe-container .filter-btn-row {
-    top: 225px;
+    top: 227px;
     background-color: white;
     z-index: 5;
     @extend %centralise-inner-container;
@@ -1847,7 +1846,7 @@ a ~ .recipe-row-bottom {
 
 .ingredient-box option {
     background-color: rgb(255, 251, 238);
-    border: 1px 0 solid $white;
+    border: 1px solid $white;
 }
 
 .inserted-ingredient-row {
@@ -2082,7 +2081,6 @@ td > img {
 .inserted-instruction-row,
 .inserted-ingredient-row {
     display: flex;
-    justify-contents: center;
     align-items: center;
         
         td {

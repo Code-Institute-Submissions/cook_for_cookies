@@ -11,7 +11,7 @@
 .grow-pic {
     transition-property: transform;
     transition-duration: .5s;
-    transition-timing-function: cubic-bezier;
+    transition-timing-function: ease-in-out;
     transform: scale(1.1);
 }
 
