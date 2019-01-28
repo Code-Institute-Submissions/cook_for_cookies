@@ -29,7 +29,7 @@
         <div class="right">
             <div class="content-container">
                 <h2 class="section-title uppercase">So many recipes...</h2>
-                <p>You like delicious?<br><a class="link-underline" href="{{ url_for('recipes', username=username) }}">Try a recipe now ></a></p>
+                <p>You like delicious?  There are currently XXX recipes on the site!<br><a class="link-underline" href="{{ url_for('recipes', username=username) }}">Try a recipe now ></a></p>
             </div>
         </div>
     </div>
@@ -70,5 +70,28 @@
         </div>
     </div>
 </section>
+<section class="stats-section">
+    <div class="container">
+        <div class="row">
+            <h2 class="section-title">On this site...</h2> 
+        </div>
+        <div class="stats row">
+            {% for stat in stats %}
+                {% if stat.keys()[0] != "Total Recipes" and stat.keys()[0] != "Number of Authors"%}
+                    <div class="stat-block">
+                        {{ stat.keys()[0] }} recipes - {{ stat.values()[0] }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            {% for stat in stats %}
+                {% if stat.keys()[0] == "Total Recipes" or stat.keys()[0] == "Number of Authors" %}
+                <div class="stat-block-type2">
+                    {{ stat.keys()[0] }} - {{ stat.values()[0] }}
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div> 
+</section> 
 
 {% endblock %}

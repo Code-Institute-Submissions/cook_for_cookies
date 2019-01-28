@@ -115,8 +115,55 @@ def review_is_present(review_db, user):
         return "No"
     except:
         return "No"
+
+def website_recipe_data(recipes):
+    recipe_data = []
+    authors_data = []
+    recipe_count = 0
     
+    for recipe in recipes:
+        recipe_count += 1
+        for key, value in recipe.items():
+            
+            if key == "cusine":
+                key_type = value
                 
+                if recipe_data == []:
+                        recipe_data.append({ key_type : 1 })
+                else:
+                    for entry in recipe_data:
+                        if entry.keys()[0] == key_type:
+                            existing = "Yes"
+                            break
+                        else:
+                            existing = "No"
+                            
+                    if existing == "No":
+                        recipe_data.append({ key_type : 1 })
+                    else:
+                        entry[key_type] += 1
+                        
+            elif key == "author_email":
+                key_type = value
+                
+                if authors_data == []:
+                    authors_data.append(recipe["author_email"])
+                else:
+                    for entry in authors_data:
+                        if entry == key_type:
+                            existing = "Yes"
+                            break
+                        else:
+                            existing = "No"
+                            
+                    if existing == "No":
+                        authors_data.append(recipe["author_email"])
+    
+    recipe_data.append({ "Total Recipes" : recipe_count })
+    recipe_data.append({"Number of Authors" : len(authors_data) })
+    
+    return recipe_data
+    
 # Views ------------------------------------------------------------------------
 
 @app.before_request
@@ -128,7 +175,13 @@ def before_request():
 @app.route('/')
 def index():
     current_user = determine_current_user(session)
-    return render_template("index.html", users = mongo.db.Users.find(), username=current_user, page_title="Home")
+    recipes = mongo.db.recipes.find()
+    
+    site_stats = website_recipe_data(recipes)
+    
+    print(site_stats)
+    
+    return render_template("index.html", users = mongo.db.Users.find(), username=current_user, page_title="Home", stats=site_stats)
 
 # User related views -----------------------------------------------------------
 
@@ -438,7 +491,9 @@ def recipes():
         except:
             recipes = []
     
-    return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, user_id = user_id, limit = limit, offset = offset, cusines = cusine_list, filter_field = filter_field, filter_value = filter_value, sort_param = sort_param)
+    return render_template("recipes.html", recipes_list = recipes, page_title="Recipes", username=current_user, user=user, 
+        user_id = user_id, limit = limit, offset = offset, cusines = cusine_list, filter_field = filter_field, 
+        filter_value = filter_value, sort_param = sort_param)
 
 @app.route('/add_recipe')
 def add_recipe():

@@ -218,6 +218,10 @@
     color: $grey-para-text;
     line-height: 2.4;
     letter-spacing: 0;
+    
+    @include large-mobile {
+        padding: 0 10px;
+    }
 }
 
 .recipes-intro-content img {
@@ -570,6 +574,33 @@
     @include large-tablet {
         font-size: 92px;
     }
+}
+
+.stats-section {
+    background-color: $flame-orange;
+    color: $white;
+    text-align: center;
+    padding: 14px 20px 30px;
+    
+    h2 {
+        @extend %text-shadow;
+        margin-bottom: 22px;
+            font-size: 42px;
+    }
+}
+
+.stat-block {
+    display: inline-block;
+    width: 15%;
+    padding: 10px;
+}
+
+.stat-block-type2 {
+    display: inline-block;
+    width: 20%;
+    padding: 12px;
+    font-size: 1.2em;
+    color: $black;
 }
 
 // Sign-up / Sign-in -----------------------------------------------------------

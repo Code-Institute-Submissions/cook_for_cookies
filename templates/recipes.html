@@ -66,13 +66,13 @@
                 {% for recipe in recipes_list %}
                 <div class="recipe">
                     <a href="{{ url_for('view_recipe', username=username, recipe_id=recipe._id) }}">
-                    <span class="recipe-row-top container">
+                    <div class="recipe-row-top container">
                         {% if recipe.recipe_image_url %}
                         <img class="recipe-img" src="{{ recipe.recipe_image_url }}" alt="A user provided picture of their recipe">
                         {% else %}
                         <img class="recipe-img" src="{{ url_for('static', filename='images/food-default.jpg') }}" alt="A default picture of multiple varieties of food">
                         {% endif %}
-                        <span class="recipe-info-container">
+                        <div class="recipe-info-container">
                             <p class="recipe-list-item recipe-name">{{ recipe.recipe_name.title() }}</p>
                             <p class="recipe-list-item">
                                 {% if recipe.user_score %}
@@ -81,8 +81,8 @@
                                     Not yet rated
                                 {% endif %}
                             </p>
-                        </span>
-                    </span>
+                        </div>
+                    </div>
                     </a>
                     {% if recipe.author == user_id %}
                     <div class="recipe-row-bottom">
@@ -115,7 +115,6 @@
                 <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', offset = offset + limit) }}">Next</a>
             </div>
         </div>
-
     </div>
 </section>
 {% endblock %}
