@@ -1,4 +1,5 @@
 import os
+import env
 import json
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_pymongo import PyMongo
@@ -9,8 +10,8 @@ from byotests import *
 app = Flask(__name__)
 app.secret_key = 'we-will-succeed-123'
 
-app.config["MONGO_DBNAME"] = "onlinecookbook"
-app.config["MONGO_URI"] = "mongodb://admin:Sameday123@ds161112.mlab.com:61112/onlinecookbook"
+app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
