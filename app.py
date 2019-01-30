@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
+from byotests import *
 
 app = Flask(__name__)
 app.secret_key = 'we-will-succeed-123'
@@ -17,9 +18,16 @@ mongo = PyMongo(app)
 
 cusine_list = ['American', 'British', 'Caribbean', 'Chinese', 'French', 'Greek', 'Indian', 'Italian', 'Japanese', 'Mediterranean', 'Mexican', 'Moroccan', 'Spanish', 'Thai', 'Turkish', 'Vietnamese', 'Other']
 
+
 # User functions ---------------------------------------------------------------
 
 def user_has_logged_in(email):
+    
+    """ 
+    Upon valid log in, adds users email address to the session dict and also 
+    extracts the users unique bson id to keep in the session too
+    """
+    
     session['user'] = email
     this_user = mongo.db.Users.find_one({"email":session["user"]})
     this_user_id_bson = this_user["_id"]
@@ -62,6 +70,12 @@ def validate_password_on_log_in(email_given, password_given):
         flash("I'm sorry, the password you entered does not match with our records.  Please feel free to try again!")
 
 def does_record_already_exist(search_criteria, database_records):
+    
+    """
+    Checks to see if a record already exists in a database {e.g. users / ingredients
+    and returns True if so
+    """
+    
     existing_record = 0
     for item in database_records:
         if request.form[search_criteria].lower() == item[search_criteria].lower():
@@ -70,9 +84,15 @@ def does_record_already_exist(search_criteria, database_records):
     if existing_record != 0:
         return True
 
+
 # Search database functions ----------------------------------------------------
 
 def recipe_already_exists(new_recipe_name):
+    
+    """
+    Checks to see if a recipe already exists taking into account object id
+    and returns True if so
+    """
     
     current_user = determine_current_user(session)
     if current_user == "guest":
@@ -85,28 +105,15 @@ def recipe_already_exists(new_recipe_name):
             if ObjectId(recipe["author"]) == this_user["_id"] and recipe["recipe_name"] == new_recipe_name:
                 return True
 
-# This function is now superceaded by the javascript code so that the ingredients can load without having to refresh the page but this function is equally as valid if the page was to be refreshed...
-
-# def createThisRecipeIngredientsList(recipe_id):
-#     new_recipe_ingredients_list = []
-#     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    
-#     try:
-#         for ingredient in the_recipe["recipe_ingredients"]:
-#             for key, value in ingredient.iteritems():
-#                 decoded_key = key.encode('utf-8')
-#                 fully_decoded_key = decoded_key.replace(" ", "")
-#                 this_ingredient = mongo.db.ingredients.find_one({"_id": ObjectId(fully_decoded_key)})
-#                 new_recipe_ingredients_list.append({ this_ingredient["ingredient_name"] : value })
-#     except:
-#         new_recipe_ingredients_list = []
-    
-#     return new_recipe_ingredients_list
-                
 
 # Recipe Review Functions ------------------------------------------------------
 
 def review_is_present(review_db, user):
+    
+    """
+    Checks if the current user has already reviewed the recipe being looked at
+    """
+    
     try:
         for review in review_db:
             if review["reviewing_user"] == user:
@@ -116,6 +123,13 @@ def review_is_present(review_db, user):
         return "No"
 
 def website_recipe_data(recipes):
+    
+    """
+    Should review the recipes in the database and pull together stats to show
+    how many are on the site, which cusines they relate to and how many
+    authors there are compared to recipes
+    """
+    
     recipe_data = []
     authors_data = []
     recipe_count = 0
@@ -183,8 +197,6 @@ def index():
     recipes = mongo.db.recipes.find()
     
     site_stats = website_recipe_data(recipes)
-    
-    print(site_stats)
     
     return render_template("index.html", users = mongo.db.Users.find(), username=current_user, page_title="Home", stats=site_stats)
 
@@ -338,6 +350,24 @@ def recipes():
         user = "guest"
         user_id = "guest"
     
+    """
+    This code should apply any sort parameters, filters and pagination to the
+    recipes on recpes.html.  It takes the sort parameter, a filter field, a 
+    filter id and a limit value to determine what the user wants to see on the page.It
+    
+    The filter field and value will determine which recipes are applied to be
+    part of the users custom search and can be filtered my their own recipes, all
+    recipes, or based on the cusine type.All
+    
+    The sort parameter will determine whether that data is then sorted by latest, 
+    Highest rated or alphabetically.Highest
+    
+    Finally, the limit value will determine how many recipes are displayed on the
+    page at once (3, 6 or 9) and the offset value will determnie where the user is 
+    in the list of recipes within that limit as the user flicks through the pages.
+    
+    """
+    
     starting_sort_param = '_id'
     starting_filter_field = "_id"
     starting_filter_value = "All"
@@ -425,9 +455,6 @@ def recipes():
         sort_param = "user_score"
     else:
         sort_order = 1
-    
-    print(sort_param)
-    print(filter_field)
 
     # Execute if no filters applied....
 
@@ -538,8 +565,13 @@ def view_recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     author = mongo.db.Users.find_one({"_id": ObjectId(the_recipe["author"])})
     
+    """
+    Filters the recipe_comments database to create a database of comments that
+    relates only to the viewed recipe and then determines if the existing users 
+    has already posted a review...
+    """
+    
     if mongo.db.recipe_comments.find({"reviewed_recipe_id": recipe_id}).count() == 0:
-        print("Count is zero")
         the_reviews = "None"
     else:
         the_reviews = mongo.db.recipe_comments.find({"reviewed_recipe_id": recipe_id}).sort([("_id", -1)])
@@ -673,6 +705,11 @@ def head_chefs():
     current_user = determine_current_user(session)
     recipe_db = mongo.db.recipes
     
+    """
+    Creates a database of the top ten users based on the average review score of
+    all of the recipes that each user have added to the site.
+    """
+    
     aggrDB = recipe_db.aggregate([ {
         '$unwind' : '$author_email'
         },
@@ -685,7 +722,7 @@ def head_chefs():
         "user_score" : 1, "author" : 1,  
         "recipe_name" : 1, "email" : "$author_email", "average_score" : { '$avg' : "$user_score" }}},
         { '$group' : { "_id" : "$author" , "author" : { '$first' : "$author"}, 
-        "score" : { '$avg' : '$average_score' }, "email" : { '$first' : "$email"}, "recipes_count" : { '$sum' : 1 }}},
+        "score" : { '$avg' : '$average_score' }, "email" : { '$first' : { "$split" : ["$email", "@"] }}, "recipes_count" : { '$sum' : 1 }}},
         { '$sort' : { "score" : -1 }},
         { '$limit': 10 }
         ])

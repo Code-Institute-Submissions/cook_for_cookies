@@ -14,13 +14,13 @@
             <div class="table-container">
                 <table>
                     <tr>
-                        <th>Chefs Email</th>
+                        <th>Chef</th>
                         <th class="hide-on-mobile">Recipes Submitted</th>
                         <th>Average Score</th>
                     </tr>
                     {% for entry in table %}
                     <tr>
-                        <td>{{ entry.email }}</td>
+                        <td>{{ entry.email[0] }}</td>
                         <td class="hide-on-mobile">{{ entry.recipes_count }}</td>
                         {% if entry.score != None %}
                             <td>{{ entry.score|round(1, 'ceil') }}</td>
