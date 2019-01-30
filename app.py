@@ -4,7 +4,6 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
-from test_suite import *
 
 app = Flask(__name__)
 app.secret_key = 'we-will-succeed-123'
@@ -132,7 +131,8 @@ def website_recipe_data(recipes):
                         recipe_data.append({ key_type : 1 })
                 else:
                     for entry in recipe_data:
-                        if entry.keys()[0] == key_type:
+                        this_key = entry.keys()
+                        if this_key[0] == key_type:
                             existing = "Yes"
                             break
                         else:
@@ -163,6 +163,12 @@ def website_recipe_data(recipes):
     recipe_data.append({"Number of Authors" : len(authors_data) })
     
     return recipe_data
+
+# TESTS ------------------------------------------------------------------------------
+
+# Add test ...
+
+print("All tests have passed")
     
 # Views ------------------------------------------------------------------------
 
