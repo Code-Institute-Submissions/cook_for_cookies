@@ -131,8 +131,7 @@ def website_recipe_data(recipes):
                         recipe_data.append({ key_type : 1 })
                 else:
                     for entry in recipe_data:
-                        this_key = entry.keys()
-                        if this_key[0] == key_type:
+                        if next(iter(entry)) == key_type:
                             existing = "Yes"
                             break
                         else:
