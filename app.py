@@ -179,7 +179,20 @@ def website_recipe_data(recipes):
 
 # TESTS ------------------------------------------------------------------------------
 
-# Add test ...
+"""
+The following test will check to ensure the correct data is being pulled for the
+via the website_recdipe_data_function
+"""
+
+test_recipe_data = [
+            {"cusine" : "American", "author_email" : "first_author", "random_field" : "random_data"},
+            {"cusine" : "Japanese", "author_email" : "first_author", "random_field" : "random_data"},
+            {"cusine" : "American", "author_email" : "second_author", "random_field" : "random_data"},
+            {"cusine" : "American", "author_email" : "third_author", "random_field" : "random_data"},
+            {"cusine" : "Italian", "author_email" : "first_author", "random_field" : "random_data"},
+            ]
+
+test_are_equal(website_recipe_data(test_recipe_data), [{"American" : 3}, {"Japanese" : 1}, {"Italian" : 1}, {"Total Recipes" : 5}, {"Number of Authors": 3}])
 
 print("All tests have passed")
     

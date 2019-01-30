@@ -16,7 +16,7 @@ def test_number_is_between(number, low_limit, high_limit):
 def test_length_of_collection_matches(collection1, collection2):
     assert len(collection1) == len(collection2), "Collection 1 length is {0} expected {1}".format(len(collection1), len(collection2))
     
-def test_all_indexes_appear_in_collection(collection1, collection2):
+def test_all_dicts_appear_in_collection(collection1, collection2):
     number = 0
     while number < len(collection2):
         test_is_in(collection1, number)
