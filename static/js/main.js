@@ -4,7 +4,7 @@ var ingredientDatabaseURL = "https://api.mlab.com/api/1/databases/onlinecookbook
 var recipeDatabaseURL = 'https://api.mlab.com/api/1/databases/onlinecookbook/collections/recipes?apiKey=s7gyGaddJoxspRO2AkhmKaO0Wz0d_HH9';
 var reviewsDatabaseURL = 'https://api.mlab.com/api/1/databases/onlinecookbook/collections/recipe_comments?apiKey=s7gyGaddJoxspRO2AkhmKaO0Wz0d_HH9';
 
-var defaultIngredientImage = "https://images.unsplash.com/photo-1538140177897-d71d1643349e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058d4a817fafacf72008b4fe55a4f07f&auto=format&fit=crop&w=500&q=60"
+var defaultIngredientImage = "https://images.unsplash.com/photo-1538140177897-d71d1643349e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058d4a817fafacf72008b4fe55a4f07f&auto=format&fit=crop&w=500&q=60";
 
 // FUNCTIONS -------------------------------------------------------------------
 function sortIngredients(a, b) {
@@ -34,6 +34,9 @@ function showDataRows(){
 }
 
 function loadData() {
+    
+    // This function will pull all of the information from our mongodb via a promise and display an error message if an issue occurs
+    
     Promise.all([
         fetch(recipeDatabaseURL).then(response => response.json()).catch(),
         fetch(ingredientDatabaseURL).then(response => response.json()).catch(),
@@ -61,7 +64,12 @@ function idToString(idData) {
 
 function prepareData(data) {
 
-    // This function adds the recipe ingredients to the ingredients table header
+    /* 
+    Once the data is loaded via loadData, this function processes the data and 
+    filters out the individual recipe being viewed along with the ingredient and
+    reviews collections.  THis information is then passed into the createThisRecipeData
+    function for further processing.
+    */
 
     const thisRecipeID = $('#recipe-id').val();
     const recipeData = data[0];
@@ -78,19 +86,31 @@ function prepareData(data) {
 }
 
 function createThisRecipeData(recipe, ingredients, reviews) {
+    
+    // This will check if the recipe has any instructions in the database...
+    
     if (recipe.recipe_instructions === undefined || recipe.recipe_instructions.length === 0){
+        
+        // If not, a no instructions message is diplayed accordingly...
+        
         if ($('.no-instructions-row').length === 0){
             $('.instructions-table-header').hide();
             newInstructionRow = "<tr class='no-instructions-row '><td> There are currently no instructions for this recipe.</td></tr>";
             $('.instructions-list-table').after(newInstructionRow);    
         }
     } else {
+        
+        // If there is, the details of each instruction is added to the page...
+        
         $('.instructions-table-header').show();
         sortedInstructions = recipe.recipe_instructions.sort(function(a, b){
             return b.step - a.step;
         });
         
         if($('.edit-recipe-section').length === 1){
+            
+            // If this is the edit recipe page, the user is provided with an icon which will delete the instruction if required...
+            
             sortedInstructions.forEach(function(instruction) {
                 
                 var newInstructionRow = "<tr class='inserted-instruction-row' id='" 
@@ -104,6 +124,9 @@ function createThisRecipeData(recipe, ingredients, reviews) {
                 $('.instructions-table-header').after(newInstructionRow);
             });    
         } else {
+            
+            // If this is not the edit recipe page, the remove instruction icon will be omitted...
+            
             sortedInstructions.forEach(function(instruction) {
                 
                 var newInstructionRow = "<tr class='inserted-instruction-row' id='" 
@@ -119,11 +142,17 @@ function createThisRecipeData(recipe, ingredients, reviews) {
         }
     }
     
+    // This clears the value of the instruction box for a new entry...
+    
     $('.new-instructions-box').val("");
+    
+   // This will check if the recipe has any ingredients in the database... 
     
     if (recipe.recipe_ingredients !== undefined && recipe.recipe_ingredients.length !== 0) {
         thisRecipeIngredients = [];
-
+        
+        // This compares any ingredient in the recipes collection to the ingredients in the ingredient collection and creates a list specific to this recipe...
+        
         for (i = 0; i < recipe.recipe_ingredients.length; i++) {
             var ingredientId = Object.keys(recipe.recipe_ingredients[i]);
             var ingredientIdStr = ingredientId[0];
@@ -137,9 +166,15 @@ function createThisRecipeData(recipe, ingredients, reviews) {
         }
     
         if (thisRecipeIngredients != []) {
+            
+            // Ingredients are then sorted into alphabetical order...
+            
             const sortedIngredients = thisRecipeIngredients.sort(sortIngredients);
             
             if($('.edit-recipe-section').length === 1){
+                
+                // If this is the edit recipe page, the user is provided with an icon which will delete the ingredient if required...
+                
                 sortedIngredients.forEach(function(ingredient) {
                     if (ingredient.ingredient_image_url === undefined || ingredient.ingredient_image_url === ""){
                         var imageSrc = defaultIngredientImage;
@@ -160,6 +195,8 @@ function createThisRecipeData(recipe, ingredients, reviews) {
                     $('.ingredients-table-header').after(newIngredientRow);
                 });    
             } else {
+                
+                // If this is not the edit recipe page, the remove instruction icon will be omitted...
                 
                 sortedIngredients.forEach(function(ingredient) {
                     if (ingredient.ingredient_image_url === undefined || ingredient.ingredient_image_url === ""){
@@ -184,7 +221,7 @@ function createThisRecipeData(recipe, ingredients, reviews) {
         } 
     } else {
         
-        // This adds a line to the page if there are no ingredients to display
+        // This adds a line to the page if there are no ingredients to display to advise accordingly...
         
         if ($('.no-ingredients-row').length === 0){
             $('.ingredients-table-header').hide();
@@ -193,10 +230,12 @@ function createThisRecipeData(recipe, ingredients, reviews) {
         }
     }
     
+   // This compares any review in the recipe_comments collection to the recipe id and saves any matching reviews to a list... 
+    
     var thisRecipesReviews = [];
     
     reviews.forEach(function(review){
-        thisRecipeID = idToString(recipe)
+        thisRecipeID = idToString(recipe);
         if(thisRecipeID === review.reviewed_recipe_id){
             thisRecipesReviews.push(review);
         }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
@@ -204,6 +243,8 @@ function createThisRecipeData(recipe, ingredients, reviews) {
     
     if (thisRecipesReviews.length !== 0) {
          $('.reviews-table-header').show();
+        
+        // If a matching review is present, each one will be added to the page
         
         thisRecipesReviews.forEach(function(review) {
             var newReviewRow = "<tr class='inserted-reviews-row' id='" 
@@ -224,7 +265,9 @@ function createThisRecipeData(recipe, ingredients, reviews) {
         $('.recipe-score ~ p').text(recipeScore.toFixed(2));
         
     } else {
+        
         // This adds a line to the page if there are no reviews to display
+        
         $('.reviews-table-header').hide();
         noReviewRow = "<tr class='no-review-row'><td> There are currently no Reviews for this recipe.</td></tr>";
         $('.reviews-table-header').after(noReviewRow);
@@ -256,7 +299,7 @@ function updateRecipe(section) {
 
     // This function will push updated information to the database without having to refresh the page...
 
-    var recipeID = $('.recipe-id').val()
+    var recipeID = $('.recipe-id').val();
 
     $.ajax({
         url: '/update_recipe/' + section + '/' + recipeID,
@@ -266,7 +309,7 @@ function updateRecipe(section) {
             console.log(response);
             loadData();
             if(section == 1){
-                flashedMessage("Updated!")
+                flashedMessage("Updated!");
             }
         },
         error: function(error) {
@@ -323,13 +366,16 @@ function removeInstruction() {
             },
             error: function(error) {
                 console.log(error);
-                flashedMessage("Oops, an error has occured.  Please try later")
+                flashedMessage("Oops, an error has occured.  Please try later");
             }
         });
     });
 }
 
 function flashedMessage(message) {
+    
+    // Displays a message when called which is built into base.html but initially hidden ...
+    
     $('.flashed-message').text(message);
     $('.round-pop-up-container').show();
     $('.round-pop-up-container').css('display', 'flex');
@@ -369,6 +415,9 @@ function zoomImage(hoverElement, pictureElement){
 }
 
 function toggleMenu(){
+    
+    //  This controls the mobile drop down box...
+    
     $('.fa-caret-square-down').on("click", function() {
         $('.dropdown-menu').toggle("fast");
         $('.fa-caret-square-down').toggleClass('turn-red');
@@ -384,7 +433,7 @@ $(document).ready(function() {
     //  This is to close any pop up button...
 
     $('.hide-me-btn').on("click", function() {
-        $('.hide-me').fadeOut("fast")
+        $('.hide-me').fadeOut("fast");
     });
 
     // This will make the button to confirm and actually delete a recipe appear or disappear on cancel

@@ -593,6 +593,8 @@
     display: inline-block;
     width: 15%;
     padding: 10px;
+    line-height: 24px;
+    vertical-align: middle;
 }
 
 .stat-block-type2 {
@@ -601,6 +603,8 @@
     padding: 12px;
     font-size: 1.2em;
     color: $black;
+    line-height: 24px;
+    vertical-align: top;
 }
 
 // Sign-up / Sign-in -----------------------------------------------------------
