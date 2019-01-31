@@ -1,11 +1,17 @@
 import os
-import env
 import json
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from bson.json_util import loads, dumps
 from byotests import *
+
+try:
+    import env
+    development = True
+except:
+    development = False
+    
 
 app = Flask(__name__)
 app.secret_key = 'we-will-succeed-123'
@@ -746,4 +752,4 @@ def head_chefs():
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),
-    debug=True)
+    debug=development)
