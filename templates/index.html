@@ -77,7 +77,7 @@
         </div>
         <div class="stats row">
             {% for stat in stats %}
-                {% for key, value in stat.iteritems() %}
+                {% for key, value in stat.items() %}
                     {% if key != "Total Recipes" and key != "Number of Authors"%}
                         <div class="stat-block">
                             {{ key }} recipes - {{ value }}
@@ -86,7 +86,7 @@
                 {% endfor %}
             {% endfor %}
             {% for stat in stats %}
-                {% for key, value in stat.iteritems() %}
+                {% for key, value in stat.items() %}
                     {% if key == "Total Recipes" or key == "Number of Authors" %}
                     <div class="stat-block-type2">
                         {{ key }} - {{ value }}
