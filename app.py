@@ -129,7 +129,7 @@ def review_is_present(review_db, user):
     except:
         return "No"
 
-def website_recipe_data(recipes):
+def website_recipe_data(recipesDB):
     
     """
     Should review the recipes in the database and pull together stats to show
@@ -141,7 +141,7 @@ def website_recipe_data(recipes):
     authors_data = []
     recipe_count = 0
     
-    for recipe in recipes:
+    for recipe in recipesDB:
         recipe_count += 1
         for key, value in recipe.items():
             
