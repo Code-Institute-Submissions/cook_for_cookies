@@ -1,3 +1,9 @@
+// A test to ensure Jasmine is hooked up correctly...
+
+function onePlusOne() {
+    return 2;
+}
+
 // GLOBAL VARIABLES ------------------------------------------------------------
 
 var ingredientDatabaseURL = "https://api.mlab.com/api/1/databases/onlinecookbook/collections/ingredients?apiKey=s7gyGaddJoxspRO2AkhmKaO0Wz0d_HH9";

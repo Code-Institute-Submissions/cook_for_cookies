@@ -11,7 +11,6 @@ try:
     development = True
 except:
     development = False
-    
 
 app = Flask(__name__)
 app.secret_key = 'we-will-succeed-123'
@@ -749,6 +748,10 @@ def head_chefs():
     
     return render_template("head_chefs.html", page_title="Head Chefs", username=current_user, table = aggrDB)
 
+@app.route('/js_tests')
+def js_tests():
+    return render_template("jasmine.html", page_title="JS Testing")
+    
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
     port=int(os.environ.get('PORT')),
