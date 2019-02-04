@@ -183,7 +183,7 @@ def website_recipe_data(recipesDB):
     
     return recipe_data
 
-# TESTS ------------------------------------------------------------------------------
+# FUNCTION TESTS ------------------------------------------------------------------------------
 
 """
 The following test will check to ensure the correct data is being pulled for the
