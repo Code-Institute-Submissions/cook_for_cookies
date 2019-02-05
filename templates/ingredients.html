@@ -10,6 +10,9 @@
             <a href="{{ url_for('add_ingredient', recipe_id='none') }}"><button>Add Ingredient</button></a>
         </div>
         <div class="ingredients-container">
+            
+            <!--Each ingredient will be listed with a link to the edit ingredient page-->
+            
             {% for ingredient in ingredients_list %}
             <div class="ingredient">
                 {% if ingredient.ingredient_image_url %}

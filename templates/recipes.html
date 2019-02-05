@@ -12,6 +12,9 @@
         <div class="recipe-container">
             <div class="row filter-btn-row">
                 <div class="container">
+                    
+                    <!--These links pass a new value for the limit so that a user can decide how many recipes to view at once-->
+                    
                     <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 3, offset = 0) }}">View 3 Recipes</a>
                     <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 6, offset = 0) }}">View 6 Recipes</a>
                     <a class="next-recipes-btn div-btn" href="{{ url_for('recipes', limit = 9, offset = 0) }}">View 9 Recipes</a>
@@ -31,6 +34,9 @@
                               <i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-options">
+                                
+                                <!--These links pass new valuse for the filters so that a user can decide which recipes they would like to see-->
+                                
                                 <a href="{{ url_for('recipes', offset = 0, filter_field = "author", filter_value = user_id ) }}">My Recipes</a>
                                 <a href="{{ url_for('recipes', offset = 0, filter_field = "_id", filter_value = 1 ) }}">All</a> 
                                 {% for cusine in cusines %}

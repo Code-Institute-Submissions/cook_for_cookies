@@ -46,6 +46,9 @@
                     <div class="recipe-instructions">
                         <h2>Recipe Instructions</h2>
                         <table class="instructions-list-table">
+                            
+                            <!--Any exisitng instructions will be passed through to table via js -->
+                            
                             <tr class="instructions-table-header">
                                 <th>Step</th>
                                 <th>Instructions</th>
@@ -57,6 +60,9 @@
                     <div class="recipe-ingredients">
                         <h2>Ingredients</h2>
                         <table class="ingredients-list-table">
+                            
+                            <!--Any exisitng ingredients will be passed through to table via js -->
+                            
                             <tr class="ingredients-table-header">
                                 <th>Ingredient</th>
                                 <th>Quantity</th>
@@ -77,7 +83,9 @@
 </section>
 <section class="reviews-section container">
     <div class="row reviews-section-row">
+        
         <!--To add a review, the user must be logged in, this must not be the users own recipe and the user must not have already reviewed the recipe-->
+        
         <h2 class="review-heading">Reviews</h2>
         {% if username != "guest" and author.email != username and already_reviewed != "Yes" %}
         <p>Have you tried this recipe?  Provide a review and let the World know your thoughts!</p> 
@@ -90,6 +98,9 @@
         </div>
         {% endif %}
         <table class="reviews-table">
+            
+            <!--Any exisitng reviews will be passed through to table via js -->
+            
             <tr class=reviews-table-header>
                 <th>User Comments</th> 
                 <th>User Score</th> 

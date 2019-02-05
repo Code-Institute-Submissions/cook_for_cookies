@@ -9,9 +9,15 @@
         <div class="row">
             <form action="{{ url_for('insert_recipe') }}" method="POST">
                 <ul class="new-user-form add-recipe-list">
+                    
+                    <!--Hidden data which gets fed into new recipe when created-->
+                    
                     <input class="hidden-div" type="text" id="author" name="author" value="{{ user._id }}">
                     <input class="hidden-div" type="text" id="author_COO" name="author_COO" value="{{ user.country }}">
                     <input class="hidden-div" type="text" id="author_email" name="author_email" value="{{ user.email }}">
+                    
+                    <!--The following inputs make up the rest of the basic recipe before any ingredients or instructions are added...-->
+                    
                     <div class="column cusine-selection-box">
                         <li>
                             <select id="cusine" name="cusine" size="5" required>
@@ -39,6 +45,9 @@
         </div>
     </div>
 </section>
+
+<!-- Adds a pop up box with instructions when user-photo-instructions-btn is hovered -->
+
 <div class="user-photo-instructions">
     <h3 class="photo-instructions-header">Use a personalised photo!</h3>
     <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p>

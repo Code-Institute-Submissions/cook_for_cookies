@@ -12,12 +12,18 @@
 </head>
 <body>
     <header>
+        
+        <!--This is the main nav bar which will appear as a dropdown list on devices smaller than tablets-->
+        
         <nav class="uppercase">
             <a href="{{ url_for('index') }}">
                 <img class="logo grow" src="{{ url_for('static', filename='images/flame-sizzle-logo.gif') }}" alt="Company logo - flames">
             </a>
             <i class="far fa-caret-square-down"></i>
             <ul class="dropdown-menu">
+                
+                <!--Only certain links will appear dependant on login status-->
+                
                 {% if username == "guest" %}
                 <li class="grow"><a href="{{ url_for('sign_up') }}"><i class="fas fa-user-plus nav-icon"></i>Sign Up</a></li>
                 <li class="grow"><a href="{{ url_for('log_in') }}"><i class="fas fa-sign-in-alt nav-icon"></i>Log In</a></li>
@@ -29,11 +35,12 @@
                 <li class="grow"><a href="{{ url_for('profile', username=username) }}"><i class="fas fa-user nav-icon"></i>Profile</a></li>
                 <li class="grow"><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt nav-icon"></i>Logout</a></li>
                 {% endif %}
-
-                
             </ul>
         </nav>
     </header>
+    
+    <!--Any messages to the user passed via javascript or flask functions will display in the following boxes...-->
+    
     <div class="round-pop-up-container hidden-div hide-me">
         <div class="row center-text">
             <p class="flashed-message center-div">
@@ -60,6 +67,9 @@
     
     {% block content %}
     {% endblock %}
+    
+    <!--A basic example footer to build upon where necessary...-->
+    
     <footer>
         <div class="container">
             <div class="footer-item">

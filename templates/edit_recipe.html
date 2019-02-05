@@ -1,10 +1,15 @@
 {% extends 'base.html' %} {% block content %}
+
+<!-- Adds a pop up box with instructions when user-photo-instructions-btn is hovered -->
+
 <div class="user-photo-instructions">
     <h3 class="photo-instructions-header">Use a personalised photo!</h3>
     <p class="photo-instructions-para">To use a photo of your choice please copy and paste the http address of your photo in the photo image address box.</p>
     <p class="photo-instructions-para">To get the http address, simply find the photo you wish to use on the internet, right click it, and copy the image address / location.</p>
     <p class="photo-instructions-para">And voila! As if by magic, it will appear when you update!</p>
 </div>
+
+
 <div class="page-bg edit-recipe-bg"></div>
 <section class="edit-recipe-section">
     <div class="container">
@@ -21,6 +26,9 @@
         <div class="row recipe-details-1">
             <h2 class="center-text">Section 1 - Recipe Info</h2>
             <form class="section1-form">
+                
+                <!--This form will amend any basic details about the recipe such as name, image address and cusine cat-->
+                
                 <div class="row section-1-data">
                     <div class="hidden-box hidden-div">
                         <input type="text" id="author" name="author" value="{{ user._id }}">
@@ -51,10 +59,14 @@
                 </div>
             </form>
         </div>
+        
         <div class="row recipe-details-2">
             <h2 class="center-text">Section 2 - Recipe Instructions</h2>
             <div class="section-2-data recipe-existing-instructions">
                 <table class="instructions-list-table">
+                    
+                    <!--This table will update with any existing instructions via javascript-->
+                    
                     <tr class="instructions-table-header">
                         <th>Step</th>
                         <th class="text-left">Instructions</th>
@@ -65,6 +77,9 @@
             <div class="add-instructions-container">
                 <h3>Add Instructions...</h3>
                 <form class="new-instructions-container">
+                    
+                    <!--This form allows any additional instructions to be added to the database via js ajax request-->
+                    
                     <input class="new-instructions-box" id="step" name="step" placeholder="Step" type="number" min="1" max="25">
                     <textarea class="new-instructions-box" id="instruction" name="instruction" placeholder="Instruction" type="text" maxlength="200"></textarea>
                     <i class="add-instructions-btn fas fa-plus-square no-float" type="button"></i>
@@ -75,6 +90,9 @@
             <h2 class="center-text">Section 3 - Recipe Ingredients</h2>
             <div class="recipe-existing-ingredients section-3-data">
                 <table class="ingredients-list-table">
+                    
+                    <!--This table will update with any existing ingredients via javascript-->
+                    
                     <tr class="ingredients-table-header">
                         <th>Ingredient</th>
                         <th>Quantity</th>
@@ -86,6 +104,9 @@
                 <div class="add-new-ingredient-container-section-1">
                     <h3>Add additional ingredients...</h3>
                     <form class="new-ingredient-container">
+                        
+                        <!--This form allows any additional ingredients to be added to the database via js ajax request-->
+                        
                         <select class="ingredient-box" id="ingredient_name" name="ingredient_name" required>
                             <option value="{{ ingredients.ingredient_name }}" selected>Select an ingredient to add...</option>
                             {% for ingredient in ingredients %}
@@ -99,6 +120,9 @@
                 <div class="add-new-ingredient-container-section-2">
                     <hr>
                     <div class="row add-ingredient-container">
+                        
+                        <!--This allows user to add an ingredient not already in the database, taking them to the add ingredient page-->
+                        
                         <h3 class="missing-ingredient-area"><span class="uppercase">Ingredient not in list?!</span>  Add it here...</h3>
                         <a href="{{ url_for('add_ingredient', recipe_id=this_recipe._id) }}" class="div-btn">Add Ingredient</a>
                     </div>
