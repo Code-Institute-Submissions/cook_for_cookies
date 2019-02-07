@@ -13,6 +13,7 @@ var reviewsDatabaseURL = 'https://api.mlab.com/api/1/databases/onlinecookbook/co
 var defaultIngredientImage = "https://images.unsplash.com/photo-1538140177897-d71d1643349e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=058d4a817fafacf72008b4fe55a4f07f&auto=format&fit=crop&w=500&q=60";
 
 // FUNCTIONS -------------------------------------------------------------------
+
 function sortIngredients(a, b) {
     // Use toUpperCase() to ignore character casing
     const ingredientNameA = a.ingredient_name.toUpperCase();

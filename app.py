@@ -234,10 +234,14 @@ def add_new_user():
         flash("I'm sorry, this email address -  {}, has already been registered.\n  Please log in if you've signed up previously or try a different email address.".format(request.form['email']))
         return redirect(url_for('sign_up'))
     else:
-        mongo.db.Users.insert_one(request.form.to_dict())
-        user_has_logged_in(request.form['email'])
-        flash("Hi {}, thanks for registering.\n  You may now add your own recipes and receive or write reviews!\n Good luck!".format(request.form['email']))
-        return redirect(url_for('index'))
+        if request.form["password"] == request.form["password2"]:
+            mongo.db.Users.insert_one(request.form.to_dict())
+            user_has_logged_in(request.form['email'])
+            flash("Hi {}, thanks for registering.\n  You may now add your own recipes and receive or write reviews!\n Good luck!".format(request.form['email']))
+            return redirect(url_for('index'))
+        else:
+            flash("I'm sorry, yoyr passwords did not match, please try again")
+            return redirect(url_for('sign_up'))
 
 @app.route('/log_in', methods=["GET", "POST"])
 def log_in():
