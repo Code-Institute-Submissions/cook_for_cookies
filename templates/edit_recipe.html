@@ -38,7 +38,7 @@
                     <div class="content-row">
                         <label for="recipe_name">Recipe Name</label>
                         <input id="recipe_name" name="recipe_name" value="{{ this_recipe.recipe_name.title() }}" type="text" required maxlength="34">
-                        <label for="cusine">Cusine Category</label>
+                        <label for="cusine">Cuisine Category</label>
                         <select id="cusine" name="cusine" required>
                             <option value="{{ this_recipe.cusine }}" selected>{{ this_recipe.cusine }}</option>
                             {% for cusine in cusines %}

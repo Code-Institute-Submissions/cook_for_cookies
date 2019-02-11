@@ -91,6 +91,8 @@ def does_record_already_exist(search_criteria, database_records):
         return True
 
 
+#  Database helper functions ---------------------------------------------------
+
 # Search database functions ----------------------------------------------------
 
 def recipe_already_exists(new_recipe_name):
