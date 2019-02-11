@@ -285,48 +285,91 @@ REFLECTION - I'm sure my site would be of particular interest to students.  Hope
 Each element on the site has been manually tested to ensure it functions as intended as follows:
 
 **Test 1** - On home page, logo is clicked - reloads home page - SUCCESS
+
 **Test 2** - On home page, welcome message fades in - SUCCESS
+
 **Test 3** - On home page, all nav icons increase in size when hovered - SUCCESS
+
 **Test 4** - On home page, sign up button turns red when hovered and loads sign up page - SUCCESS
+
 **Test 5** - On home page, try a recipe now text underlines when hovered and loads recipes page - SUCCESS
+
 **Test 6** - On home page, see ingredients list now text underlines when hovered and loads ingredients page - SUCCESS
+
 **Test 7** - On home page, leaderboard icon zooms in background picture when hovered and head chefs page - SUCCESS
+
 **Test 8** - On home page, food wall displays expected site recipe stats - SUCCESS
+
 **Test 9** - On sign up page, sign up form files in half from the left and half from the right - SUCCESS
+
 **Test 10** - On sign up page, submit button turns red and background image is zoomed when hovered - SUCCESS
+
 **Test 11** - On sign up page, on attempt to sign in as existing user, error message is displayed to user - SUCCESS
+
 **Test 12** - On sign up page, on attempt to sign in as a new user, user is redirected to home page with a welcome message - SUCCESS
+
 **Test 13** - On home page, user clicks the logout nav icon and is signed out and redirected to the home page with appropriate message - SUCCESS
+
 **Test 14** - On log in page, submit button turns red and background image is zoomed when hovered - SUCCESS
+
 **Test 15** - On log in page, user is able to log in with correct username and password and is redirected to recipes page with welcome back message - SUCCESS
+
 **Test 16** - On log in page, user is presented with appropriate message when trying to log in with an incorrect password - SUCCESS
+
 **Test 17** - On profile page, user personalised photo instructions appear when ? icon is hovered - SUCCESS
+
 **Test 18** - On profile page, go back button turns red on hover and takes the user back to the recipes page on click - SUCCESS
+
 **Test 19** - On profile page, submit button turns red on hover and updates any amended user details within the database on click with an appropriate message - SUCCESS
+
 **Test 20** - On recipes page, add recipe button turns red on hover and tells unregistered user they are unable to add a recipe - SUCCESS
+
 **Test 21** - On recipes page, add recipe button turns red on hover and takes registered user to add a recipe step 1 page - SUCCESS
+
 **Test 22** - On recipes page, the user is able to use filters to manage the category they would like to view  - SUCCESS
+
 **Test 23** - On recipes page, the user is able to use sort to manage the order of the recipes filtered  - SUCCESS
+
 **Test 24** - On recipes page, the user is able to select how many reviews to view at once via the view x recipes buttons  - SUCCESS
+
 **Test 25** - On recipes page, a hovered recipes background colour changes and the user is taken to view recipe page when clicked  - SUCCESS
+
 **Test 26** - On recipes page, while logged in, any recipes I have added have a delete and edit but that turn red on hover  - SUCCESS
+
 **Test 27** - On recipes page, while logged in, when deleting my recipe a confirm box appears and disappears if cancel is pressed - SUCCESS
+
 **Test 28** - On recipes page, while logged in, when deleting my recipe a confirm box appears and the recipe is deleted if confirm is pressed - SUCCESS
+
 **Test 28** - On recipes page, while logged in, the edit button turns red on hover and takes me to edit page for that specific recipe on click - SUCCESS
+
 **Test 29** - On view recipe page, a please wait box shows while recipe data is received, and the recipe data is loaded in upon receipt - SUCCESS
+
 **Test 30** - On view recipe page, I can add a review if I am logged in and I have not already reviewed a recipe - SUCCESS
+
 **Test 31** - On add recipe page, I can add a new recipe to the database when completing cuisine type and recipe name - SUCCESS
+
 **Test 32** - On edit recipe page, update recipe button turns red and updates recipe name, photo image address and cuisine type on click - SUCCESS
+
 **Test 33** - On edit recipe page, on click of minus icon, I can remove a step from the instructions list and the list refreshes- SUCCESS
+
 **Test 34** - On edit recipe page, on click of plus icon, I can add a step to the instructions list and the list refreshes- SUCCESS
+
 **Test 35** - On edit recipe page, on click of plus icon, I get a message to include an instruction step number if it has been omitted from the form- SUCCESS
+
 **Test 36** - On edit recipe page, on click of plus icon, I can add an ingredient and quantity to the ingredients list and the list refreshes- SUCCESS
+
 **Test 37** - On edit recipe page, on click of plus icon, I get a message to include an ingredient quantity if it has been omitted from the form- SUCCESS
+
 **Test 38** - On edit recipe page, add ingredient button turns red and takes me to add an ingredient page when clicked, clicking cancel on the loaded page takes me back to the recipe - SUCCESS
+
 **Test 39** - On ingredients page, add ingredient button turns red and takes me to add an ingredient page when clicked, clicking cancel on the loaded page takes me back to the ingredients page - SUCCESS
+
 **Test 40** - On ingredients page, each ingredients edit icon turns red on hover and takes me to edit ingredient page on click - SUCCESS
+
 **Test 41** - On add ingredient page, an ingredient is saved to the database when relevant details are added - SUCCESS
+
 **Test 42** - On edit ingredient page, the name of the ingredient cannot be amended but the image address and allergens switch are functional and update the database accordingly on submit - SUCCESS
+
 **Test 43** - On head chefs page, a list of the top rated users is displayed in order with the number of recipes submitted and the average scores- SUCCESS
 
 These tests have also been performed in different orders to ensure the result and the way the game is displayed is always as intended and no errors have been found.
@@ -503,8 +546,6 @@ the correct average score matches the one returned by the function checking the 
 #### BUGS
 
 There were two bugs I experienced when creating this site:
-
-Broken pictures - incorrect image addresses
 
 1)  One of the features of this site is the ability to add your own user or recipe photos using an image url from the web.  If a user enters the correct url, their image will display or alternatively if they leave it blank, a default 
 image will appear.  However, if the user enters a broken link, then a broken link image will appear which doesn't look too perfect on the site.  Having looked into this on different forums, it appears that there isn't an easy solution to this
